@@ -1,0 +1,8 @@
+/avrArduinoBacnetEnergyMonitor
+/avrBacnetNodeLibrary
+/avrBacnetStack
+/x86BacnetNodeLibrary
+/x86BacnetStack
+/x86EmulatorBacnetEnergyMonitor
+/x86TestBacnetNodeLibrary
+/build
