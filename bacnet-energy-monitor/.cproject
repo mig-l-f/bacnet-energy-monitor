@@ -280,12 +280,7 @@
 							</builder>
 							<tool id="de.innot.avreclipse.tool.assembler.winavr.lib.debug.1537615138" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.lib.debug">
 								<option id="de.innot.avreclipse.assembler.option.debug.level.1946963937" name="Generate Debugging Info" superClass="de.innot.avreclipse.assembler.option.debug.level"/>
-								<option id="de.innot.avreclipse.asm.option.include.paths.879108973" name="#include paths for preprocessor(-I)" superClass="de.innot.avreclipse.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BacnetNodeGit/include/drivers/atmega328p}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BacnetNodeGit/include/library/bacnet-stack}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BacnetNodeGit/external/Arduino/core/include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BacnetNodeGit/external/Arduino/Ethernet/include}&quot;"/>
-								</option>
+								<option id="de.innot.avreclipse.asm.option.include.paths.879108973" name="#include paths for preprocessor(-I)" superClass="de.innot.avreclipse.asm.option.include.paths" valueType="includePath"/>
 								<inputType id="de.innot.avreclipse.tool.assembler.input.38688143" superClass="de.innot.avreclipse.tool.assembler.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.compiler.winavr.lib.debug.1108620215" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.lib.debug">
@@ -676,13 +671,7 @@
 								<outputType id="cdt.managedbuild.tool.gnu.cpp.linker.output.466851121" outputPrefix="" superClass="cdt.managedbuild.tool.gnu.cpp.linker.output"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.359635129" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug">
-								<option id="gnu.both.asm.option.include.paths.1543320985" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BacnetNodeGit/external/cute}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BacnetNodeGit/include/test/TestBacnetNode}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BacnetNodeGit/include/library/BacnetNode}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BacnetNodeGit/include/library/bacnet-stack}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/BacnetNodeGit/include/drivers/linux}&quot;"/>
-								</option>
+								<option id="gnu.both.asm.option.include.paths.1543320985" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath"/>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1866124806" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>

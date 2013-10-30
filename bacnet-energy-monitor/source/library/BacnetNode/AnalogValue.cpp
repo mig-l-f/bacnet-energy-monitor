@@ -1,9 +1,11 @@
 /*
- * AnalogValue.cpp
+ * Copyright (c) 2013 by Miguel Fernandes
  *
- *  Created on: 24 de Set de 2013
- *      Author: mgf
+ * This file is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License version 2.1, both as
+ * published by the Free Software Foundation.
  */
+
 #include "AnalogValue.h"
 
 AnalogValue::AnalogValue(const uint32_t objectID, const char* objectName, const char* description, BACNET_ENGINEERING_UNITS units):
