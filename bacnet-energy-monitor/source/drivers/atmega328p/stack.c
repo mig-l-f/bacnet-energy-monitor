@@ -96,3 +96,20 @@ unsigned stack_unused(
 #endif
     return count;
 }
+
+unsigned freeRam(void){
+	extern int __heap_start, *__brkval;
+	int v;
+	return (int) &v - (__brkval == 0 ? (int) &__heap_start : (int) __brkval);
+}
+
+unsigned heapSize(void){
+	extern int __heap_start, *__brkval;
+	if(__brkval == 0){
+		return (int) &__heap_start;
+	}else{
+		return (int) __brkval -(__heap_start);
+	}
+}
+
+

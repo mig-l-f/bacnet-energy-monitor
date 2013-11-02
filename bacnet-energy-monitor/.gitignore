@@ -6,3 +6,5 @@
 /x86EmulatorBacnetEnergyMonitor
 /x86TestBacnetNodeLibrary
 /build
+/.gitignore~
+/.gitignore

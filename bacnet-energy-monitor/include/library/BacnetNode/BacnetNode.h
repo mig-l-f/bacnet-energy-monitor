@@ -24,7 +24,7 @@
 #include "BacnetObject.h"
 #include "AnalogValue.h"
 #include "Constants.h"
-
+#include "stack.h"
 
 #ifdef LOGGING
 	#include "log.h"

@@ -62,8 +62,8 @@
 									<listOptionValue builtIn="false" value="MAX_ANALOG_VALUES=4"/>
 									<listOptionValue builtIn="false" value="MAX_BINARY_VALUES=4"/>
 									<listOptionValue builtIn="false" value="DEBUG"/>
-									<listOptionValue builtIn="false" value="VERBOSE"/>
 									<listOptionValue builtIn="false" value="ARDUINO=100"/>
+									<listOptionValue builtIn="false" value="VERBOSE"/>
 								</option>
 								<option id="de.innot.avreclipse.compiler.option.optimize.packstruct.1057269425" name="Pack structs (-fpack-struct)" superClass="de.innot.avreclipse.compiler.option.optimize.packstruct" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.compiler.option.optimize.shortenums.284044580" name="Short enums (-fshort-enums)" superClass="de.innot.avreclipse.compiler.option.optimize.shortenums" value="false" valueType="boolean"/>
@@ -97,8 +97,8 @@
 									<listOptionValue builtIn="false" value="WRITE_PROPERTY"/>
 									<listOptionValue builtIn="false" value="MAX_ANALOG_VALUES=4"/>
 									<listOptionValue builtIn="false" value="MAX_BINARY_VALUES=4"/>
-									<listOptionValue builtIn="false" value="VERBOSE"/>
 									<listOptionValue builtIn="false" value="ARDUINO=100"/>
+									<listOptionValue builtIn="false" value="VERBOSE"/>
 								</option>
 								<option id="de.innot.avreclipse.cppcompiler.option.optimize.packstruct.870696601" name="Pack structs (-fpack-struct)" superClass="de.innot.avreclipse.cppcompiler.option.optimize.packstruct" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.cppcompiler.option.optimize.shortenums.1862726263" name="Short enums (-fshort-enums)" superClass="de.innot.avreclipse.cppcompiler.option.optimize.shortenums" value="false" valueType="boolean"/>
@@ -280,7 +280,7 @@
 							</builder>
 							<tool id="de.innot.avreclipse.tool.assembler.winavr.lib.debug.1537615138" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.lib.debug">
 								<option id="de.innot.avreclipse.assembler.option.debug.level.1946963937" name="Generate Debugging Info" superClass="de.innot.avreclipse.assembler.option.debug.level"/>
-								<option id="de.innot.avreclipse.asm.option.include.paths.879108973" name="#include paths for preprocessor(-I)" superClass="de.innot.avreclipse.asm.option.include.paths" valueType="includePath"/>
+								<option id="de.innot.avreclipse.asm.option.include.paths.879108973" name="#include paths for preprocessor(-I)" superClass="de.innot.avreclipse.asm.option.include.paths"/>
 								<inputType id="de.innot.avreclipse.tool.assembler.input.38688143" superClass="de.innot.avreclipse.tool.assembler.input"/>
 							</tool>
 							<tool id="de.innot.avreclipse.tool.compiler.winavr.lib.debug.1108620215" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.lib.debug">
@@ -299,7 +299,7 @@
 									<listOptionValue builtIn="false" value="MAX_APDU=100"/>
 									<listOptionValue builtIn="false" value="BIG_ENDIAN=0"/>
 									<listOptionValue builtIn="false" value="MAX_TSM_TRANSACTIONS=0"/>
-									<listOptionValue builtIn="false" value="VERBOSE"/>
+									<listOptionValue builtIn="false" value="VERBOSE=0"/>
 									<listOptionValue builtIn="false" value="BACAPP_BIT_STRING"/>
 								</option>
 								<option id="de.innot.avreclipse.compiler.option.incpath.82923225" name="Include Paths (-I)" superClass="de.innot.avreclipse.compiler.option.incpath" valueType="includePath">
@@ -671,7 +671,7 @@
 								<outputType id="cdt.managedbuild.tool.gnu.cpp.linker.output.466851121" outputPrefix="" superClass="cdt.managedbuild.tool.gnu.cpp.linker.output"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.exe.debug.359635129" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.exe.debug">
-								<option id="gnu.both.asm.option.include.paths.1543320985" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath"/>
+								<option id="gnu.both.asm.option.include.paths.1543320985" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths"/>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1866124806" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>

@@ -10,6 +10,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <util/delay.h>
+#include <avr/pgmspace.h>
 
 #include "datalink.h"
 #include "npdu.h"
@@ -17,6 +18,7 @@
 #include "txbuf.h"
 #include "iam.h"
 #include "BacnetNode.h"
+#include "stack.h"
 
 #include "w5100Wrapper.h"
 #include "Arduino.h"
@@ -32,6 +34,7 @@ uint8_t ipAddress[] = {192, 168, 0, 185};
 uint8_t gateway[] = {192, 168, 0, 1};
 uint8_t netmask[] = {255, 255, 255, 0};
 BacnetNode* node = new BacnetNode();
+
 //Temperature sensor
 #define ONE_WIRE_BUS 2
 OneWire sensors(ONE_WIRE_BUS);
@@ -46,6 +49,12 @@ static int uart_putchar (char c, FILE *stream)
     return 0 ;
 }
 
+void write_string(PGM_P s){
+	char c;
+	while( (c = pgm_read_byte(s++)) != 0)
+		fputc(c, stderr);
+}
+
 void setup(){
 	Serial.begin(9600);
 	fdev_setup_stream (&uart_output, uart_putchar, NULL, _FDEV_SETUP_WRITE);
@@ -53,7 +62,8 @@ void setup(){
 	stderr = &uart_output;
 
 #ifdef VERBOSE
-	fprintf(stderr,"Starting BACNET application..");
+	//fprintf(stderr,"Starting BACNET application..");
+	write_string(PSTR("Starting BACNET application.."));
 #endif
 
 	//INIT W5100
@@ -67,9 +77,11 @@ void setup(){
 	sensors.search(sensorsAddr);
 #ifdef VERBOSE
 	if (OneWire::crc8( sensorsAddr, 7) != sensorsAddr[7]){
-		fprintf(stderr,"... Failed\n");
+		write_string(PSTR("... Failed\n"));
+		//fprintf(stderr,"... Failed\n");
 	}else{
-		fprintf(stderr,"... Completed\n");
+		write_string(PSTR("... Completed\n"));
+		//fprintf(stderr,"... Completed\n");
 	}
 #endif
 }
@@ -87,16 +99,23 @@ int main(
     setup();
 
     datalink_init(NULL);
-    for (;;) {
 
+
+    for (;;) {
         /* other tasks */
+//    	uint16_t sSize = stack_size();
+//    	uint16_t freeStack = freeRam();
+//    	uint16_t hSize = heapSize();
+//    	fprintf(stderr,"StackSize: %d  HeapSize: %d Free: %d\n", sSize, hSize, freeStack);
+
         /* BACnet handling */
         pdu_len = datalink_receive(&src, &PDUBuffer[0], sizeof(PDUBuffer), 0);
         if (pdu_len) {
 #ifdef VERBOSE
-        	fprintf(stderr,"--- Received Request ---\n");
-            npdu_handler(&src, &PDUBuffer[0], pdu_len);
+        	//fprintf(stderr,"--- Received Request ---\n");
+        	write_string(PSTR("--- Received Request ---\n"));
 #endif
+        	npdu_handler(&src, &PDUBuffer[0], pdu_len);
         }
 
         /*Update sensor values*/

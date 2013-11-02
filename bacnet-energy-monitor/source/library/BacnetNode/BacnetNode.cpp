@@ -74,6 +74,7 @@ void BacnetNode::dealWithErrorCodes(int & len, int& npdu_len,
 #ifdef VERBOSE
     fprintf(stderr, " --- End Request: Response Sent ---\n");
 #endif
+
 }
 void BacnetNode::handler_read_property(uint8_t * service_request, uint16_t service_len,
 		    BACNET_ADDRESS * src,BACNET_CONFIRMED_SERVICE_DATA * service_data){
@@ -151,6 +152,12 @@ void BacnetNode::handler_read_property(uint8_t * service_request, uint16_t servi
 #ifdef VERBOSE
     fprintf(stderr, " --- End Request: Response Sent ---\n");
 #endif
+#if defined(__AVR_ATmega328p__) || defined(__AVR_ATmega328P__)
+    uint16_t sSize = stack_size();
+    uint16_t freeStack = freeRam();
+    uint16_t hSize = heapSize();
+    fprintf(stderr,"StackSize: %d  HeapSize: %d Free: %d\n", sSize, hSize, freeStack);
+#endif
 }
 void BacnetNode::handler_who_is(uint8_t * service_request, uint16_t service_len,
 		BACNET_ADDRESS * src){
@@ -214,5 +221,11 @@ void BacnetNode::sendIamUnicast(uint8_t * buffer, BACNET_ADDRESS * src){
     datalink_send_pdu(&dest, &npdu_data, &buffer[0], pdu_len);
 #ifdef VERBOSE
     fprintf(stderr, " --- End Request: Response Sent ---\n");
+#endif
+#if defined(__AVR_ATmega328p__) || defined(__AVR_ATmega328P__)
+    uint16_t sSize = stack_size();
+    uint16_t freeStack = freeRam();
+    uint16_t hSize = heapSize();
+    fprintf(stderr,"StackSize: %d  HeapSize: %d Free: %d\n", sSize, hSize, freeStack);
 #endif
 }
