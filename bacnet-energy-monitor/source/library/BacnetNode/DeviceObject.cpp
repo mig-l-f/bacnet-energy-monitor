@@ -9,11 +9,23 @@
 #include "DeviceObject.h"
 
 void DeviceObject::InitializeVendorProperties() {
-	characterstring_init_ansi(&Vendor_Name, VENDOR_NAME);
 	Vendor_Identifier = VENDOR_IDENTIFIER;
+#if defined(__AVR_ATmega328P__)
+	char buffer[12];
+	strcpy_P(buffer, (PGM_P)pgm_read_word(&(string_table[0])));
+	characterstring_init_ansi(&Vendor_Name, buffer);
+	strcpy_P(buffer, (PGM_P)pgm_read_word(&(string_table[1])));
+	characterstring_init_ansi(&Model_Name, buffer);
+	strcpy_P(buffer, (PGM_P)pgm_read_word(&(string_table[2])));
+	characterstring_init_ansi(&Firmware_Revision, buffer);
+	strcpy_P(buffer, (PGM_P)pgm_read_word(&(string_table[3])));
+	characterstring_init_ansi(&Application_Software_Version, buffer);
+#else
+	characterstring_init_ansi(&Vendor_Name, VENDOR_NAME);
 	characterstring_init_ansi(&Model_Name, MODEL_NAME);
 	characterstring_init_ansi(&Firmware_Revision, FIRMWARE_REV);
 	characterstring_init_ansi(&Application_Software_Version, SOFTWARE_VERSION);
+#endif
 }
 
 
@@ -200,9 +212,10 @@ int DeviceObject::Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata) {
 	    			}
 	    		}else{ // Return Object ID of element pointed by array index
 	    			if (rpdata->array_index <= MAX_BACNET_OBJECTS_PER_DEVICE) {
-#ifdef VERBOSE
-	    				fprintf(stderr,"OBJ TYPE= %d, OBJ INST= %d\n", getTypeFromObjectList(0), getInstanceFromObjectList(0));
-#endif
+
+	    				VERBOSE_STRING_INT(PSTR("OBJ TYPE= %d, OBJ INST= %d\n"),
+	    						getTypeFromObjectList(0), getInstanceFromObjectList(0));
+
 	    				apdu_len = encode_application_object_id(&apdu[0],
 	    						Object_List[rpdata->array_index-1].type,
 	    						Object_List[rpdata->array_index-1].instance);

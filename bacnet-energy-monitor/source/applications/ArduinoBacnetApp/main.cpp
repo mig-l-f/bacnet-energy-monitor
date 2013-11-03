@@ -10,7 +10,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <util/delay.h>
-#include <avr/pgmspace.h>
 
 #include "datalink.h"
 #include "npdu.h"
@@ -19,6 +18,7 @@
 #include "iam.h"
 #include "BacnetNode.h"
 #include "stack.h"
+#include "verbose.h"
 
 #include "w5100Wrapper.h"
 #include "Arduino.h"
@@ -49,22 +49,13 @@ static int uart_putchar (char c, FILE *stream)
     return 0 ;
 }
 
-void write_string(PGM_P s){
-	char c;
-	while( (c = pgm_read_byte(s++)) != 0)
-		fputc(c, stderr);
-}
-
 void setup(){
 	Serial.begin(9600);
 	fdev_setup_stream (&uart_output, uart_putchar, NULL, _FDEV_SETUP_WRITE);
 	stdout = &uart_output;
 	stderr = &uart_output;
 
-#ifdef VERBOSE
-	//fprintf(stderr,"Starting BACNET application..");
-	write_string(PSTR("Starting BACNET application.."));
-#endif
+	VERBOSE_STRING(PSTR("Starting BACNET application.."));
 
 	//INIT W5100
     init_func(CW5100Class_new());
@@ -75,15 +66,11 @@ void setup(){
 
 	// Searching for Temperature sensor
 	sensors.search(sensorsAddr);
-#ifdef VERBOSE
 	if (OneWire::crc8( sensorsAddr, 7) != sensorsAddr[7]){
-		write_string(PSTR("... Failed\n"));
-		//fprintf(stderr,"... Failed\n");
+		VERBOSE_STRING(PSTR("... Failed\n"));
 	}else{
-		write_string(PSTR("... Completed\n"));
-		//fprintf(stderr,"... Completed\n");
+		VERBOSE_STRING(PSTR("... Completed\n"));
 	}
-#endif
 }
 
 
@@ -111,10 +98,7 @@ int main(
         /* BACnet handling */
         pdu_len = datalink_receive(&src, &PDUBuffer[0], sizeof(PDUBuffer), 0);
         if (pdu_len) {
-#ifdef VERBOSE
-        	//fprintf(stderr,"--- Received Request ---\n");
-        	write_string(PSTR("--- Received Request ---\n"));
-#endif
+        	VERBOSE_STRING(PSTR("--- Received Request ---\n"));
         	npdu_handler(&src, &PDUBuffer[0], pdu_len);
         }
 

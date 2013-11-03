@@ -49,31 +49,24 @@ void BacnetNode::dealWithErrorCodes(int & len, int& npdu_len,
 		case BACNET_STATUS_REJECT:
 			apdu_len = reject_encode_apdu(&Handler_Transmit_Buffer[npdu_len],
 					service_data->invoke_id, reject_convert_error_code(rpdata.error_code));
-#ifdef VERBOSE
-			fprintf(stderr, "Sending reject status.\n");
-#endif
+			VERBOSE_STRING(PSTR("Sending reject status.\n"));
 			break;
 		case BACNET_STATUS_ABORT: //Not Covered by Unit Tests
 			apdu_len = abort_encode_apdu(&Handler_Transmit_Buffer[npdu_len],
 			        service_data->invoke_id, abort_convert_error_code(rpdata.error_code), true);
-#ifdef VERBOSE
-			fprintf(stderr, "Sending abort status.\n");
-#endif
+
+			VERBOSE_STRING(PSTR("Sending abort status.\n"));
 			break;
 		case BACNET_STATUS_ERROR: //Not Covered by Unit Tests
 			apdu_len = bacerror_encode_apdu(&Handler_Transmit_Buffer[npdu_len],
 			        service_data->invoke_id, SERVICE_CONFIRMED_READ_PROPERTY,
 			        rpdata.error_class, rpdata.error_code);
-#ifdef VERBOSE
-			fprintf(stderr, "Sending error status.\n");
-#endif
+			VERBOSE_STRING(PSTR("Sending error status.\n"));
 			break;
 	}
 	int pdu_len = npdu_len + apdu_len;
 	datalink_send_pdu(src, &npdu_data, &Handler_Transmit_Buffer[0], pdu_len);
-#ifdef VERBOSE
-    fprintf(stderr, " --- End Request: Response Sent ---\n");
-#endif
+	VERBOSE_STRING(PSTR("--- End Request: Response Sent ---\n"));
 
 }
 void BacnetNode::handler_read_property(uint8_t * service_request, uint16_t service_len,
@@ -149,14 +142,12 @@ void BacnetNode::handler_read_property(uint8_t * service_request, uint16_t servi
 	}
 	pdu_len = npdu_len + apdu_len;
 	datalink_send_pdu(src, &npdu_data, &Handler_Transmit_Buffer[0], pdu_len);
-#ifdef VERBOSE
-    fprintf(stderr, " --- End Request: Response Sent ---\n");
-#endif
-#if defined(__AVR_ATmega328p__) || defined(__AVR_ATmega328P__)
-    uint16_t sSize = stack_size();
-    uint16_t freeStack = freeRam();
-    uint16_t hSize = heapSize();
-    fprintf(stderr,"StackSize: %d  HeapSize: %d Free: %d\n", sSize, hSize, freeStack);
+	VERBOSE_STRING(PSTR(" --- End Request: Response Sent ---\n"));
+#if defined(__AVR_ATmega328P__)
+		uint16_t sSize = stack_size();
+		uint16_t freeStack = freeRam();
+		uint16_t hSize = heapSize();
+		VERBOSE_STRING_INT(PSTR("StackSize: %d HeapSize: %d Free: %d\n"),sSize, hSize, freeStack);
 #endif
 }
 void BacnetNode::handler_who_is(uint8_t * service_request, uint16_t service_len,
@@ -167,9 +158,10 @@ void BacnetNode::handler_who_is(uint8_t * service_request, uint16_t service_len,
     int32_t high_limit = 0;
 
     len = whois_decode_service_request(service_request, service_len, &low_limit, &high_limit);
-#ifdef VERBOSE
-	fprintf(stderr, "Who-Is ObjectID %d, low limit = %d, high limit=%d\n",device->getObjectIdentifier()->instance, low_limit, high_limit);
-#endif
+
+    VERBOSE_STRING_INT(PSTR("Who-Is ObjectID %d, low limit = %d, high limit=%d\n"),
+    		device->getObjectIdentifier()->instance, low_limit, high_limit);
+
     if (len == 0){
     	// respond When no limits specified
     	sendIamUnicast(&Handler_Transmit_Buffer[0], src);
@@ -219,13 +211,11 @@ void BacnetNode::sendIamUnicast(uint8_t * buffer, BACNET_ADDRESS * src){
     /* send data */
     pdu_len = npdu_len + apdu_len;
     datalink_send_pdu(&dest, &npdu_data, &buffer[0], pdu_len);
-#ifdef VERBOSE
-    fprintf(stderr, " --- End Request: Response Sent ---\n");
-#endif
-#if defined(__AVR_ATmega328p__) || defined(__AVR_ATmega328P__)
-    uint16_t sSize = stack_size();
-    uint16_t freeStack = freeRam();
-    uint16_t hSize = heapSize();
-    fprintf(stderr,"StackSize: %d  HeapSize: %d Free: %d\n", sSize, hSize, freeStack);
+    VERBOSE_STRING(PSTR(" --- End Request: Response Sent ---\n"));
+#if defined(__AVR_ATmega328P__)
+		uint16_t sSize = stack_size();
+		uint16_t freeStack = freeRam();
+		uint16_t hSize = heapSize();
+		VERBOSE_STRING_INT(PSTR("StackSize: %d HeapSize: %d Free: %d\n"),sSize, hSize, freeStack);
 #endif
 }

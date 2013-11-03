@@ -13,12 +13,16 @@
 #include "bacstr.h"
 #include "bacenum.h"
 #include "handlers.h"
-//#include "address.h"
+#include "verbose.h"
+
 #include "apdu.h"
 #include "handlers.h"
 #include "string.h"
 #include "Constants.h"
 #include "BacnetObject.h"
+#if defined(__AVR_ATmega328P__)
+	#include <avr/pgmspace.h>
+#endif
 
 class DeviceObject: public BacnetObject {
 

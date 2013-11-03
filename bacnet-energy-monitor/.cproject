@@ -63,7 +63,6 @@
 									<listOptionValue builtIn="false" value="MAX_BINARY_VALUES=4"/>
 									<listOptionValue builtIn="false" value="DEBUG"/>
 									<listOptionValue builtIn="false" value="ARDUINO=100"/>
-									<listOptionValue builtIn="false" value="VERBOSE"/>
 								</option>
 								<option id="de.innot.avreclipse.compiler.option.optimize.packstruct.1057269425" name="Pack structs (-fpack-struct)" superClass="de.innot.avreclipse.compiler.option.optimize.packstruct" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.compiler.option.optimize.shortenums.284044580" name="Short enums (-fshort-enums)" superClass="de.innot.avreclipse.compiler.option.optimize.shortenums" value="false" valueType="boolean"/>
@@ -98,7 +97,6 @@
 									<listOptionValue builtIn="false" value="MAX_ANALOG_VALUES=4"/>
 									<listOptionValue builtIn="false" value="MAX_BINARY_VALUES=4"/>
 									<listOptionValue builtIn="false" value="ARDUINO=100"/>
-									<listOptionValue builtIn="false" value="VERBOSE"/>
 								</option>
 								<option id="de.innot.avreclipse.cppcompiler.option.optimize.packstruct.870696601" name="Pack structs (-fpack-struct)" superClass="de.innot.avreclipse.cppcompiler.option.optimize.packstruct" value="false" valueType="boolean"/>
 								<option id="de.innot.avreclipse.cppcompiler.option.optimize.shortenums.1862726263" name="Short enums (-fshort-enums)" superClass="de.innot.avreclipse.cppcompiler.option.optimize.shortenums" value="false" valueType="boolean"/>
@@ -197,7 +195,6 @@
 									<listOptionValue builtIn="false" value="WRITE_PROPERTY"/>
 									<listOptionValue builtIn="false" value="MAX_ANALOG_VALUES=2"/>
 									<listOptionValue builtIn="false" value="MAX_BINARY_VALUES=2"/>
-									<listOptionValue builtIn="false" value="VERBOSE"/>
 									<listOptionValue builtIn="false" value="BACAPP_BIT_STRING"/>
 								</option>
 								<option id="de.innot.avreclipse.compiler.option.optimize.packstruct.1839454551" name="Pack structs (-fpack-struct)" superClass="de.innot.avreclipse.compiler.option.optimize.packstruct" value="false" valueType="boolean"/>
@@ -228,7 +225,6 @@
 									<listOptionValue builtIn="false" value="WRITE_PROPERTY"/>
 									<listOptionValue builtIn="false" value="MAX_ANALOG_VALUES=2"/>
 									<listOptionValue builtIn="false" value="MAX_BINARY_VALUES=2"/>
-									<listOptionValue builtIn="false" value="VERBOSE"/>
 									<listOptionValue builtIn="false" value="BACAPP_BIT_STRING"/>
 								</option>
 								<option id="de.innot.avreclipse.cppcompiler.option.optimize.packstruct.77405995" name="Pack structs (-fpack-struct)" superClass="de.innot.avreclipse.cppcompiler.option.optimize.packstruct" value="false" valueType="boolean"/>
@@ -256,7 +252,7 @@
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 		</cconfiguration>
 		<cconfiguration id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330">
-			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330" moduleId="org.eclipse.cdt.core.settings" name="avrBacnetStack">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330" moduleId="org.eclipse.cdt.core.settings" name="avrBacnetStack - VERBOSE">
 				<externalSettings/>
 				<extensions>
 					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
@@ -266,7 +262,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="a" artifactName="BacnetStack" buildArtefactType="de.innot.avreclipse.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=de.innot.avreclipse.buildArtefactType.staticLib" cleanCommand="rm -f" description="" id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330" name="avrBacnetStack" parent="de.innot.avreclipse.configuration.lib.debug">
+				<configuration artifactExtension="a" artifactName="BacnetStack" buildArtefactType="de.innot.avreclipse.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=de.innot.avreclipse.buildArtefactType.staticLib" cleanCommand="rm -f" description="" id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330" name="avrBacnetStack - VERBOSE" parent="de.innot.avreclipse.configuration.lib.debug">
 					<folderInfo id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330." name="/" resourcePath="">
 						<toolChain id="de.innot.avreclipse.toolchain.winavr.lib.debug.1334940906" name="AVR-GCC Toolchain" superClass="de.innot.avreclipse.toolchain.winavr.lib.debug">
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.objdump.lib.debug.2069207114" name="Generate Extended Listing (Source + generated Assembler)" superClass="de.innot.avreclipse.toolchain.options.toolchain.objdump.lib.debug"/>
@@ -299,7 +295,7 @@
 									<listOptionValue builtIn="false" value="MAX_APDU=100"/>
 									<listOptionValue builtIn="false" value="BIG_ENDIAN=0"/>
 									<listOptionValue builtIn="false" value="MAX_TSM_TRANSACTIONS=0"/>
-									<listOptionValue builtIn="false" value="VERBOSE=0"/>
+									<listOptionValue builtIn="false" value="VERBOSE"/>
 									<listOptionValue builtIn="false" value="BACAPP_BIT_STRING"/>
 								</option>
 								<option id="de.innot.avreclipse.compiler.option.incpath.82923225" name="Include Paths (-I)" superClass="de.innot.avreclipse.compiler.option.incpath" valueType="includePath">
@@ -531,7 +527,7 @@
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 		</cconfiguration>
 		<cconfiguration id="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779">
-			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779" moduleId="org.eclipse.cdt.core.settings" name="x86BacnetStack">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779" moduleId="org.eclipse.cdt.core.settings" name="x86BacnetStack - NON VERBOSE">
 				<externalSettings>
 					<externalSetting>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/bacnet-energy-monitor"/>
@@ -548,7 +544,7 @@
 				</extensions>
 			</storageModule>
 			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-				<configuration artifactExtension="a" artifactName="BacnetStack" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779" name="x86BacnetStack" parent="cdt.managedbuild.config.gnu.lib.debug">
+				<configuration artifactExtension="a" artifactName="BacnetStack" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779" name="x86BacnetStack - NON VERBOSE" parent="cdt.managedbuild.config.gnu.lib.debug">
 					<folderInfo id="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.lib.debug.1903921269" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.lib.debug">
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.lib.debug.93829830" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.lib.debug"/>
@@ -683,6 +679,176 @@
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 		</cconfiguration>
+		<cconfiguration id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835" moduleId="org.eclipse.cdt.core.settings" name="avrBacnetStack - NON VERBOSE">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="a" artifactName="BacnetStack" buildArtefactType="de.innot.avreclipse.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=de.innot.avreclipse.buildArtefactType.staticLib" cleanCommand="rm -f" description="" id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835" name="avrBacnetStack - NON VERBOSE" parent="de.innot.avreclipse.configuration.lib.debug">
+					<folderInfo id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835." name="/" resourcePath="">
+						<toolChain id="de.innot.avreclipse.toolchain.winavr.lib.debug.1621791201" name="AVR-GCC Toolchain" superClass="de.innot.avreclipse.toolchain.winavr.lib.debug">
+							<option id="de.innot.avreclipse.toolchain.options.toolchain.objdump.lib.debug.1287915946" name="Generate Extended Listing (Source + generated Assembler)" superClass="de.innot.avreclipse.toolchain.options.toolchain.objdump.lib.debug"/>
+							<option id="de.innot.avreclipse.toolchain.options.toolchain.size.lib.debug.1363303139" name="Print Size" superClass="de.innot.avreclipse.toolchain.options.toolchain.size.lib.debug"/>
+							<targetPlatform id="de.innot.avreclipse.targetplatform.winavr.lib.debug.1095015550" name="AVR Cross-Target" superClass="de.innot.avreclipse.targetplatform.winavr.lib.debug"/>
+							<builder buildPath="${workspace_loc:/bacnet-code}/Debug" id="de.innot.avreclipse.target.builder.winavr.lib.debug.1997004328" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="AVR GNU Make Builder" superClass="de.innot.avreclipse.target.builder.winavr.lib.debug">
+								<outputEntries>
+									<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name="BuildForAvr"/>
+									<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name="BuildForLinux"/>
+								</outputEntries>
+							</builder>
+							<tool id="de.innot.avreclipse.tool.assembler.winavr.lib.debug.1241062338" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.lib.debug">
+								<option id="de.innot.avreclipse.assembler.option.debug.level.1460246128" name="Generate Debugging Info" superClass="de.innot.avreclipse.assembler.option.debug.level"/>
+								<option id="de.innot.avreclipse.asm.option.include.paths.180562651" name="#include paths for preprocessor(-I)" superClass="de.innot.avreclipse.asm.option.include.paths"/>
+								<inputType id="de.innot.avreclipse.tool.assembler.input.514962285" superClass="de.innot.avreclipse.tool.assembler.input"/>
+							</tool>
+							<tool id="de.innot.avreclipse.tool.compiler.winavr.lib.debug.529339379" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.lib.debug">
+								<option id="de.innot.avreclipse.compiler.option.debug.level.227810375" name="Generate Debugging Info" superClass="de.innot.avreclipse.compiler.option.debug.level"/>
+								<option id="de.innot.avreclipse.compiler.option.optimize.1027484875" name="Optimization Level" superClass="de.innot.avreclipse.compiler.option.optimize" value="de.innot.avreclipse.compiler.optimize.size" valueType="enumerated"/>
+								<option id="de.innot.avreclipse.compiler.option.def.358402582" name="Define Syms (-D)" superClass="de.innot.avreclipse.compiler.option.def" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="BACDL_BIP=1"/>
+									<listOptionValue builtIn="false" value="BACAPP_REAL"/>
+									<listOptionValue builtIn="false" value="BACAPP_OBJECT_ID"/>
+									<listOptionValue builtIn="false" value="BACAPP_UNSIGNED"/>
+									<listOptionValue builtIn="false" value="BACAPP_ENUMERATED"/>
+									<listOptionValue builtIn="false" value="BACAPP_CHARACTER_STRING"/>
+									<listOptionValue builtIn="false" value="WRITE_PROPERTY"/>
+									<listOptionValue builtIn="false" value="MAX_ANALOG_VALUES=4"/>
+									<listOptionValue builtIn="false" value="MAX_BINARY_VALUES=4"/>
+									<listOptionValue builtIn="false" value="MAX_APDU=100"/>
+									<listOptionValue builtIn="false" value="BIG_ENDIAN=0"/>
+									<listOptionValue builtIn="false" value="MAX_TSM_TRANSACTIONS=0"/>
+									<listOptionValue builtIn="false" value="BACAPP_BIT_STRING"/>
+								</option>
+								<option id="de.innot.avreclipse.compiler.option.incpath.170329186" name="Include Paths (-I)" superClass="de.innot.avreclipse.compiler.option.incpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/atmega328p}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/bacnet-stack}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/external/Arduino/core/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/external/Arduino/Ethernet/include}&quot;"/>
+								</option>
+								<option id="de.innot.avreclipse.compiler.option.optimize.packstruct.292642375" name="Pack structs (-fpack-struct)" superClass="de.innot.avreclipse.compiler.option.optimize.packstruct" value="false" valueType="boolean"/>
+								<option id="de.innot.avreclipse.compiler.option.optimize.shortenums.745454048" name="Short enums (-fshort-enums)" superClass="de.innot.avreclipse.compiler.option.optimize.shortenums" value="false" valueType="boolean"/>
+								<option id="de.innot.avreclipse.compiler.option.optimize.other.682945253" name="Other Optimization Flags" superClass="de.innot.avreclipse.compiler.option.optimize.other" value="-ffunction-sections -fdata-sections" valueType="string"/>
+								<option id="de.innot.avreclipse.compiler.option.language.uchar.176030668" name="char is unsigned (-funsigned-char)" superClass="de.innot.avreclipse.compiler.option.language.uchar" value="false" valueType="boolean"/>
+								<option id="de.innot.avreclipse.compiler.option.language.ubitfields.919036671" name="bitfields are unsigned (-funsigned-bitfields)" superClass="de.innot.avreclipse.compiler.option.language.ubitfields" value="false" valueType="boolean"/>
+								<inputType id="de.innot.avreclipse.compiler.winavr.input.182758419" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
+							</tool>
+							<tool id="de.innot.avreclipse.tool.cppcompiler.lib.debug.2063267213" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.lib.debug">
+								<option id="de.innot.avreclipse.cppcompiler.option.debug.level.1467421618" name="Generate Debugging Info" superClass="de.innot.avreclipse.cppcompiler.option.debug.level"/>
+								<option id="de.innot.avreclipse.cppcompiler.option.optimize.133772477" name="Optimization Level" superClass="de.innot.avreclipse.cppcompiler.option.optimize"/>
+								<option id="de.innot.avreclipse.cppcompiler.option.incpath.692072833" name="Include Paths (-I)" superClass="de.innot.avreclipse.cppcompiler.option.incpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/atmega328p}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/bacnet-stack}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/external/Arduino/core/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/external/Arduino/Ethernet/include}&quot;"/>
+								</option>
+								<option id="de.innot.avreclipse.cppcompiler.option.optimize.packstruct.1312197351" name="Pack structs (-fpack-struct)" superClass="de.innot.avreclipse.cppcompiler.option.optimize.packstruct" value="false" valueType="boolean"/>
+								<option id="de.innot.avreclipse.cppcompiler.option.optimize.shortenums.464194359" name="Short enums (-fshort-enums)" superClass="de.innot.avreclipse.cppcompiler.option.optimize.shortenums" value="false" valueType="boolean"/>
+								<option id="de.innot.avreclipse.cppcompiler.option.optimize.other.441819601" name="Other Optimization Flags" superClass="de.innot.avreclipse.cppcompiler.option.optimize.other" value="-ffunction-sections -fdata-sections" valueType="string"/>
+								<inputType id="de.innot.avreclipse.cppcompiler.input.1383342164" superClass="de.innot.avreclipse.cppcompiler.input"/>
+							</tool>
+							<tool id="de.innot.avreclipse.tool.linker.winavr.base.85493824" name="AVR C Linker" superClass="de.innot.avreclipse.tool.linker.winavr.base"/>
+							<tool id="de.innot.avreclipse.tool.cpplinker.base.1814829853" name="AVR C++ Linker" superClass="de.innot.avreclipse.tool.cpplinker.base"/>
+							<tool id="de.innot.avreclipse.tool.archiver.winavr.lib.debug.588663063" name="AVR Archiver" superClass="de.innot.avreclipse.tool.archiver.winavr.lib.debug">
+								<outputType id="de.innot.avreclipse.archiver.output.1017246956" outputPrefix="../build/bacnet-stack/atmega328p/lib" superClass="de.innot.avreclipse.archiver.output"/>
+							</tool>
+							<tool id="de.innot.avreclipse.tool.objdump.winavr.lib.debug.1857777601" name="AVR Create Extended Listing" superClass="de.innot.avreclipse.tool.objdump.winavr.lib.debug"/>
+							<tool id="de.innot.avreclipse.tool.size.winavr.lib.debug.39622014" name="Print Size" superClass="de.innot.avreclipse.tool.size.winavr.lib.debug"/>
+						</toolChain>
+					</folderInfo>
+					<sourceEntries>
+						<entry excluding="applications|test|library/BacnetNode|library/bacnet-stack/wpm.c|library/bacnet-stack/whohas.c|library/bacnet-stack/version.c|library/bacnet-stack/tsm.c|library/bacnet-stack/timesync.c|library/bacnet-stack/timestamp.c|library/bacnet-stack/sbuf.c|library/bacnet-stack/rpm.c|library/bacnet-stack/ringbuf.c|library/bacnet-stack/readrange.c|library/bacnet-stack/rd.c|library/bacnet-stack/ptransfer.c|library/bacnet-stack/proplist.c|library/bacnet-stack/mstptext.c|library/bacnet-stack/mstp.c|library/bacnet-stack/memcopy.c|library/bacnet-stack/lso.c|library/bacnet-stack/keylist.c|library/bacnet-stack/key.c|library/bacnet-stack/indtext.c|library/bacnet-stack/ihave.c|library/bacnet-stack/getevent.c|library/bacnet-stack/get_alarm_sum.c|library/bacnet-stack/filename.c|library/bacnet-stack/fifo.c|library/bacnet-stack/event.c|library/bacnet-stack/debug.c|library/bacnet-stack/dcc.c|library/bacnet-stack/cov.c|library/bacnet-stack/bvlc.c|library/bacnet-stack/bip.c|library/bacnet-stack/bigend.c|library/bacnet-stack/bactext.c|library/bacnet-stack/bacpropstates.c|library/bacnet-stack/bacprop.c|library/bacnet-stack/bacdevobjpropref.c|library/bacnet-stack/awf.c|library/bacnet-stack/arf.c|library/bacnet-stack/apdu.c|library/bacnet-stack/alarm_ack.c|library/bacnet-stack/address.c|drivers/linux" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="source"/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779.578174935">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779.578174935" moduleId="org.eclipse.cdt.core.settings" name="x86BacnetStack - VERBOSE">
+				<externalSettings>
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/bacnet-energy-monitor"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/bacnet-energy-monitor/x86BacnetStack - VERBOSE"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="BacnetStack" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="a" artifactName="BacnetStack" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug,org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779.578174935" name="x86BacnetStack - VERBOSE" parent="cdt.managedbuild.config.gnu.lib.debug">
+					<folderInfo id="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779.578174935." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.lib.debug.756793459" name="Linux GCC" superClass="cdt.managedbuild.toolchain.gnu.lib.debug">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.lib.debug.2120395125" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.lib.debug"/>
+							<builder buildPath="${workspace_loc:/bacnet-code}/BuildForGcc" id="cdt.managedbuild.target.gnu.builder.lib.debug.1869489944" keepEnvironmentInBuildfile="false" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.lib.debug"/>
+							<tool id="cdt.managedbuild.tool.gnu.archiver.lib.debug.547734900" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.lib.debug">
+								<outputType id="cdt.managedbuild.tool.gnu.archiver.output.311488793" outputPrefix="../build/bacnet-stack/linux/lib" superClass="cdt.managedbuild.tool.gnu.archiver.output"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug.1409189930" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug">
+								<option id="gnu.cpp.compiler.lib.debug.option.optimization.level.987746580" name="Optimization Level" superClass="gnu.cpp.compiler.lib.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.size" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.lib.debug.option.debugging.level.2025468227" name="Debug Level" superClass="gnu.cpp.compiler.lib.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.include.paths.1021834964" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/linux}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/bacnet-stack}&quot;"/>
+								</option>
+								<option id="gnu.cpp.compiler.option.optimization.flags.1573299957" name="Other optimization flags" superClass="gnu.cpp.compiler.option.optimization.flags" value="-ffunction-sections -fdata-sections" valueType="string"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1236613231" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.lib.debug.682299417" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.lib.debug">
+								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.lib.debug.option.optimization.level.301718838" name="Optimization Level" superClass="gnu.c.compiler.lib.debug.option.optimization.level" value="gnu.c.optimization.level.size" valueType="enumerated"/>
+								<option id="gnu.c.compiler.lib.debug.option.debugging.level.196274309" name="Debug Level" superClass="gnu.c.compiler.lib.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
+								<option id="gnu.c.compiler.option.include.paths.155472368" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/linux}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/bacnet-stack}&quot;"/>
+								</option>
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.627627888" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="BACDL_BIP=1"/>
+									<listOptionValue builtIn="false" value="MAX_APDU=1476"/>
+									<listOptionValue builtIn="false" value="BIG_ENDIAN=0"/>
+									<listOptionValue builtIn="false" value="BACAPP_REAL"/>
+									<listOptionValue builtIn="false" value="BACAPP_OBJECT_ID"/>
+									<listOptionValue builtIn="false" value="BACAPP_UNSIGNED"/>
+									<listOptionValue builtIn="false" value="BACAPP_ENUMERATED"/>
+									<listOptionValue builtIn="false" value="BACAPP_CHARACTER_STRING"/>
+									<listOptionValue builtIn="false" value="WRITE_PROPERTY"/>
+									<listOptionValue builtIn="false" value="MAX_ANALOG_VALUES=4"/>
+									<listOptionValue builtIn="false" value="MAX_BINARY_VALUES=4"/>
+									<listOptionValue builtIn="false" value="BACAPP_BIT_STRING"/>
+									<listOptionValue builtIn="false" value="VERBOSE"/>
+								</option>
+								<option id="gnu.c.compiler.option.optimization.flags.1808141020" name="Other optimization flags" superClass="gnu.c.compiler.option.optimization.flags" value="-ffunction-sections -fdata-sections" valueType="string"/>
+								<option id="gnu.c.compiler.option.misc.other.1057180666" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-c -fmessage-length=0 -std=gnu99" valueType="string"/>
+								<option id="gnu.c.compiler.option.debugging.other.320561387" name="Other debugging flags" superClass="gnu.c.compiler.option.debugging.other" value="-ggdb" valueType="string"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1099759091" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.base.978776002" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.756883575" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.lib.debug.27439856" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.lib.debug">
+								<option id="gnu.both.asm.option.include.paths.1411941592" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/linux}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/bacnet-stack}&quot;"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1452948297" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<sourceEntries>
+						<entry excluding="library/BacnetNode|library/bacnet-stack/wpm.c|library/bacnet-stack/whohas.c|library/bacnet-stack/version.c|library/bacnet-stack/tsm.c|library/bacnet-stack/timesync.c|library/bacnet-stack/timestamp.c|library/bacnet-stack/sbuf.c|library/bacnet-stack/rpm.c|library/bacnet-stack/ringbuf.c|library/bacnet-stack/readrange.c|library/bacnet-stack/rd.c|library/bacnet-stack/ptransfer.c|library/bacnet-stack/proplist.c|library/bacnet-stack/mstptext.c|library/bacnet-stack/mstp.c|library/bacnet-stack/memcopy.c|library/bacnet-stack/lso.c|library/bacnet-stack/keylist.c|library/bacnet-stack/key.c|library/bacnet-stack/indtext.c|library/bacnet-stack/ihave.c|library/bacnet-stack/getevent.c|library/bacnet-stack/get_alarm_sum.c|library/bacnet-stack/filename.c|library/bacnet-stack/fifo.c|library/bacnet-stack/event.c|library/bacnet-stack/debug.c|library/bacnet-stack/dcc.c|library/bacnet-stack/cov.c|library/bacnet-stack/bvlc.c|library/bacnet-stack/bip.c|library/bacnet-stack/bigend.c|library/bacnet-stack/bactext.c|library/bacnet-stack/bacpropstates.c|library/bacnet-stack/bacprop.c|library/bacnet-stack/bacdevobjpropref.c|library/bacnet-stack/awf.c|library/bacnet-stack/arf.c|library/bacnet-stack/apdu.c|library/bacnet-stack/alarm_ack.c|library/bacnet-stack/address.c|test|applications|drivers/atmega328p" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="source"/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="bacnet-energy-monitor.de.innot.avreclipse.project.winavr.elf_2.1.0.1446756764" name="AVR Cross Target Application" projectType="de.innot.avreclipse.project.winavr.elf_2.1.0"/>
@@ -693,6 +859,15 @@
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779;cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779.;cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug.1832215974;cdt.managedbuild.tool.gnu.cpp.compiler.input.582531966">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779.578174935;cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779.578174935.;cdt.managedbuild.tool.gnu.c.compiler.lib.debug.682299417;cdt.managedbuild.tool.gnu.c.compiler.input.1099759091">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835;de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835.;de.innot.avreclipse.tool.compiler.winavr.lib.debug.529339379;de.innot.avreclipse.compiler.winavr.input.182758419">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="de.innot.avreclipse.core.AVRGCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835;de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835.;de.innot.avreclipse.tool.cppcompiler.lib.debug.2063267213;de.innot.avreclipse.cppcompiler.input.1383342164">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="de.innot.avreclipse.core.AVRGCCManagedMakePerProjectProfileCPP"/>
 		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.app.debug.2082399370.30639207.1622869325;de.innot.avreclipse.configuration.app.debug.2082399370.30639207.1622869325.;de.innot.avreclipse.tool.compiler.winavr.app.debug.763049026;de.innot.avreclipse.compiler.winavr.input.1354685603">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="de.innot.avreclipse.core.AVRGCCManagedMakePerProjectProfileC"/>
@@ -709,6 +884,9 @@
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1298700033.1568573886.1203552679.567506313;cdt.managedbuild.config.gnu.exe.debug.1298700033.1568573886.1203552679.567506313.;cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.109430543;cdt.managedbuild.tool.gnu.cpp.compiler.input.1480901420">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779.578174935;cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779.578174935.;cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug.1409189930;cdt.managedbuild.tool.gnu.cpp.compiler.input.1236613231">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.2051055837.1335573244.1740598383;cdt.managedbuild.config.gnu.exe.debug.2051055837.1335573244.1740598383.;cdt.managedbuild.tool.gnu.c.compiler.exe.debug.601605669;cdt.managedbuild.tool.gnu.c.compiler.input.1979607527">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
@@ -718,11 +896,11 @@
 		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.lib.debug.1768426615.870456712.1143792744;de.innot.avreclipse.configuration.lib.debug.1768426615.870456712.1143792744.;de.innot.avreclipse.tool.compiler.winavr.lib.debug.1817801620;de.innot.avreclipse.compiler.winavr.input.1924381856">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="de.innot.avreclipse.core.AVRGCCManagedMakePerProjectProfileC"/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.lib.debug.1768426615.870456712.1143792744;de.innot.avreclipse.configuration.lib.debug.1768426615.870456712.1143792744.;de.innot.avreclipse.tool.cppcompiler.lib.debug.1340934683;de.innot.avreclipse.cppcompiler.input.1725039511">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="de.innot.avreclipse.core.AVRGCCManagedMakePerProjectProfileCPP"/>
-		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330;de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.;de.innot.avreclipse.tool.compiler.winavr.lib.debug.1108620215;de.innot.avreclipse.compiler.winavr.input.1394920094">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="de.innot.avreclipse.core.AVRGCCManagedMakePerProjectProfileC"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.lib.debug.1768426615.870456712.1143792744;de.innot.avreclipse.configuration.lib.debug.1768426615.870456712.1143792744.;de.innot.avreclipse.tool.cppcompiler.lib.debug.1340934683;de.innot.avreclipse.cppcompiler.input.1725039511">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="de.innot.avreclipse.core.AVRGCCManagedMakePerProjectProfileCPP"/>
 		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1298700033.1568573886.1203552679.567506313;cdt.managedbuild.config.gnu.exe.debug.1298700033.1568573886.1203552679.567506313.;cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1133655032;cdt.managedbuild.tool.gnu.c.compiler.input.753203905">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>

@@ -24,7 +24,10 @@
 #include "BacnetObject.h"
 #include "AnalogValue.h"
 #include "Constants.h"
-#include "stack.h"
+#include "verbose.h"
+#if defined(__AVR_ATmega328P__)
+	#include "stack.h"
+#endif
 
 #ifdef LOGGING
 	#include "log.h"
