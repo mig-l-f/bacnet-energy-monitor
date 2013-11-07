@@ -13,21 +13,18 @@
 #include "bacenum.h"
 #include "bacstr.h"
 #include "bacdcode.h"
+#include "AnalogObject.h"
 
-class AnalogValue : public BacnetObject {
+class AnalogValue : public AnalogObject {
 private:
-	float Present_Value;
-	BACNET_CHARACTER_STRING Description;
-	BACNET_EVENT_STATE Event_State;
-	BACNET_RELIABILITY Reliability;
-	bool Out_Of_Service;
-	BACNET_ENGINEERING_UNITS Units;
-	BACNET_BIT_STRING Status_Flags;
+
 
 public:
 	AnalogValue(const uint32_t objectID, const char* objectName, const char* description = "NOTDEF", BACNET_ENGINEERING_UNITS units = UNITS_PERCENT);
 	~AnalogValue();
+
 	float getPresentValue();
+	void setPresentValue(float value);
 	const char* getDescription();
 	bool setDescription(const char* description);
 	BACNET_BIT_STRING getStatusFlags();
@@ -37,12 +34,10 @@ public:
 	bool setReliability(BACNET_RELIABILITY reliability);
 	bool isOutOfService();
 	BACNET_ENGINEERING_UNITS getUnits();
-	void setPresentValue(float value);
 
-	//FIXME: To be handled
-	virtual unsigned getCount() const;
-	virtual bool getValid_Object_Instance_Number(uint32_t object_id);
-	virtual int Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata);
+	unsigned getCount() const;
+	bool getValid_Object_Instance_Number(uint32_t object_id);
+	int Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata);
 };
 
 inline unsigned AnalogValue::getCount() const {

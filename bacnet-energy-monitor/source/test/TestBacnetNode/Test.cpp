@@ -13,6 +13,7 @@
 #include "TestDeviceObject.h"
 #include "TestBacnetNode.h"
 #include "TestAnalogValue.h"
+#include "TestAnalogObject.h"
 
 void runSuiteDeviceObjectProperties(){
 	cute::suite s;
@@ -124,8 +125,10 @@ void runSuiteAnalogValueReadPropertyTest(){
 	s += CUTE_SMEMFUN(TestAnalogValue, testReadOutOfService);
 	s += CUTE_SMEMFUN(TestAnalogValue, testReadUnits);
 	s += CUTE_SMEMFUN(TestAnalogValue, testReadChangedPresentValue);
+	s += CUTE_SMEMFUN(TestAnalogValue, testWritePropertyFails);
 	cute::makeRunner(lis)(s, "Suite: Analog Value Read Properties");
 }
+
 void runSuiteReadAnalogValueFromBacnetNode(){
 	cute::suite s;
 	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerAnalogValueObjectName);
@@ -135,6 +138,24 @@ void runSuiteReadAnalogValueFromBacnetNode(){
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "Suite: Read Analog Value from Bacnet Node");
 }
+
+void runSuitAnalogObject(){
+	cute::suite s;
+	s += CUTE_SMEMFUN(TestAnalogObject, testSettingOfPresentValueIsCorrect);
+	s += CUTE_SMEMFUN(TestAnalogObject, testVerifyDescriptionChangeAndChangeToOriginal);
+	s += CUTE_SMEMFUN(TestAnalogObject, testInitialStatusFlags);
+	s += CUTE_SMEMFUN(TestAnalogObject, testInitialEventState);
+	s += CUTE_SMEMFUN(TestAnalogObject, testSetEventState);
+	s += CUTE_SMEMFUN(TestAnalogObject, testInitialReliability);
+	s += CUTE_SMEMFUN(TestAnalogObject, testSetReliability);
+	s += CUTE_SMEMFUN(TestAnalogObject, testIsOutOfService);
+	s += CUTE_SMEMFUN(TestAnalogObject, testUnits);
+	s += CUTE_SMEMFUN(TestAnalogObject, testWritePropertyReturnsFalseForDerivedAnalogValue);
+
+	cute::ide_listener lis;
+	cute::makeRunner(lis)(s, "Suite: Test Analog Object");
+}
+
 int main(){
     runSuiteDeviceObjectProperties();
     runSuiteDeviceObjectReadPropertyTest();
@@ -142,6 +163,7 @@ int main(){
     runSuiteAnalogValueObjectProperties();
     runSuiteAnalogValueReadPropertyTest();
     runSuiteReadAnalogValueFromBacnetNode();
+    runSuitAnalogObject();
     return 0;
 }
 

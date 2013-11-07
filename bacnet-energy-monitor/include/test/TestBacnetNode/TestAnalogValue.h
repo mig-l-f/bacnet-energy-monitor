@@ -13,9 +13,9 @@
 #include "AnalogValue.h"
 #include "bacdef.h"
 #include "stdio.h"
-#include "iostream"
 #include "rp.h"
 #include "bacapp.h"
+#include "wp.h"
 
 class TestAnalogValue{
 public:
@@ -52,12 +52,17 @@ public:
 	void testReadOutOfService();
 	void testReadUnits();
 	void testReadChangedPresentValue();
+	void testWritePropertyFails();
+
 private:
-	AnalogValue* analogValue;
+	AnalogObject* analogValue;
 	uint32_t objectNumber;
 	const char* objectName;
 	BACNET_ENGINEERING_UNITS units;
 	void createAPDU(BACNET_READ_PROPERTY_DATA& rpdata, BACNET_APPLICATION_DATA_VALUE& appDataValueIN,
 						BACNET_PROPERTY_ID property);
+	int wp_decode_apdu(uint8_t * apdu, unsigned apdu_len, uint8_t * invoke_id, BACNET_WRITE_PROPERTY_DATA * wpdata);
+
+
 };
 #endif /* TESTANALOGVALUE_H_ */

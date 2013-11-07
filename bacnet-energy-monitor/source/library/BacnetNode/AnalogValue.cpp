@@ -9,19 +9,7 @@
 #include "AnalogValue.h"
 
 AnalogValue::AnalogValue(const uint32_t objectID, const char* objectName, const char* description, BACNET_ENGINEERING_UNITS units):
-	BacnetObject(objectID, OBJECT_ANALOG_VALUE, objectName){
-	Present_Value = (float)-1.0;
-	characterstring_init_ansi(&Description, description);
-	bitstring_init(&Status_Flags);
-	bitstring_set_bit(&Status_Flags, STATUS_FLAG_FAULT, false);
-	bitstring_set_bit(&Status_Flags, STATUS_FLAG_IN_ALARM, false);
-	bitstring_set_bit(&Status_Flags, STATUS_FLAG_OUT_OF_SERVICE, false);
-	bitstring_set_bit(&Status_Flags, STATUS_FLAG_OVERRIDDEN, false);
-	Event_State = EVENT_STATE_NORMAL;
-	Reliability = RELIABILITY_NO_FAULT_DETECTED;
-	Out_Of_Service = false;
-	Units = units;
-};
+	AnalogObject(objectID, OBJECT_ANALOG_VALUE, objectName, description, units){};
 
 AnalogValue::~AnalogValue(){}
 
@@ -31,6 +19,7 @@ float AnalogValue::getPresentValue(){
 void AnalogValue::setPresentValue(float value){
 	Present_Value = value;
 }
+
 const char* AnalogValue::getDescription(){
 	return characterstring_value(&Description);
 }

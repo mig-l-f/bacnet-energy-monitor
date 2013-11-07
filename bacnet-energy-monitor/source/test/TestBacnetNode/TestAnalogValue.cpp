@@ -308,3 +308,49 @@ void TestAnalogValue::testReadChangedPresentValue(){
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
 	ASSERT_EQUAL(analogValue->getPresentValue(), appDataValueOUT.type.Real);
 }
+int TestAnalogValue::wp_decode_apdu(uint8_t * apdu, unsigned apdu_len, uint8_t * invoke_id, BACNET_WRITE_PROPERTY_DATA * wpdata){
+	int len = 0;
+	unsigned offset = 0;
+
+	if (!apdu)
+		return -1;
+	/* optional checking - most likely was already done prior to this call */
+	if (apdu[0] != PDU_TYPE_CONFIRMED_SERVICE_REQUEST)
+		return -1;
+	/*  apdu[1] = encode_max_segs_max_apdu(0, MAX_APDU); */
+	*invoke_id = apdu[2];       /* invoke id - filled in by net layer */
+	if (apdu[3] != SERVICE_CONFIRMED_WRITE_PROPERTY)
+		return -1;
+	offset = 4;
+
+	if (apdu_len > offset) {
+		len = wp_decode_service_request(&apdu[offset], apdu_len - offset, wpdata);
+	}
+
+	return len;
+}
+void TestAnalogValue::testWritePropertyFails(){
+	BACNET_WRITE_PROPERTY_DATA wpdata;
+	BACNET_WRITE_PROPERTY_DATA test_data;
+	BACNET_APPLICATION_DATA_VALUE input_value;
+	uint8_t invoke_id = 128;
+	uint8_t test_invoke_id = 0;
+	int len = 0; int apdu_len = 0;
+	uint8_t apdu[1000] = { 0 };
+
+	input_value.tag = BACNET_APPLICATION_TAG_BOOLEAN;
+	input_value.type.Boolean = true;
+
+	wpdata.application_data_len = bacapp_encode_application_data(&wpdata.application_data[0], &input_value);
+
+	bool success = analogValue->Object_Write_Property(&wpdata);
+	ASSERT_EQUAL(false, success);
+
+//	len = wp_encode_apdu(&apdu[0], invoke_id, &wpdata);
+//	ASSERT_EQUAL(true, len != 0);
+//	apdu_len = len;
+//	len = wp_decode_apdu(&apdu[0], apdu_len, &test_invoke_id, &test_data);
+//	ASSERT_EQUAL(true, len != -1);
+	ASSERT_EQUAL(ERROR_CLASS_PROPERTY, wpdata.error_class);
+	ASSERT_EQUAL(ERROR_CODE_WRITE_ACCESS_DENIED, wpdata.error_code);
+}
