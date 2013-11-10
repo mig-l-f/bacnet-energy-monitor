@@ -40,6 +40,7 @@ int main(void){
 		/*Temperature sensor emulation*/
 		temperature = 15 + (float)rand()/((float)RAND_MAX/(25-15));
 		node->getAnalogObjectFromList(0)->setPresentValue(temperature);
+		node->getAnalogObjectFromList(1)->setPresentValue(temperature-1);
 	}
 }
 

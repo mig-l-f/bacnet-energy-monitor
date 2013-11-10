@@ -12,14 +12,14 @@
 class TestBacnetNodeStub{
 public:
 	TestBacnetNodeStub(){};
-	void handlerNpduStubAtClient(uint8_t * pdu, BACNET_NPDU_DATA& npdu_data,
+	int handlerNpduStubAtClient(uint8_t * pdu, BACNET_NPDU_DATA& npdu_data,
 			int& pdu_len, BACNET_READ_PROPERTY_DATA * data);
 	int handlerNpduIamAtClient(uint8_t* pdu, BACNET_NPDU_DATA& npdu_data, int& pdu_len);
 	void setupAddressForWhoIsRequest(BACNET_ADDRESS & addr);
 private:
 };
 
-inline void TestBacnetNodeStub::handlerNpduStubAtClient(uint8_t * pdu, BACNET_NPDU_DATA& npdu_data,
+inline int TestBacnetNodeStub::handlerNpduStubAtClient(uint8_t * pdu, BACNET_NPDU_DATA& npdu_data,
 		int& pdu_len, BACNET_READ_PROPERTY_DATA * data){
 	BACNET_ADDRESS src = { 0 };
 	BACNET_ADDRESS dest = { 0 };
@@ -27,14 +27,20 @@ inline void TestBacnetNodeStub::handlerNpduStubAtClient(uint8_t * pdu, BACNET_NP
 	apdu_offset = npdu_decode(&pdu[0], &dest, &src, &npdu_data);
 	ASSERT(apdu_offset != 0);
 	ASSERT(npdu_data.network_layer_message == 0);
-
+	int len = 0;
 	if(pdu[apdu_offset] == PDU_TYPE_CONFIRMED_SERVICE_REQUEST)
-		return;
+		return -1;
 
 	else if(pdu[apdu_offset] == PDU_TYPE_COMPLEX_ACK){
 		apdu_offset += 3;
-		rp_ack_decode_service_request(&pdu[apdu_offset], (uint16_t)(((pdu_len - apdu_offset))), data);
+		len = rp_ack_decode_service_request(&pdu[apdu_offset], (uint16_t)(((pdu_len - apdu_offset))), data);
 	}
+	else if(pdu[apdu_offset] == PDU_TYPE_ERROR){
+		BACNET_CONFIRMED_SERVICE service = SERVICE_CONFIRMED_READ_PROPERTY;
+		len = bacerror_decode_service_request(&pdu[apdu_offset + 1], pdu_len - 1, 0,
+				&service, &data->error_class, &data->error_code);
+	}
+	return len;
 };
 inline int TestBacnetNodeStub::handlerNpduIamAtClient(uint8_t* pdu, BACNET_NPDU_DATA& npdu_data, int& pdu_len){
 	BACNET_ADDRESS src = { 0 };

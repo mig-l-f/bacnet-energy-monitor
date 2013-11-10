@@ -29,6 +29,7 @@ class BacnetObject {
 		BACNET_OBJECT_ID* getObjectIdentifier();
 		BACNET_CHARACTER_STRING* getObjectName();
 		BACNET_OBJECT_TYPE getObjectType() const;
+		bool isObject(uint32_t& objectID, BACNET_OBJECT_TYPE objectType);
 
 		virtual unsigned getCount() const = 0;
 		virtual bool getValid_Object_Instance_Number(uint32_t object_id) = 0;

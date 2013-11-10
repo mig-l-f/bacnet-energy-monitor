@@ -35,6 +35,10 @@ public:
 	void testBacnetNodeHandlerAnalogValueReadPresentValue();
 	void testBacnetNodeHandlerDeviceObjectListOfObjects();
 	void testBacnetNodeHandlerAnalogValueChangePresentValue();
+
+	void testBacnetNodeReadAV2Object();
+	void testBacnetNodeReadInvalidInstance();
+	void testBacnetNodeReadAVPresentValueWithArrayIndex();
 private:
 	BacnetNode* bacnetNode;
 	TestBacnetNodeDriver* testBacnetNodeDriver;

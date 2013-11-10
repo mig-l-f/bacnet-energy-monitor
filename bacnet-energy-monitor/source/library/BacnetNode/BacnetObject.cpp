@@ -27,5 +27,11 @@ BacnetObject::BacnetObject(uint32_t objectID, BACNET_OBJECT_TYPE objectType,cons
 	Object_Type = objectType;
 }
 
+bool BacnetObject::isObject(uint32_t& objectID, BACNET_OBJECT_TYPE objectType){
+	if((Object_Identifier.instance == objectID) & (Object_Identifier.type == objectType))
+		return true;
+	else
+		return false;
+}
 
 

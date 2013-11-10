@@ -135,6 +135,9 @@ void runSuiteReadAnalogValueFromBacnetNode(){
 	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerAnalogValueReadPresentValue);
 	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerDeviceObjectListOfObjects);
 	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerAnalogValueChangePresentValue);
+	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeReadAV2Object);
+	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeReadInvalidInstance);
+	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeReadAVPresentValueWithArrayIndex);
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "Suite: Read Analog Value from Bacnet Node");
 }

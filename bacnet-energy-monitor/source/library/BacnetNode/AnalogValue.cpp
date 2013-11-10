@@ -72,10 +72,14 @@ int AnalogValue::Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata){
 	int apdu_len = 0;   /* return value */
 	//int len = 0;        /* apdu len intermediate value */
 	uint8_t *apdu = NULL;
-	//BACNET_BIT_STRING bit_string;
 
 	if ((rpdata == NULL) || (rpdata->application_data == NULL) || (rpdata->application_data_len == 0)) {
 		return 0;
+	}
+	if (rpdata->array_index != BACNET_ARRAY_ALL){ //Object does not have array properties
+		rpdata->error_class = ERROR_CLASS_PROPERTY;
+		rpdata->error_code = ERROR_CODE_PROPERTY_IS_NOT_AN_ARRAY;
+		return BACNET_STATUS_ERROR;
 	}
 	apdu = rpdata->application_data;
 	switch (rpdata->object_property) {

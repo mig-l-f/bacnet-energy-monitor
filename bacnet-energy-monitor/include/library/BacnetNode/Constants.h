@@ -28,6 +28,6 @@
 
 /* Variables not optimized*/
 	static const uint16_t VENDOR_IDENTIFIER = 700;
-	const uint8_t MAX_BACNET_OBJECTS_PER_DEVICE=2;
+	const uint8_t MAX_BACNET_OBJECTS_PER_DEVICE=3;
 
 #endif /* CONSTANTS_H_ */

@@ -9,7 +9,7 @@
 #include "BacnetNode.h"
 #include <stdio.h> //FIXME: Added for debug
 DeviceObject* BacnetNode::device(new DeviceObject( (uint32_t)55, "MiguelDevice", STATUS_OPERATIONAL));
-AnalogValue** BacnetNode::analogValueList(new AnalogValue*[MAX_ANALOG_VALUES]);
+AnalogObject** BacnetNode::analogValueList(new AnalogObject*[MAX_ANALOG_VALUES]);
 
 BacnetNode::BacnetNode() {
 	apdu_set_confirmed_handler(SERVICE_CONFIRMED_READ_PROPERTY, handler_read_property);
@@ -18,9 +18,11 @@ BacnetNode::BacnetNode() {
 	//initilize list as null
 	for(uint8_t i =0; i < MAX_ANALOG_VALUES; i++)
 		analogValueList[i] = NULL;
-	analogValueList[0] = new AnalogValue((uint32_t)100, "TestAnalogValue", "Test AV Object", UNITS_DEGREES_CELSIUS);
+	analogValueList[0] = new AnalogValue((uint32_t)1, "Analog Value 1", "Test AV Object 1", UNITS_DEGREES_CELSIUS);
+	analogValueList[1] = new AnalogValue((uint32_t)2, "Analog Value 2", "Test AV Object 2", UNITS_DEGREES_CELSIUS);
 	//Add to Device Object List
 	device->addObjectIdToObjectList(*(analogValueList[0]->getObjectIdentifier()));
+	device->addObjectIdToObjectList(*(analogValueList[1]->getObjectIdentifier()));
 }
 
 #ifdef LOGGING
@@ -34,7 +36,7 @@ BacnetNode::BacnetNode(std::string & logLevel){
 DeviceObject* BacnetNode::getDeviceObject() {
 	return device;
 }
-AnalogValue* BacnetNode::getAnalogObjectFromList(uint8_t index){
+AnalogObject* BacnetNode::getAnalogObjectFromList(uint8_t index){
 	if (index < MAX_ANALOG_VALUES)
 		return analogValueList[index];
 	return NULL;
@@ -110,14 +112,28 @@ void BacnetNode::handler_read_property(uint8_t * service_request, uint16_t servi
 	/* configure our storage */
 	rpdata.application_data = &Handler_Transmit_Buffer[npdu_len + apdu_len];
 	rpdata.application_data_len = sizeof(Handler_Transmit_Buffer) - (npdu_len + apdu_len);
-
+	len = 0; // re-initialize counter
 	switch(rpdata.object_type){
 		case OBJECT_DEVICE:
 			len = device->Object_Read_Property(&rpdata);
 			break;
 		case OBJECT_ANALOG_VALUE:
-			len = analogValueList[0]->Object_Read_Property(&rpdata);
+		{
+			bool found = false;
+			for(uint8_t i = 0; i < MAX_ANALOG_VALUES; i++){
+				if(analogValueList[i]->isObject(rpdata.object_instance, OBJECT_ANALOG_VALUE)){
+					len = analogValueList[rpdata.object_instance-1]->Object_Read_Property(&rpdata);
+					found = true;
+					break;
+				}
+			}
+			if(!found){
+				rpdata.error_class = ERROR_CLASS_OBJECT;
+				rpdata.error_code = ERROR_CODE_UNKNOWN_OBJECT;
+				len = BACNET_STATUS_ERROR;
+			}
 			break;
+		}
 		default:
 			//FIXME: What happens when not implemented object specified
 			break;

@@ -329,9 +329,9 @@ void TestBacnetNode::testBacnetNodeHandlerAnalogValueObjectName(){
 	testBacnetNodeDriver->setupAddress(my_address, dest);
 	/* Configure Request */
 	data.object_type = OBJECT_ANALOG_VALUE;
-	data.object_instance = (uint32_t)100;
+	data.object_instance = (uint32_t)1;
 	data.object_property = PROP_OBJECT_NAME;
-	data.array_index = 0;
+	data.array_index = BACNET_ARRAY_ALL;
 
 	int pdu_len = testBacnetNodeDriver->makeReadPropertyRequestStub(npdu_data, dest, my_address,
 				data, bacnetNode, invoke_id, false);
@@ -346,7 +346,7 @@ void TestBacnetNode::testBacnetNodeHandlerAnalogValueObjectName(){
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(data.application_data, MAX_APDU, &appDataValueOUT);
 	BACNET_CHARACTER_STRING name;
-	characterstring_init_ansi(&name, "TestAnalogValue");
+	characterstring_init_ansi(&name, "Analog Value 1");
 	ASSERT_EQUAL(true, characterstring_same(&appDataValueOUT.type.Character_String, &name));
 }
 void TestBacnetNode::testBacnetNodeHandlerAnalogValueReadPresentValue(){
@@ -359,9 +359,9 @@ void TestBacnetNode::testBacnetNodeHandlerAnalogValueReadPresentValue(){
 	testBacnetNodeDriver->setupAddress(my_address, dest);
 	/* Configure Request */
 	data.object_type = OBJECT_ANALOG_VALUE;
-	data.object_instance = (uint32_t)100;
+	data.object_instance = (uint32_t)1;
 	data.object_property = PROP_PRESENT_VALUE;
-	data.array_index = 0;
+	data.array_index = BACNET_ARRAY_ALL;
 
 	int pdu_len = testBacnetNodeDriver->makeReadPropertyRequestStub(npdu_data, dest, my_address,
 				data, bacnetNode, invoke_id, false);
@@ -416,7 +416,17 @@ void TestBacnetNode::testBacnetNodeHandlerDeviceObjectListOfObjects(){
 			application_data_len -= len;
 			len = bacapp_decode_application_data(application_data, (uint8_t)application_data_len, &appDataValueOUT);
 			obj1 = appDataValueOUT.type.Object_Id;
-			ASSERT_EQUAL(100, obj1.instance);
+			ASSERT_EQUAL(1, obj1.instance);
+			ASSERT_EQUAL(OBJECT_ANALOG_VALUE, obj1.type);
+		}
+	}
+	if (len > 0){
+		if (len < application_data_len){
+			application_data += len;
+			application_data_len -= len;
+			len = bacapp_decode_application_data(application_data, (uint8_t)application_data_len, &appDataValueOUT);
+			obj1 = appDataValueOUT.type.Object_Id;
+			ASSERT_EQUAL(2, obj1.instance);
 			ASSERT_EQUAL(OBJECT_ANALOG_VALUE, obj1.type);
 		}
 	}
@@ -434,9 +444,9 @@ void TestBacnetNode::testBacnetNodeHandlerAnalogValueChangePresentValue(){
 	testBacnetNodeDriver->setupAddress(my_address, dest);
 	// Configure Request
 	data.object_type = OBJECT_ANALOG_VALUE;
-	data.object_instance = (uint32_t)100;
+	data.object_instance = (uint32_t)1;
 	data.object_property = PROP_PRESENT_VALUE;
-	data.array_index = 0;
+	data.array_index = BACNET_ARRAY_ALL;
 
 	int pdu_len = testBacnetNodeDriver->makeReadPropertyRequestStub(npdu_data, dest, my_address,
 				data, bacnetNode, invoke_id, false);
@@ -451,4 +461,88 @@ void TestBacnetNode::testBacnetNodeHandlerAnalogValueChangePresentValue(){
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(data.application_data, MAX_APDU, &appDataValueOUT);
 	ASSERT_EQUAL((float)22.35, appDataValueOUT.type.Real);
+}
+void TestBacnetNode::testBacnetNodeReadAV2Object(){
+	BACNET_ADDRESS dest;
+	BACNET_ADDRESS my_address;
+	BACNET_NPDU_DATA npdu_data;
+	BACNET_READ_PROPERTY_DATA data;
+	uint8_t invoke_id = 0;
+
+	testBacnetNodeDriver->setupAddress(my_address, dest);
+	/* Configure Request */
+	data.object_type = OBJECT_ANALOG_VALUE;
+	data.object_instance = (uint32_t)2;
+	data.object_property = PROP_OBJECT_NAME;
+	data.array_index = BACNET_ARRAY_ALL;
+
+	int pdu_len = testBacnetNodeDriver->makeReadPropertyRequestStub(npdu_data, dest, my_address,
+					data, bacnetNode, invoke_id, false);
+
+	// SENDING CLIENTE->SERVIDOR
+	testBacnetNodeDriver->handlerNpduStubAtServer(&Handler_Transmit_Buffer[0], npdu_data, pdu_len);
+
+	// SENDING SERVIDOR->CLIENTE
+	int pdu_len2 = 40; // Valor obtido atraves de debug na funcao myhandler_read (BacnetNode.cpp)
+	testBacnetNodeStub->handlerNpduStubAtClient(&Handler_Transmit_Buffer[0], npdu_data, pdu_len2, &data);
+
+	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
+	bacapp_decode_application_data(data.application_data, MAX_APDU, &appDataValueOUT);
+	BACNET_CHARACTER_STRING avName;
+	characterstring_init_ansi(&avName, "Analog Value 2");
+	ASSERT_EQUAL(true, characterstring_same(&appDataValueOUT.type.Character_String, &avName));
+}
+void TestBacnetNode::testBacnetNodeReadInvalidInstance(){
+	BACNET_ADDRESS dest;
+	BACNET_ADDRESS my_address;
+	BACNET_NPDU_DATA npdu_data;
+	BACNET_READ_PROPERTY_DATA data;
+	BACNET_READ_PROPERTY_DATA rcv_data;
+	uint8_t invoke_id = 0;
+
+	testBacnetNodeDriver->setupAddress(my_address, dest);
+	/* Configure Request */
+	data.object_type = OBJECT_ANALOG_VALUE;
+	data.object_instance = (uint32_t)10;
+	data.object_property = PROP_OBJECT_NAME;
+	data.array_index = BACNET_ARRAY_ALL;
+
+	int pdu_len = testBacnetNodeDriver->makeReadPropertyRequestStub(npdu_data, dest, my_address,
+						data, bacnetNode, invoke_id, false);
+
+	// SENDING CLIENTE->SERVIDOR
+	testBacnetNodeDriver->handlerNpduStubAtServer(&Handler_Transmit_Buffer[0], npdu_data, pdu_len);
+
+	// SENDING SERVIDOR->CLIENTE
+	int pdu_len2 = 14; // Valor obtido atraves de debug na funcao myhandler_read (BacnetNode.cpp)
+	testBacnetNodeStub->handlerNpduStubAtClient(&Handler_Transmit_Buffer[0], npdu_data, pdu_len2, &rcv_data);
+	ASSERT_EQUAL(ERROR_CLASS_OBJECT, (BACNET_ERROR_CLASS)rcv_data.error_class);
+	ASSERT_EQUAL(ERROR_CODE_UNKNOWN_OBJECT, (BACNET_ERROR_CODE)rcv_data.error_code);
+}
+void TestBacnetNode::testBacnetNodeReadAVPresentValueWithArrayIndex(){
+	BACNET_ADDRESS dest;
+	BACNET_ADDRESS my_address;
+	BACNET_NPDU_DATA npdu_data;
+	BACNET_READ_PROPERTY_DATA data;
+	BACNET_READ_PROPERTY_DATA rcv_data;
+	uint8_t invoke_id = 0;
+
+	testBacnetNodeDriver->setupAddress(my_address, dest);
+	/* Configure Request */
+	data.object_type = OBJECT_ANALOG_VALUE;
+	data.object_instance = (uint32_t)1;
+	data.object_property = PROP_PRESENT_VALUE;
+	data.array_index = 1;
+
+	int pdu_len = testBacnetNodeDriver->makeReadPropertyRequestStub(npdu_data, dest, my_address,
+						data, bacnetNode, invoke_id, false);
+
+	// SENDING CLIENTE->SERVIDOR
+	testBacnetNodeDriver->handlerNpduStubAtServer(&Handler_Transmit_Buffer[0], npdu_data, pdu_len);
+
+	// SENDING SERVIDOR->CLIENTE
+	int pdu_len2 = 14; // Valor obtido atraves de debug na funcao myhandler_read (BacnetNode.cpp)
+	testBacnetNodeStub->handlerNpduStubAtClient(&Handler_Transmit_Buffer[0], npdu_data, pdu_len2, &rcv_data);
+	ASSERT_EQUAL(ERROR_CLASS_PROPERTY, (BACNET_ERROR_CLASS)rcv_data.error_class);
+	ASSERT_EQUAL(ERROR_CODE_PROPERTY_IS_NOT_AN_ARRAY, (BACNET_ERROR_CODE)rcv_data.error_code);
 }

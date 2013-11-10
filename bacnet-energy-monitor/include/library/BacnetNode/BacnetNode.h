@@ -23,6 +23,7 @@
 #include "DeviceObject.h"
 #include "BacnetObject.h"
 #include "AnalogValue.h"
+#include "AnalogObject.h"
 #include "Constants.h"
 #include "verbose.h"
 #if defined(__AVR_ATmega328P__)
@@ -46,7 +47,7 @@ public:
 #endif
 	~BacnetNode() {}
 	DeviceObject* getDeviceObject();
-	AnalogValue* getAnalogObjectFromList(uint8_t index);
+	AnalogObject* getAnalogObjectFromList(uint8_t index);
 	static void handler_read_property(uint8_t * service_request, uint16_t service_len,
 					    BACNET_ADDRESS * src,BACNET_CONFIRMED_SERVICE_DATA * service_data);
 	static void dealWithErrorCodes(int & len, int& npdu_len,
@@ -59,7 +60,7 @@ public:
 	static void sendIamUnicast(uint8_t * buffer, BACNET_ADDRESS * src);
 private:
 	static DeviceObject* device;
-	static AnalogValue** analogValueList;
+	static AnalogObject** analogValueList;
 };
 
 #endif /* BACNETNODE_H_ */

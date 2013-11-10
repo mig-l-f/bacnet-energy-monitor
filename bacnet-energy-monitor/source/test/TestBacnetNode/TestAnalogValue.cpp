@@ -148,6 +148,7 @@ void TestAnalogValue::createAPDU(BACNET_READ_PROPERTY_DATA& rpdata, BACNET_APPLI
 	rpdata.object_type = analogValue->getObjectType();
 	rpdata.object_instance = (analogValue->getObjectIdentifier())->instance;
 	rpdata.object_property = property;
+	rpdata.array_index = BACNET_ARRAY_ALL;
 	uint8_t apdu[1000] = { 0 };
 	rpdata.application_data = &apdu[0];
 	appDataValueIN.context_specific = false;
@@ -331,12 +332,13 @@ int TestAnalogValue::wp_decode_apdu(uint8_t * apdu, unsigned apdu_len, uint8_t *
 }
 void TestAnalogValue::testWritePropertyFails(){
 	BACNET_WRITE_PROPERTY_DATA wpdata;
-	BACNET_WRITE_PROPERTY_DATA test_data;
 	BACNET_APPLICATION_DATA_VALUE input_value;
-	uint8_t invoke_id = 128;
-	uint8_t test_invoke_id = 0;
-	int len = 0; int apdu_len = 0;
-	uint8_t apdu[1000] = { 0 };
+//	BACNET_WRITE_PROPERTY_DATA test_data;
+
+//	uint8_t invoke_id = 128;
+//	uint8_t test_invoke_id = 0;
+//	int len = 0; int apdu_len = 0;
+//	uint8_t apdu[1000] = { 0 };
 
 	input_value.tag = BACNET_APPLICATION_TAG_BOOLEAN;
 	input_value.type.Boolean = true;

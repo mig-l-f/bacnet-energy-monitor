@@ -117,5 +117,6 @@ int main(
         //convert to degrees
         temperature = ( (data[1] << 8) + data[0])*0.0625;
         node->getAnalogObjectFromList(0)->setPresentValue(temperature);
+        node->getAnalogObjectFromList(1)->setPresentValue(temperature+1.0);
     }
 }
