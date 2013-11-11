@@ -22,8 +22,6 @@
 #include "datalink.h"
 #include "DeviceObject.h"
 #include "BacnetObject.h"
-#include "AnalogValue.h"
-#include "AnalogObject.h"
 #include "Constants.h"
 #include "verbose.h"
 #if defined(__AVR_ATmega328P__)
@@ -45,11 +43,8 @@ public:
 #ifdef LOGGING
 	BacnetNode(std::string & logLevel);
 #endif
-	~BacnetNode() {}
+	virtual ~BacnetNode() {}
 	DeviceObject* getDeviceObject();
-	AnalogObject* getAnalogObjectFromList(uint8_t index);
-	static void handler_read_property(uint8_t * service_request, uint16_t service_len,
-					    BACNET_ADDRESS * src,BACNET_CONFIRMED_SERVICE_DATA * service_data);
 	static void dealWithErrorCodes(int & len, int& npdu_len,
 								   BACNET_CONFIRMED_SERVICE_DATA * service_data,
 								   BACNET_READ_PROPERTY_DATA& rpdata,
@@ -58,9 +53,9 @@ public:
 	static void handler_who_is(uint8_t * service_request, uint16_t service_len,
 		    			BACNET_ADDRESS * src);
 	static void sendIamUnicast(uint8_t * buffer, BACNET_ADDRESS * src);
-private:
+
+protected:
 	static DeviceObject* device;
-	static AnalogObject** analogValueList;
 };
 
 #endif /* BACNETNODE_H_ */

@@ -197,7 +197,7 @@ int DeviceObject::Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata) {
 	    			apdu_len = encode_application_unsigned(&apdu[0], MAX_BACNET_OBJECTS_PER_DEVICE);
 
 	    		}else if (rpdata->array_index == BACNET_ARRAY_ALL){ // Return ID of all objects
-	    			for (int i = 0; i < MAX_BACNET_OBJECTS_PER_DEVICE; i++) {
+	    			for (uint8_t i = 0; i < MAX_BACNET_OBJECTS_PER_DEVICE; i++) {
 
 	    				len = encode_application_object_id(&apdu[apdu_len],
 	    							Object_List[i].type, Object_List[i].instance);

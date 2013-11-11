@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-#include "BacnetNode.h"
+#include "BacnetNode2Thermos.h"
 #include "datalink.h"
 #include "dlenv.h"
 
@@ -20,7 +20,7 @@ void setup(){
 }
 
 int main(void){
-	BacnetNode* node = new BacnetNode();
+	BacnetNode2Thermos* node = new BacnetNode2Thermos();
 	uint16_t pdu_len = 0;
 	BACNET_ADDRESS src = { 0 }; /* source address */
 

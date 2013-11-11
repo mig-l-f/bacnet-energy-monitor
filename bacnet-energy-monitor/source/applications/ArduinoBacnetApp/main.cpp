@@ -16,7 +16,7 @@
 #include "handlers.h"
 #include "txbuf.h"
 #include "iam.h"
-#include "BacnetNode.h"
+#include "BacnetNode2Thermos.h"
 #include "stack.h"
 #include "verbose.h"
 
@@ -33,7 +33,7 @@ static uint8_t Ethernet_MAC_Address[MAX_MAC_LEN] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xF
 uint8_t ipAddress[] = {192, 168, 0, 185};
 uint8_t gateway[] = {192, 168, 0, 1};
 uint8_t netmask[] = {255, 255, 255, 0};
-BacnetNode* node = new BacnetNode();
+BacnetNode2Thermos* node = new BacnetNode2Thermos();
 
 //Temperature sensor
 #define ONE_WIRE_BUS 2

@@ -14,6 +14,8 @@
 #include "TestBacnetNode.h"
 #include "TestAnalogValue.h"
 #include "TestAnalogObject.h"
+#include "TestBacnetNode2Thermos.h"
+
 
 void runSuiteDeviceObjectProperties(){
 	cute::suite s;
@@ -74,11 +76,6 @@ void runSuiteBacnetNodeProperties(){
 	cute::suite s;
 
 	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHasDeviceObject);
-	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerReadObjectName);
-	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerReadSystemStatus);
-	//s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerReadServicesSupported); //FIXME: BUG2
-	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerReadIndefiniteDeviceObjectInstance);
-	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerReadReject);
 	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerWhoIsWithLimits);
 	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerWhoIsWithWildcard);
 	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerWhoIsWithNoLimits);
@@ -129,19 +126,6 @@ void runSuiteAnalogValueReadPropertyTest(){
 	cute::makeRunner(lis)(s, "Suite: Analog Value Read Properties");
 }
 
-void runSuiteReadAnalogValueFromBacnetNode(){
-	cute::suite s;
-	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerAnalogValueObjectName);
-	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerAnalogValueReadPresentValue);
-	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerDeviceObjectListOfObjects);
-	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeHandlerAnalogValueChangePresentValue);
-	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeReadAV2Object);
-	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeReadInvalidInstance);
-	s += CUTE_SMEMFUN(TestBacnetNode, testBacnetNodeReadAVPresentValueWithArrayIndex);
-	cute::ide_listener lis;
-	cute::makeRunner(lis)(s, "Suite: Read Analog Value from Bacnet Node");
-}
-
 void runSuitAnalogObject(){
 	cute::suite s;
 	s += CUTE_SMEMFUN(TestAnalogObject, testSettingOfPresentValueIsCorrect);
@@ -159,14 +143,36 @@ void runSuitAnalogObject(){
 	cute::makeRunner(lis)(s, "Suite: Test Analog Object");
 }
 
+void runSuitBacnetNode2Thermos(){
+	cute::suite s;
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerReadObjectName);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerReadSystemStatus);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerReadServicesSupported);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerReadIndefiniteDeviceObjectInstance);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerReadReject);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerWhoIsWithLimits);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerWhoIsWithWildcard);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerWhoIsWithNoLimits);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerAnalogValueObjectName);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerAnalogValueReadPresentValue);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerDeviceObjectListOfObjects);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosHandlerAnalogValueChangePresentValue);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosReadAV2Object);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosReadInvalidInstance);
+	s += CUTE_SMEMFUN(TestBacnetNode2Thermos, testBacnetNode2ThermosReadAVWithArrayIndexFails);
+
+	cute::ide_listener lis;
+	cute::makeRunner(lis)(s, "Suite: Test Bacnet Node 2 Thermos");
+}
+
 int main(){
     runSuiteDeviceObjectProperties();
     runSuiteDeviceObjectReadPropertyTest();
     runSuiteBacnetNodeProperties();
     runSuiteAnalogValueObjectProperties();
     runSuiteAnalogValueReadPropertyTest();
-    runSuiteReadAnalogValueFromBacnetNode();
     runSuitAnalogObject();
+    runSuitBacnetNode2Thermos();
     return 0;
 }
 

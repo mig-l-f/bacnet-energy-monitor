@@ -22,23 +22,10 @@ public:
 	// Tests
 	void nothing();
 	void testBacnetNodeHasDeviceObject();
-	void testBacnetNodeHandlerReadObjectName();
-	void testBacnetNodeHandlerReadSystemStatus();
-	void testBacnetNodeHandlerReadServicesSupported();
-	void testBacnetNodeHandlerReadIndefiniteDeviceObjectInstance();
-	void testBacnetNodeHandlerReadReject();
 	void testBacnetNodeHandlerWhoIsWithLimits();
 	void testBacnetNodeHandlerWhoIsWithWildcard();
 	void testBacnetNodeHandlerWhoIsWithNoLimits();
 
-	void testBacnetNodeHandlerAnalogValueObjectName();
-	void testBacnetNodeHandlerAnalogValueReadPresentValue();
-	void testBacnetNodeHandlerDeviceObjectListOfObjects();
-	void testBacnetNodeHandlerAnalogValueChangePresentValue();
-
-	void testBacnetNodeReadAV2Object();
-	void testBacnetNodeReadInvalidInstance();
-	void testBacnetNodeReadAVPresentValueWithArrayIndex();
 private:
 	BacnetNode* bacnetNode;
 	TestBacnetNodeDriver* testBacnetNodeDriver;

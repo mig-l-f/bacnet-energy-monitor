@@ -80,9 +80,4 @@ public:
 };
 
 
-
-
-
-
-
 #endif /* DEVICEOBJECT_H_ */
