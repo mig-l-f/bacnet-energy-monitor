@@ -50,7 +50,9 @@ void TestBacnetNode2Thermos::testBacnetNode2ThermosHandlerReadObjectName(){
 
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(data.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(true, characterstring_same(&appDataValueOUT.type.Character_String, bacnetNode->getDeviceObject()->getObjectName()));
+	BACNET_CHARACTER_STRING name;
+	characterstring_init_ansi(&name, "MiguelDevice");
+	ASSERT_EQUAL(true, characterstring_same(&appDataValueOUT.type.Character_String, &name));
 }
 
 void TestBacnetNode2Thermos::testBacnetNode2ThermosHandlerReadSystemStatus(){
@@ -78,7 +80,7 @@ void TestBacnetNode2Thermos::testBacnetNode2ThermosHandlerReadSystemStatus(){
 
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(data.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(bacnetNode->getDeviceObject()->getDeviceStatus(),appDataValueOUT.type.Enumerated);
+	ASSERT_EQUAL(STATUS_OPERATIONAL,appDataValueOUT.type.Enumerated);
 }
 
 void TestBacnetNode2Thermos::testBacnetNode2ThermosHandlerReadServicesSupported(){
@@ -146,7 +148,9 @@ void TestBacnetNode2Thermos::testBacnetNode2ThermosHandlerReadIndefiniteDeviceOb
 
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(data.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(true, characterstring_same(&appDataValueOUT.type.Character_String, bacnetNode->getDeviceObject()->getObjectName()));
+	BACNET_CHARACTER_STRING name;
+	characterstring_init_ansi(&name, "MiguelDevice");
+	ASSERT_EQUAL(true, characterstring_same(&appDataValueOUT.type.Character_String, &name));
 	ASSERT_EQUAL(bacnetNode->getDeviceObject()->getObjectIdentifier()->instance, data.object_instance);
 }
 
@@ -225,7 +229,7 @@ void TestBacnetNode2Thermos::testBacnetNode2ThermosHandlerWhoIsWithLimits(){
 		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getObjectIdentifier()->instance, device_id);
 		ASSERT_EQUAL(MAX_APDU, max_apdu);
 		ASSERT_EQUAL(SEGMENTATION_NONE, segmentation);
-		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getVendorIdentifier(), vendor_id);
+		ASSERT_EQUAL(VENDOR_IDENTIFIER, vendor_id);
 	}else{
 		ASSERT_EQUALM("APDU Nao foi descodificada", true, false);
 	}
@@ -270,7 +274,7 @@ void TestBacnetNode2Thermos::testBacnetNode2ThermosHandlerWhoIsWithWildcard(){
 		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getObjectIdentifier()->instance, device_id);
 		ASSERT_EQUAL(MAX_APDU, max_apdu);
 		ASSERT_EQUAL(SEGMENTATION_NONE, segmentation);
-		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getVendorIdentifier(), vendor_id);
+		ASSERT_EQUAL(VENDOR_IDENTIFIER, vendor_id);
 	}else{
 		ASSERT_EQUALM("APDU Nao foi descodificada", true, false);
 	}
@@ -315,7 +319,7 @@ void TestBacnetNode2Thermos::testBacnetNode2ThermosHandlerWhoIsWithNoLimits(){
 		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getObjectIdentifier()->instance, device_id);
 		ASSERT_EQUAL(MAX_APDU, max_apdu);
 		ASSERT_EQUAL(SEGMENTATION_NONE, segmentation);
-		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getVendorIdentifier(), vendor_id);
+		ASSERT_EQUAL(VENDOR_IDENTIFIER, vendor_id);
 	}else{
 		ASSERT_EQUALM("APDU Nao foi descodificada", true, false);
 	}

@@ -12,127 +12,11 @@ TestAnalogValue::TestAnalogValue() {
 	objectNumber = 100;
 	objectName = "MyAnalogValue";
 	units = UNITS_DEGREES_CELSIUS;
-	analogValue = new AnalogValue(objectNumber, objectName, "NOTDEF", units);
+	analogValue = new AnalogValue(objectNumber, objectName, "ThisIsDescription", units);
 }
 
 TestAnalogValue::~TestAnalogValue() {
 	delete(analogValue);
-}
-
-void TestAnalogValue::nothing() {
-	ASSERT_EQUAL(true, true);
-}
-
-void TestAnalogValue::testObjectIdentifier(){
-	ASSERT_EQUAL(OBJECT_ANALOG_VALUE, (analogValue->getObjectIdentifier())->type);
-	ASSERT_EQUAL(objectNumber, (analogValue->getObjectIdentifier())->instance);
-}
-
-void TestAnalogValue::testObjectName(){
-	BACNET_CHARACTER_STRING analogValueName;
-	characterstring_init_ansi(&analogValueName, objectName);
-
-	BACNET_CHARACTER_STRING * temp = analogValue->getObjectName();
-	ASSERT_EQUAL(true, characterstring_same(&analogValueName, temp));
-}
-
-void TestAnalogValue::testPresentValueIsNegativeOnCreation(){
-	ASSERT_EQUAL((float)-1.0, analogValue->getPresentValue());
-}
-
-void TestAnalogValue::testDescriptionIsNoDescriptionByDefault(){
-	std::string s = analogValue->getDescription();
-	ASSERT_EQUAL(0, s.compare("NOTDEF"));
-}
-void TestAnalogValue::testDescriptionCanBeChanged(){
-	ASSERT(analogValue->setDescription("MyNewDescription"));
-	std::string s = analogValue->getDescription();
-	ASSERT_EQUAL(0, s.compare("MyNewDescription"));
-}
-
-void TestAnalogValue::testStatusFlagsAreAllFalseOnCreation(){
-	BACNET_BIT_STRING referenceValues;
-	bitstring_init(&referenceValues);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_IN_ALARM, false);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_FAULT, false);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_OUT_OF_SERVICE, false);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_OVERRIDDEN, false);
-
-	BACNET_BIT_STRING currentValues = analogValue->getStatusFlags();
-	ASSERT_EQUAL(true, bitstring_same(&referenceValues, &currentValues));
-}
-
-void TestAnalogValue::testEventStateHasValueNormalOnCreation(){
-	ASSERT_EQUAL(EVENT_STATE_NORMAL, analogValue->getEventState());
-}
-
-void TestAnalogValue::testChangeEventStateToFaultAndBackToNormalHasConsistentStatusFlags(){
-	analogValue->setEventState(EVENT_STATE_FAULT);
-	ASSERT_EQUAL(EVENT_STATE_FAULT, analogValue->getEventState());
-
-	BACNET_BIT_STRING referenceValues;
-	bitstring_init(&referenceValues);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_IN_ALARM, true);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_FAULT, false);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_OUT_OF_SERVICE, false);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_OVERRIDDEN, false);
-
-	BACNET_BIT_STRING currentValues = analogValue->getStatusFlags();
-	ASSERT_EQUAL(true, bitstring_same(&referenceValues, &currentValues));
-
-	analogValue->setEventState(EVENT_STATE_NORMAL);
-	ASSERT_EQUAL(EVENT_STATE_NORMAL, analogValue->getEventState());
-
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_IN_ALARM, false);
-	currentValues = analogValue->getStatusFlags();
-	ASSERT_EQUAL(true, bitstring_same(&referenceValues, &currentValues));
-}
-
-void TestAnalogValue::testReliabilityHasNoFaultDetectedOnCreation(){
-	ASSERT_EQUAL(RELIABILITY_NO_FAULT_DETECTED, analogValue->getReliability());
-}
-
-void TestAnalogValue::testSettingReliabilityValuesHasOnlyFourOptions(){
-	ASSERT(analogValue->setReliability(RELIABILITY_NO_FAULT_DETECTED));
-	ASSERT(analogValue->setReliability(RELIABILITY_OVER_RANGE));
-	ASSERT(analogValue->setReliability(RELIABILITY_UNDER_RANGE));
-	ASSERT(analogValue->setReliability(RELIABILITY_UNRELIABLE_OTHER));
-	ASSERT_EQUAL(false, analogValue->setReliability(RELIABILITY_COMMUNICATION_FAILURE));
-	ASSERT_EQUAL(false, analogValue->setReliability(RELIABILITY_NO_OUTPUT));
-	ASSERT_EQUAL(false, analogValue->setReliability(RELIABILITY_OPEN_LOOP));
-}
-
-void TestAnalogValue::testChangeReliabilityFromNoFaultAndBackHasConsistentStatusFlags(){
-	ASSERT(analogValue->setReliability(RELIABILITY_OVER_RANGE));
-
-	BACNET_BIT_STRING referenceValues;
-	bitstring_init(&referenceValues);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_IN_ALARM, false);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_FAULT, true);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_OUT_OF_SERVICE, false);
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_OVERRIDDEN, false);
-	BACNET_BIT_STRING currentValues = analogValue->getStatusFlags();
-	ASSERT_EQUAL(true, bitstring_same(&referenceValues, &currentValues));
-
-	ASSERT(analogValue->setReliability(RELIABILITY_NO_FAULT_DETECTED));
-	bitstring_set_bit(&referenceValues, STATUS_FLAG_FAULT, false);
-	currentValues = analogValue->getStatusFlags();
-	ASSERT_EQUAL(true, bitstring_same(&referenceValues, &currentValues));
-}
-void TestAnalogValue::testOutOfServiceIsFalseOnCreation(){
-	ASSERT(!analogValue->isOutOfService());
-}
-void TestAnalogValue::testUnitsIsDegreesCelsius(){
-	BACNET_ENGINEERING_UNITS currentUnits = analogValue->getUnits();
-	if (currentUnits == units){
-		ASSERT(true);
-	}else{
-		ASSERT(false);
-	}
-}
-void TestAnalogValue::testChangePresentValue(){
-	analogValue->setPresentValue(10.0);
-	ASSERT_EQUAL(10.0, analogValue->getPresentValue());
 }
 
 void TestAnalogValue::testObjectCount(){
@@ -145,7 +29,7 @@ void TestAnalogValue::testObject_Valid_Object_Instance_Number(){
 }
 void TestAnalogValue::createAPDU(BACNET_READ_PROPERTY_DATA& rpdata, BACNET_APPLICATION_DATA_VALUE& appDataValueIN,
 					BACNET_PROPERTY_ID property){
-	rpdata.object_type = analogValue->getObjectType();
+	rpdata.object_type = OBJECT_ANALOG_VALUE;
 	rpdata.object_instance = (analogValue->getObjectIdentifier())->instance;
 	rpdata.object_property = property;
 	rpdata.array_index = BACNET_ARRAY_ALL;
@@ -167,7 +51,9 @@ void TestAnalogValue::testReadPropertyObjectName(){
 				ASSERT_EQUAL(true, false);
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(true, characterstring_same(&appDataValueOUT.type.Character_String, analogValue->getObjectName()));
+	BACNET_CHARACTER_STRING name;
+	characterstring_init_ansi(&name, "MyAnalogValue");
+	ASSERT_EQUAL(true, characterstring_same(&appDataValueOUT.type.Character_String, &name));
 }
 void TestAnalogValue::testReadPropertyObjectID(){
 	BACNET_READ_PROPERTY_DATA rpdata;
@@ -192,7 +78,7 @@ void TestAnalogValue::testReadPropertyObjectType(){
 				ASSERT_EQUAL(true, false);
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(analogValue->getObjectType(), appDataValueOUT.type.Object_Id.type);
+	ASSERT_EQUAL(OBJECT_ANALOG_VALUE, appDataValueOUT.type.Object_Id.type);
 }
 void TestAnalogValue::testReadPresentValue(){
 	BACNET_READ_PROPERTY_DATA rpdata;
@@ -204,7 +90,7 @@ void TestAnalogValue::testReadPresentValue(){
 				ASSERT_EQUAL(true, false);
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(analogValue->getPresentValue(), appDataValueOUT.type.Real);
+	ASSERT_EQUAL(-1.0, appDataValueOUT.type.Real);
 }
 void TestAnalogValue::testReadDescription(){
 	BACNET_READ_PROPERTY_DATA rpdata;
@@ -217,7 +103,7 @@ void TestAnalogValue::testReadDescription(){
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
 	BACNET_CHARACTER_STRING desc;
-	characterstring_init_ansi(&desc, analogValue->getDescription());
+	characterstring_init_ansi(&desc, "ThisIsDescription");
 	ASSERT_EQUAL(true, characterstring_same(&desc, &appDataValueOUT.type.Character_String));
 }
 void TestAnalogValue::testReadStatusFlags(){
@@ -249,7 +135,7 @@ void TestAnalogValue::testReadEventState(){
 				ASSERT_EQUAL(true, false);
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(analogValue->getEventState(), appDataValueOUT.type.Enumerated);
+	ASSERT_EQUAL(EVENT_STATE_NORMAL, appDataValueOUT.type.Enumerated);
 }
 void TestAnalogValue::testReadReliability(){
 	BACNET_READ_PROPERTY_DATA rpdata;
@@ -261,7 +147,7 @@ void TestAnalogValue::testReadReliability(){
 				ASSERT_EQUAL(true, false);
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(analogValue->getReliability(), appDataValueOUT.type.Enumerated);
+	ASSERT_EQUAL(RELIABILITY_NO_FAULT_DETECTED, appDataValueOUT.type.Enumerated);
 }
 void TestAnalogValue::testReadOutOfService(){
 	BACNET_READ_PROPERTY_DATA rpdata;
@@ -273,7 +159,7 @@ void TestAnalogValue::testReadOutOfService(){
 				ASSERT_EQUAL(true, false);
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(analogValue->isOutOfService(), appDataValueOUT.type.Boolean);
+	ASSERT_EQUAL(false, appDataValueOUT.type.Boolean);
 }
 void TestAnalogValue::testReadUnits(){
 	BACNET_READ_PROPERTY_DATA rpdata;
@@ -285,7 +171,7 @@ void TestAnalogValue::testReadUnits(){
 				ASSERT_EQUAL(true, false);
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(analogValue->getUnits(), appDataValueOUT.type.Enumerated);
+	ASSERT_EQUAL(UNITS_DEGREES_CELSIUS, appDataValueOUT.type.Enumerated);
 }
 void TestAnalogValue::testReadChangedPresentValue(){
 	BACNET_READ_PROPERTY_DATA rpdata;
@@ -297,7 +183,7 @@ void TestAnalogValue::testReadChangedPresentValue(){
 				ASSERT_EQUAL(true, false);
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(analogValue->getPresentValue(), appDataValueOUT.type.Real);
+	ASSERT_EQUAL(-1.0, appDataValueOUT.type.Real);
 
 	analogValue->setPresentValue(35.0);
 
@@ -307,7 +193,7 @@ void TestAnalogValue::testReadChangedPresentValue(){
 	if (apdu_len == BACNET_STATUS_ERROR)
 				ASSERT_EQUAL(true, false);
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
-	ASSERT_EQUAL(analogValue->getPresentValue(), appDataValueOUT.type.Real);
+	ASSERT_EQUAL(35.0, appDataValueOUT.type.Real);
 }
 int TestAnalogValue::wp_decode_apdu(uint8_t * apdu, unsigned apdu_len, uint8_t * invoke_id, BACNET_WRITE_PROPERTY_DATA * wpdata){
 	int len = 0;

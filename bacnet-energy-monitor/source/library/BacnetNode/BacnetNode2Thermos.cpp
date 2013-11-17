@@ -26,10 +26,10 @@ void BacnetNode2Thermos::handler_read_property(uint8_t * service_request, uint16
 		    BACNET_ADDRESS * src,BACNET_CONFIRMED_SERVICE_DATA * service_data){
 
 	BACNET_READ_PROPERTY_DATA rpdata;
-    int len = 0;
-    int pdu_len = 0;
-    int apdu_len = -1;
-    int npdu_len = -1;
+    int16_t len = 0;
+    int16_t pdu_len = 0;
+    int16_t apdu_len = -1;
+    int16_t npdu_len = -1;
     BACNET_NPDU_DATA npdu_data;
     BACNET_ADDRESS my_address;
 
@@ -38,14 +38,14 @@ void BacnetNode2Thermos::handler_read_property(uint8_t * service_request, uint16
 	// encode the NPDU portion of the packet
 	datalink_get_my_address(&my_address);
 	npdu_encode_npdu_data(&npdu_data, false, MESSAGE_PRIORITY_NORMAL);
-	npdu_len = npdu_encode_pdu(&Handler_Transmit_Buffer[0], src, &my_address, &npdu_data);
+	npdu_len = (int16_t)npdu_encode_pdu(&Handler_Transmit_Buffer[0], src, &my_address, &npdu_data);
 
 	if (service_data->segmented_message) {
 		len = BACNET_STATUS_ABORT;
 		dealWithErrorCodes(len, npdu_len, service_data, rpdata, src, npdu_data);
 		return;
 	}
-	len = rp_decode_service_request(service_request, service_len, &rpdata);
+	len = (int16_t)rp_decode_service_request(service_request, service_len, &rpdata);
 	if (len <= 0){
 		 // bad decoding - skip to error/reject/abort handling
 		 dealWithErrorCodes(len, npdu_len, service_data, rpdata, src, npdu_data);
@@ -57,7 +57,7 @@ void BacnetNode2Thermos::handler_read_property(uint8_t * service_request, uint16
 		rpdata.object_instance = device->getObjectIdentifier()->instance;
 	}
 
-	apdu_len = rp_ack_encode_apdu_init(&Handler_Transmit_Buffer[npdu_len],
+	apdu_len = (int16_t)rp_ack_encode_apdu_init(&Handler_Transmit_Buffer[npdu_len],
 			service_data->invoke_id, &rpdata);
 
 	// configure our storage
@@ -92,7 +92,7 @@ void BacnetNode2Thermos::handler_read_property(uint8_t * service_request, uint16
 
 	if (len >= 0){
 		apdu_len += len;
-		len = rp_ack_encode_apdu_object_property_end(&Handler_Transmit_Buffer[npdu_len + apdu_len]);
+		len = (int16_t)rp_ack_encode_apdu_object_property_end(&Handler_Transmit_Buffer[npdu_len + apdu_len]);
 		apdu_len += len;
 		if (apdu_len > service_data->max_resp) {
 			/* too big for the sender - send an abort

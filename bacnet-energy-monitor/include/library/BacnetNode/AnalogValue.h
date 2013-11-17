@@ -23,18 +23,8 @@ public:
 	AnalogValue(const uint32_t objectID, const char* objectName, const char* description = "NOTDEF", BACNET_ENGINEERING_UNITS units = UNITS_PERCENT);
 	~AnalogValue();
 
-	float getPresentValue();
-	void setPresentValue(float value);
-	const char* getDescription();
-	bool setDescription(const char* description);
-	BACNET_BIT_STRING getStatusFlags();
-	BACNET_EVENT_STATE getEventState();
-	void setEventState(BACNET_EVENT_STATE state);
-	BACNET_RELIABILITY getReliability();
-	bool setReliability(BACNET_RELIABILITY reliability);
-	bool isOutOfService();
-	BACNET_ENGINEERING_UNITS getUnits();
 
+	void setPresentValue(float value);
 	unsigned getCount() const;
 	bool getValid_Object_Instance_Number(uint32_t object_id);
 	int Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata);
@@ -45,7 +35,7 @@ inline unsigned AnalogValue::getCount() const {
 }
 
 inline bool AnalogValue::getValid_Object_Instance_Number(uint32_t object_id){
-	return getObjectIdentifier()->instance == object_id;
+	return Object_Identifier.instance == object_id;
 }
 
 #endif /* ANALOGVALUE_H_ */

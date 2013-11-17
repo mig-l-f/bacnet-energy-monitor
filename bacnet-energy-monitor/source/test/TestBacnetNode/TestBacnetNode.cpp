@@ -69,7 +69,7 @@ void TestBacnetNode::testBacnetNodeHandlerWhoIsWithLimits(){
 		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getObjectIdentifier()->instance, device_id);
 		ASSERT_EQUAL(MAX_APDU, max_apdu);
 		ASSERT_EQUAL(SEGMENTATION_NONE, segmentation);
-		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getVendorIdentifier(), vendor_id);
+		ASSERT_EQUAL(VENDOR_IDENTIFIER, vendor_id);
 	}else{
 		ASSERT_EQUALM("APDU Nao foi descodificada", true, false);
 	}
@@ -113,7 +113,7 @@ void TestBacnetNode::testBacnetNodeHandlerWhoIsWithWildcard(){
 		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getObjectIdentifier()->instance, device_id);
 		ASSERT_EQUAL(MAX_APDU, max_apdu);
 		ASSERT_EQUAL(SEGMENTATION_NONE, segmentation);
-		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getVendorIdentifier(), vendor_id);
+		ASSERT_EQUAL(VENDOR_IDENTIFIER, vendor_id);
 	}else{
 		ASSERT_EQUALM("APDU Nao foi descodificada", true, false);
 	}
@@ -157,7 +157,7 @@ void TestBacnetNode::testBacnetNodeHandlerWhoIsWithNoLimits(){
 		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getObjectIdentifier()->instance, device_id);
 		ASSERT_EQUAL(MAX_APDU, max_apdu);
 		ASSERT_EQUAL(SEGMENTATION_NONE, segmentation);
-		ASSERT_EQUAL(bacnetNode->getDeviceObject()->getVendorIdentifier(), vendor_id);
+		ASSERT_EQUAL(VENDOR_IDENTIFIER, vendor_id);
 	}else{
 		ASSERT_EQUALM("APDU Nao foi descodificada", true, false);
 	}

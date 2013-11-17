@@ -27,18 +27,8 @@ public:
 	AnalogObject(const uint32_t objectID, BACNET_OBJECT_TYPE objectType, const char* objectName,
 					const char* description = "NOTDEF", BACNET_ENGINEERING_UNITS units = UNITS_PERCENT);
 	~AnalogObject();
-	virtual float getPresentValue() = 0;
-	virtual void setPresentValue(float value) = 0;
-	virtual const char* getDescription() = 0;
-	virtual bool setDescription(const char* description) = 0;
-	virtual BACNET_BIT_STRING getStatusFlags() = 0;
-	virtual BACNET_EVENT_STATE getEventState() = 0;
-	virtual void setEventState(BACNET_EVENT_STATE state) = 0;
-	virtual BACNET_RELIABILITY getReliability() = 0;
-	virtual bool setReliability(BACNET_RELIABILITY reliability) = 0;
-	virtual bool isOutOfService() = 0;
-	virtual BACNET_ENGINEERING_UNITS getUnits() = 0;
 
+	virtual void setPresentValue(float value) = 0;
 	virtual unsigned getCount() const = 0;
 	virtual bool getValid_Object_Instance_Number(uint32_t object_id) = 0;
 	virtual int Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata) = 0;

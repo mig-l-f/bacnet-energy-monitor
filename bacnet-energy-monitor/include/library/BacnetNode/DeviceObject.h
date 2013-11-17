@@ -54,25 +54,10 @@ public:
 			     BACNET_DEVICE_STATUS deviceStatus = STATUS_NON_OPERATIONAL);
 	~DeviceObject();
 
-	BACNET_DEVICE_STATUS getDeviceStatus() const;
-	uint16_t getVendorIdentifier() const;
-	BACNET_CHARACTER_STRING getVendorName() const;
-	BACNET_CHARACTER_STRING getModelName() const;
-	BACNET_CHARACTER_STRING getFirmwareRevision() const;
-	BACNET_CHARACTER_STRING getSoftwareRevision() const;
-	uint8_t getProtocolVersion() const;
-	uint8_t getProtocolRevision() const;
-	BACNET_BIT_STRING getProtocolServicesSupported();
-	BACNET_BIT_STRING* getProtocolObjectTypesSupported();
-	BACNET_OBJECT_ID* getObjectList();
-	uint32_t getMaxApduLengthAccepted() const;
-	BACNET_SEGMENTATION getSegmentationSupported() const;
-	uint16_t getApduTimeout() const;
-	uint8_t getNumberOfApduRetries() const;
-	uint32_t getDatabaseRevision() const;
 	uint16_t getTypeFromObjectList(uint8_t index) const;
 	uint32_t getInstanceFromObjectList(uint8_t index) const;
 	bool addObjectIdToObjectList(BACNET_OBJECT_ID & objectId);
+	bool isWithinLimits(int32_t& low_limit, int32_t& high_limit);
 	//Bacnet Functions
 	virtual unsigned getCount() const;
 	virtual bool getValid_Object_Instance_Number(uint32_t object_id);

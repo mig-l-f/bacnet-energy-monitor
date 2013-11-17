@@ -13,59 +13,9 @@ AnalogValue::AnalogValue(const uint32_t objectID, const char* objectName, const 
 
 AnalogValue::~AnalogValue(){}
 
-float AnalogValue::getPresentValue(){
-	return Present_Value;
-}
+
 void AnalogValue::setPresentValue(float value){
 	Present_Value = value;
-}
-
-const char* AnalogValue::getDescription(){
-	return characterstring_value(&Description);
-}
-
-bool AnalogValue::setDescription(const char* description){
-	return characterstring_init_ansi(&Description, description);
-}
-
-BACNET_BIT_STRING AnalogValue::getStatusFlags(){
-	return Status_Flags;
-}
-
-BACNET_EVENT_STATE AnalogValue::getEventState(){
-	return Event_State;
-}
-
-void AnalogValue::setEventState(BACNET_EVENT_STATE state){
-	Event_State = state;
-	if (Event_State != EVENT_STATE_NORMAL){
-		bitstring_set_bit(&Status_Flags, STATUS_FLAG_IN_ALARM, true);
-	}else{
-		bitstring_set_bit(&Status_Flags, STATUS_FLAG_IN_ALARM, false);
-	}
-}
-
-BACNET_RELIABILITY AnalogValue::getReliability(){
-	return Reliability;
-}
-
-bool AnalogValue::setReliability(BACNET_RELIABILITY reliability){
-	if (reliability == RELIABILITY_NO_FAULT_DETECTED){
-		bitstring_set_bit(&Status_Flags, STATUS_FLAG_FAULT, false);
-	}else if ((reliability == RELIABILITY_OVER_RANGE) | (reliability == RELIABILITY_UNDER_RANGE) |
-			(reliability == RELIABILITY_UNRELIABLE_OTHER)){
-		bitstring_set_bit(&Status_Flags, STATUS_FLAG_FAULT, true);
-	}else{
-		return false;
-	}
-	Reliability = reliability;
-	return true;
-}
-bool AnalogValue::isOutOfService(){
-	return Out_Of_Service;
-}
-BACNET_ENGINEERING_UNITS AnalogValue::getUnits(){
-	return Units;
 }
 
 int AnalogValue::Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata){
@@ -87,13 +37,13 @@ int AnalogValue::Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata){
 			apdu_len = encode_application_character_string(&apdu[0], &Object_Name);
 			break;
 		case PROP_OBJECT_IDENTIFIER:
-			apdu_len = encode_application_object_id(&apdu[0], getObjectIdentifier()->type, getObjectIdentifier()->instance);
+			apdu_len = encode_application_object_id(&apdu[0], Object_Identifier.type, Object_Identifier.instance);
 			break;
 		case PROP_OBJECT_TYPE:
-			apdu_len = encode_application_enumerated(&apdu[0], getObjectIdentifier()->type);
+			apdu_len = encode_application_enumerated(&apdu[0], Object_Identifier.type);
 			break;
 		case PROP_PRESENT_VALUE:
-			apdu_len =  encode_application_real(&apdu[0], getPresentValue());
+			apdu_len =  encode_application_real(&apdu[0], Present_Value);
 			break;
 		case PROP_DESCRIPTION:
 			BACNET_CHARACTER_STRING char_string;

@@ -19,17 +19,6 @@ public:
 	TestAnalogObject();
 	~TestAnalogObject();
 
-	//tests Analog Value Derived from Analog Object
-	void nothing();
-	void testSettingOfPresentValueIsCorrect();
-	void testVerifyDescriptionChangeAndChangeToOriginal();
-	void testInitialStatusFlags();
-	void testInitialEventState();
-	void testSetEventState();
-	void testInitialReliability();
-	void testSetReliability();
-	void testIsOutOfService();
-	void testUnits();
 	void testWritePropertyReturnsFalseForDerivedAnalogValue();
 
 	//tests Analog Output Derived from Analog Object

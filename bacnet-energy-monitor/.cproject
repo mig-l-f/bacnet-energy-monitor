@@ -855,6 +855,7 @@
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779;cdt.managedbuild.config.gnu.lib.debug.244104601.2010511403.904977779.;cdt.managedbuild.tool.gnu.cpp.compiler.lib.debug.1832215974;cdt.managedbuild.tool.gnu.cpp.compiler.input.582531966">
@@ -896,11 +897,11 @@
 		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.lib.debug.1768426615.870456712.1143792744;de.innot.avreclipse.configuration.lib.debug.1768426615.870456712.1143792744.;de.innot.avreclipse.tool.compiler.winavr.lib.debug.1817801620;de.innot.avreclipse.compiler.winavr.input.1924381856">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="de.innot.avreclipse.core.AVRGCCManagedMakePerProjectProfileC"/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330;de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.;de.innot.avreclipse.tool.compiler.winavr.lib.debug.1108620215;de.innot.avreclipse.compiler.winavr.input.1394920094">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="de.innot.avreclipse.core.AVRGCCManagedMakePerProjectProfileC"/>
-		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.lib.debug.1768426615.870456712.1143792744;de.innot.avreclipse.configuration.lib.debug.1768426615.870456712.1143792744.;de.innot.avreclipse.tool.cppcompiler.lib.debug.1340934683;de.innot.avreclipse.cppcompiler.input.1725039511">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="de.innot.avreclipse.core.AVRGCCManagedMakePerProjectProfileCPP"/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330;de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.;de.innot.avreclipse.tool.compiler.winavr.lib.debug.1108620215;de.innot.avreclipse.compiler.winavr.input.1394920094">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="de.innot.avreclipse.core.AVRGCCManagedMakePerProjectProfileC"/>
 		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.exe.debug.1298700033.1568573886.1203552679.567506313;cdt.managedbuild.config.gnu.exe.debug.1298700033.1568573886.1203552679.567506313.;cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1133655032;cdt.managedbuild.tool.gnu.c.compiler.input.753203905">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
@@ -912,5 +913,4 @@
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
 	</storageModule>
-	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

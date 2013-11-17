@@ -23,22 +23,6 @@ public:
 	~TestAnalogValue();
 
 	//tests
-	void nothing();
-	void testObjectIdentifier();
-	void testObjectName();
-	void testPresentValueIsNegativeOnCreation();
-	void testDescriptionIsNoDescriptionByDefault();
-	void testDescriptionCanBeChanged();
-	void testStatusFlagsAreAllFalseOnCreation();
-	void testEventStateHasValueNormalOnCreation();
-	void testChangeEventStateToFaultAndBackToNormalHasConsistentStatusFlags();
-	void testReliabilityHasNoFaultDetectedOnCreation();
-	void testSettingReliabilityValuesHasOnlyFourOptions();
-	void testChangeReliabilityFromNoFaultAndBackHasConsistentStatusFlags();
-	void testOutOfServiceIsFalseOnCreation();
-	void testUnitsIsDegreesCelsius();
-	void testChangePresentValue();
-
 	void testObjectCount();
 	void testObject_Valid_Object_Instance_Number();
 	void testReadPropertyObjectName();

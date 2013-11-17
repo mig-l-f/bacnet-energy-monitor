@@ -8,14 +8,14 @@
 
 #include "BacnetObject.h"
 
-BACNET_OBJECT_TYPE BacnetObject::getObjectType() const {
-	return Object_Type;
-}
-
-BACNET_CHARACTER_STRING* BacnetObject::getObjectName() {
-	return &Object_Name;
-}
-
+//BACNET_OBJECT_TYPE BacnetObject::getObjectType() const {
+//	return Object_Type;
+//}
+//
+//BACNET_CHARACTER_STRING* BacnetObject::getObjectName() {
+//	return &Object_Name;
+//}
+//
 BACNET_OBJECT_ID* BacnetObject::getObjectIdentifier() {
 	return &Object_Identifier;
 }

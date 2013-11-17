@@ -19,21 +19,21 @@
 
 void runSuiteDeviceObjectProperties(){
 	cute::suite s;
-	s += CUTE_SMEMFUN(TestDeviceObject, testDeviceObjectIdentifier);
-	s += CUTE_SMEMFUN(TestDeviceObject, testDeviceObjectName);
-	s += CUTE_SMEMFUN(TestDeviceObject, testDeviceObjectType);
-	s += CUTE_SMEMFUN(TestDeviceObject, testSystemStatus);
-	s += CUTE_SMEMFUN(TestDeviceObject, testVendorIDs);
-	s += CUTE_SMEMFUN(TestDeviceObject, testModelName);
-	s += CUTE_SMEMFUN(TestDeviceObject, testFirmwareSoftwareRevision);
-	s += CUTE_SMEMFUN(TestDeviceObject, testBacnetProtocolRevision);
-	s += CUTE_SMEMFUN(TestDeviceObject, testProtocolObjectTypesSupported);
-	s += CUTE_SMEMFUN(TestDeviceObject, testObjectList);
-	s += CUTE_SMEMFUN(TestDeviceObject, testMaxAPDULength);
-	s += CUTE_SMEMFUN(TestDeviceObject, testSegmentationSupported);
-	s += CUTE_SMEMFUN(TestDeviceObject, testApduTimeout);
-	s += CUTE_SMEMFUN(TestDeviceObject, testNumberOfApduRetries);
-	s += CUTE_SMEMFUN(TestDeviceObject, testDatabaseRevision);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testDeviceObjectIdentifier);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testDeviceObjectName);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testDeviceObjectType);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testSystemStatus);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testVendorIDs);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testModelName);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testFirmwareSoftwareRevision);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testBacnetProtocolRevision);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testProtocolObjectTypesSupported);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testObjectList);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testMaxAPDULength);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testSegmentationSupported);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testApduTimeout);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testNumberOfApduRetries);
+//	s += CUTE_SMEMFUN(TestDeviceObject, testDatabaseRevision);
 
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "Suite: Device Object Properties");
@@ -87,21 +87,6 @@ void runSuiteBacnetNodeProperties(){
 void runSuiteAnalogValueObjectProperties(){
 	cute::suite s;
 
-	s += CUTE_SMEMFUN(TestAnalogValue, nothing);
-	s += CUTE_SMEMFUN(TestAnalogValue, testObjectIdentifier);
-	s += CUTE_SMEMFUN(TestAnalogValue, testObjectName);
-	s += CUTE_SMEMFUN(TestAnalogValue, testPresentValueIsNegativeOnCreation);
-	s += CUTE_SMEMFUN(TestAnalogValue, testDescriptionIsNoDescriptionByDefault);
-	s += CUTE_SMEMFUN(TestAnalogValue, testDescriptionCanBeChanged);
-	s += CUTE_SMEMFUN(TestAnalogValue, testStatusFlagsAreAllFalseOnCreation);
-	s += CUTE_SMEMFUN(TestAnalogValue, testEventStateHasValueNormalOnCreation);
-	s += CUTE_SMEMFUN(TestAnalogValue, testChangeEventStateToFaultAndBackToNormalHasConsistentStatusFlags);
-	s += CUTE_SMEMFUN(TestAnalogValue, testReliabilityHasNoFaultDetectedOnCreation);
-	s += CUTE_SMEMFUN(TestAnalogValue, testSettingReliabilityValuesHasOnlyFourOptions);
-	s += CUTE_SMEMFUN(TestAnalogValue, testChangeReliabilityFromNoFaultAndBackHasConsistentStatusFlags);
-	s += CUTE_SMEMFUN(TestAnalogValue, testOutOfServiceIsFalseOnCreation);
-	s += CUTE_SMEMFUN(TestAnalogValue, testUnitsIsDegreesCelsius);
-	s += CUTE_SMEMFUN(TestAnalogValue, testChangePresentValue);
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "Suite: Analog Value Object Properties");
 }
@@ -128,15 +113,6 @@ void runSuiteAnalogValueReadPropertyTest(){
 
 void runSuitAnalogObject(){
 	cute::suite s;
-	s += CUTE_SMEMFUN(TestAnalogObject, testSettingOfPresentValueIsCorrect);
-	s += CUTE_SMEMFUN(TestAnalogObject, testVerifyDescriptionChangeAndChangeToOriginal);
-	s += CUTE_SMEMFUN(TestAnalogObject, testInitialStatusFlags);
-	s += CUTE_SMEMFUN(TestAnalogObject, testInitialEventState);
-	s += CUTE_SMEMFUN(TestAnalogObject, testSetEventState);
-	s += CUTE_SMEMFUN(TestAnalogObject, testInitialReliability);
-	s += CUTE_SMEMFUN(TestAnalogObject, testSetReliability);
-	s += CUTE_SMEMFUN(TestAnalogObject, testIsOutOfService);
-	s += CUTE_SMEMFUN(TestAnalogObject, testUnits);
 	s += CUTE_SMEMFUN(TestAnalogObject, testWritePropertyReturnsFalseForDerivedAnalogValue);
 
 	cute::ide_listener lis;
@@ -166,10 +142,8 @@ void runSuitBacnetNode2Thermos(){
 }
 
 int main(){
-    runSuiteDeviceObjectProperties();
     runSuiteDeviceObjectReadPropertyTest();
     runSuiteBacnetNodeProperties();
-    runSuiteAnalogValueObjectProperties();
     runSuiteAnalogValueReadPropertyTest();
     runSuitAnalogObject();
     runSuitBacnetNode2Thermos();

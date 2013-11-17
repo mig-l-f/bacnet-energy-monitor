@@ -45,7 +45,7 @@ public:
 #endif
 	virtual ~BacnetNode() {}
 	DeviceObject* getDeviceObject();
-	static void dealWithErrorCodes(int & len, int& npdu_len,
+	static void dealWithErrorCodes(int16_t & len, int16_t& npdu_len,
 								   BACNET_CONFIRMED_SERVICE_DATA * service_data,
 								   BACNET_READ_PROPERTY_DATA& rpdata,
 								   BACNET_ADDRESS * src,

@@ -20,22 +20,22 @@ public:
 	~TestDeviceObject();
 
 	// Tests
-	void nothing();
-	void testDeviceObjectIdentifier();
-	void testDeviceObjectName();
-	void testDeviceObjectType();
-	void testSystemStatus();
-	void testVendorIDs();
-	void testModelName();
-	void testFirmwareSoftwareRevision();
-	void testBacnetProtocolRevision();
-	void testProtocolObjectTypesSupported();
-	void testObjectList();
-	void testMaxAPDULength();
-	void testSegmentationSupported();
-	void testApduTimeout();
-	void testNumberOfApduRetries();
-	void testDatabaseRevision();
+//	void nothing();
+//	void testDeviceObjectIdentifier();
+//	void testDeviceObjectName();
+//	void testDeviceObjectType();
+//	void testSystemStatus();
+//	void testVendorIDs();
+//	void testModelName();
+//	void testFirmwareSoftwareRevision();
+//	void testBacnetProtocolRevision();
+//	void testProtocolObjectTypesSupported();
+//	void testObjectList();
+//	void testMaxAPDULength();
+//	void testSegmentationSupported();
+//	void testApduTimeout();
+//	void testNumberOfApduRetries();
+//	void testDatabaseRevision();
 
 	void testDeviceCountFunction();
 	void testObject_Valid_Object_Instance_Number();
