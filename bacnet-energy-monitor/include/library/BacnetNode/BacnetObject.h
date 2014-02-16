@@ -9,11 +9,14 @@
 #ifndef DEVICE_H_
 #define DEVICE_H_
 
-#include "bacdef.h"
-#include "bacstr.h"
-#include "rp.h"
-#include "apdu.h"
 #include "string.h"
+extern "C"{
+	#include "bacdef.h"
+	#include "bacstr.h"
+	#include "rp.h"
+	#include "apdu.h"
+}
+
 
 class BacnetObject {
 	private:

@@ -10,16 +10,17 @@
 #define DEVICEOBJECT_H_
 
 //#include "bacdef.h"
-#include "bacstr.h"
-#include "bacenum.h"
-#include "handlers.h"
-#include "verbose.h"
-
-#include "apdu.h"
-#include "handlers.h"
 #include "string.h"
 #include "Constants.h"
 #include "BacnetObject.h"
+extern "C"{
+	#include "bacstr.h"
+	#include "bacenum.h"
+	#include "handlers.h"
+	#include "verbose.h"
+	#include "apdu.h"
+	#include "handlers.h"
+}
 #if defined(__AVR_ATmega328P__)
 	#include <avr/pgmspace.h>
 #endif

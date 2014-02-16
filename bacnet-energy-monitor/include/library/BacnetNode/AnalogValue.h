@@ -10,10 +10,13 @@
 #define ANALOGVALUE_H_
 
 #include "BacnetObject.h"
-#include "bacenum.h"
-#include "bacstr.h"
-#include "bacdcode.h"
 #include "AnalogObject.h"
+extern "C"{
+	#include "bacenum.h"
+	#include "bacstr.h"
+	#include "bacdcode.h"
+}
+
 
 class AnalogValue : public AnalogObject {
 private:

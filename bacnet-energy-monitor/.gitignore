@@ -12,3 +12,7 @@
 /avrBacnetStack - VERBOSE
 /x86BacnetStack - NON VERBOSE
 /x86BacnetStack - VERBOSE
+/avrArduinoBacnetEnergyMonitorRfm12b
+/avrBacnetStackRfm12b - NON VERBOSE
+/avrBacnetStackRfm12b - VERBOSE
+/x86TestBacnetStack

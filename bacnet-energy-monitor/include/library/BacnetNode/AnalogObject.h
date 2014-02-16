@@ -10,8 +10,11 @@
 #define ANALOGOBJECT_H_
 
 #include "BacnetObject.h"
-#include "bacenum.h"
-#include "wp.h"
+
+extern "C" {
+	#include "bacenum.h"
+	#include "wp.h"
+}
 
 class AnalogObject : public BacnetObject{
 protected:

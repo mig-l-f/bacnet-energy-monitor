@@ -11,26 +11,28 @@
 
 //#include <cstring>
 #include <string.h>
-#include "apdu.h"
-#include "npdu.h"
-#include "txbuf.h"
-#include "reject.h"
-#include "bacerror.h"
-#include "abort.h"
-#include "whois.h"
-#include "iam.h"
-#include "datalink.h"
 #include "DeviceObject.h"
 #include "BacnetObject.h"
 #include "Constants.h"
-#include "verbose.h"
-#if defined(__AVR_ATmega328P__)
-	#include "stack.h"
-#endif
+extern "C"{
+	#include "apdu.h"
+	#include "npdu.h"
+	#include "txbuf.h"
+	#include "reject.h"
+	#include "bacerror.h"
+	#include "abort.h"
+	#include "whois.h"
+	#include "iam.h"
+	#include "datalink.h"
 
-#ifdef LOGGING
-	#include "log.h"
-#endif
+	#include "verbose.h"
+	#if defined(__AVR_ATmega328P__)
+		#include "stack.h"
+	#endif
+}
+//#ifdef LOGGING
+//	#include "log.h"
+//#endif
 
 
 
