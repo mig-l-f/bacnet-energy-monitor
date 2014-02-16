@@ -172,6 +172,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/bacnet-stack}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/atmega328p}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b/uIP}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/uIP}&quot;"/>
 								</option>
 								<inputType id="de.innot.avreclipse.tool.assembler.input.2048052196" superClass="de.innot.avreclipse.tool.assembler.input"/>
 							</tool>
@@ -182,7 +183,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/BacnetNode}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/bacnet-stack}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b/uIP}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/uIP}&quot;"/>
 								</option>
 								<option id="de.innot.avreclipse.compiler.option.def.149741260" name="Define Syms (-D)" superClass="de.innot.avreclipse.compiler.option.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="BACDL_BIP=1"/>
@@ -214,7 +215,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/BacnetNode}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/bacnet-stack}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b/uIP}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/uIP}&quot;"/>
 								</option>
 								<option id="de.innot.avreclipse.cppcompiler.option.def.1866666794" name="Define Syms (-D)" superClass="de.innot.avreclipse.cppcompiler.option.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="BACDL_BIP=1"/>
@@ -907,6 +908,8 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/atmega328p}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b/uIP}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b/Jeelib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/uIP}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/Jeelib}&quot;"/>
 								</option>
 								<inputType id="de.innot.avreclipse.tool.assembler.input.1997603275" superClass="de.innot.avreclipse.tool.assembler.input"/>
 							</tool>
@@ -918,10 +921,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/BacnetNode}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/bacnet-stack}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b/uIP}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b/Jeelib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/uIP}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/Jeelib}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/external/Arduino/core/include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/external/Arduino/Ethernet/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/external/OneWire/include}&quot;"/>
 								</option>
 								<option id="de.innot.avreclipse.compiler.option.def.2029946785" name="Define Syms (-D)" superClass="de.innot.avreclipse.compiler.option.def" valueType="definedSymbols">
@@ -955,10 +957,9 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/BacnetNode}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/bacnet-stack}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b/uIP}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/drivers/uIP_Rfm12b/Jeelib}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/uIP}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/include/library/Jeelib}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/external/Arduino/core/include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/external/Arduino/Ethernet/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/bacnet-energy-monitor/external/OneWire/include}&quot;"/>
 								</option>
 								<option id="de.innot.avreclipse.cppcompiler.option.def.1838821073" name="Define Syms (-D)" superClass="de.innot.avreclipse.cppcompiler.option.def" valueType="definedSymbols">
@@ -1434,27 +1435,6 @@
 							<tool id="de.innot.avreclipse.tool.size.winavr.lib.debug.1947181584" name="Print Size" superClass="de.innot.avreclipse.tool.size.winavr.lib.debug.1771158445"/>
 						</toolChain>
 					</folderInfo>
-					<folderInfo id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835.1841902429.1169930346" name="/" resourcePath="source/drivers/uIP_Rfm12b/uIP">
-						<toolChain id="de.innot.avreclipse.toolchain.winavr.lib.debug.98160935" name="AVR-GCC Toolchain" superClass="de.innot.avreclipse.toolchain.winavr.lib.debug" unusedChildren="">
-							<option id="de.innot.avreclipse.toolchain.options.toolchain.objdump.lib.debug.1384806738.1925958368" name="Generate Extended Listing (Source + generated Assembler)" superClass="de.innot.avreclipse.toolchain.options.toolchain.objdump.lib.debug.1384806738"/>
-							<option id="de.innot.avreclipse.toolchain.options.toolchain.size.lib.debug.1698696806.1277547608" name="Print Size" superClass="de.innot.avreclipse.toolchain.options.toolchain.size.lib.debug.1698696806"/>
-							<targetPlatform id="de.innot.avreclipse.targetplatform.winavr.lib.debug" name="AVR Cross-Target" superClass="de.innot.avreclipse.targetplatform.winavr.lib.debug"/>
-							<tool id="de.innot.avreclipse.tool.assembler.winavr.lib.debug.255324249" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.lib.debug.1253814316">
-								<inputType id="de.innot.avreclipse.tool.assembler.input.394109208" superClass="de.innot.avreclipse.tool.assembler.input"/>
-							</tool>
-							<tool id="de.innot.avreclipse.tool.compiler.winavr.lib.debug.2082210005" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.lib.debug.506217639">
-								<inputType id="de.innot.avreclipse.compiler.winavr.input.378600910" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
-							</tool>
-							<tool id="de.innot.avreclipse.tool.cppcompiler.lib.debug.748631787" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.lib.debug.687346769">
-								<inputType id="de.innot.avreclipse.cppcompiler.input.504031005" superClass="de.innot.avreclipse.cppcompiler.input"/>
-							</tool>
-							<tool id="de.innot.avreclipse.tool.linker.winavr.base.1326082363" name="AVR C Linker" superClass="de.innot.avreclipse.tool.linker.winavr.base.434781788"/>
-							<tool id="de.innot.avreclipse.tool.cpplinker.base.1866431323" name="AVR C++ Linker" superClass="de.innot.avreclipse.tool.cpplinker.base.228448852"/>
-							<tool id="de.innot.avreclipse.tool.archiver.winavr.lib.debug.1238666021" name="AVR Archiver" superClass="de.innot.avreclipse.tool.archiver.winavr.lib.debug.364278904"/>
-							<tool id="de.innot.avreclipse.tool.objdump.winavr.lib.debug.162793573" name="AVR Create Extended Listing" superClass="de.innot.avreclipse.tool.objdump.winavr.lib.debug.1729418741"/>
-							<tool id="de.innot.avreclipse.tool.size.winavr.lib.debug.1053907026" name="Print Size" superClass="de.innot.avreclipse.tool.size.winavr.lib.debug.1771158445"/>
-						</toolChain>
-					</folderInfo>
 					<folderInfo id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835.1841902429.1223009397" name="/" resourcePath="source/library/Jeelib">
 						<toolChain id="de.innot.avreclipse.toolchain.winavr.lib.debug.1674461451" name="AVR-GCC Toolchain" superClass="de.innot.avreclipse.toolchain.winavr.lib.debug" unusedChildren="">
 							<option id="de.innot.avreclipse.toolchain.options.toolchain.objdump.lib.debug.1384806738.398963599" name="Generate Extended Listing (Source + generated Assembler)" superClass="de.innot.avreclipse.toolchain.options.toolchain.objdump.lib.debug.1384806738"/>
@@ -1597,27 +1577,6 @@
 							<tool id="de.innot.avreclipse.tool.archiver.winavr.lib.debug.1270906930" name="AVR Archiver" superClass="de.innot.avreclipse.tool.archiver.winavr.lib.debug.222533137"/>
 							<tool id="de.innot.avreclipse.tool.objdump.winavr.lib.debug.1679153485" name="AVR Create Extended Listing" superClass="de.innot.avreclipse.tool.objdump.winavr.lib.debug.991162135"/>
 							<tool id="de.innot.avreclipse.tool.size.winavr.lib.debug.871266871" name="Print Size" superClass="de.innot.avreclipse.tool.size.winavr.lib.debug.352232492"/>
-						</toolChain>
-					</folderInfo>
-					<folderInfo id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835.1841902429.182577227.664420902" name="/" resourcePath="source/drivers/uIP_Rfm12b/uIP">
-						<toolChain id="de.innot.avreclipse.toolchain.winavr.lib.debug.835652189" name="AVR-GCC Toolchain" superClass="de.innot.avreclipse.toolchain.winavr.lib.debug" unusedChildren="">
-							<option id="de.innot.avreclipse.toolchain.options.toolchain.objdump.lib.debug.2057895631.1930319434" name="Generate Extended Listing (Source + generated Assembler)" superClass="de.innot.avreclipse.toolchain.options.toolchain.objdump.lib.debug.2057895631"/>
-							<option id="de.innot.avreclipse.toolchain.options.toolchain.size.lib.debug.229276151.1520837247" name="Print Size" superClass="de.innot.avreclipse.toolchain.options.toolchain.size.lib.debug.229276151"/>
-							<targetPlatform id="de.innot.avreclipse.targetplatform.winavr.lib.debug" name="AVR Cross-Target" superClass="de.innot.avreclipse.targetplatform.winavr.lib.debug"/>
-							<tool id="de.innot.avreclipse.tool.assembler.winavr.lib.debug.620799907" name="AVR Assembler" superClass="de.innot.avreclipse.tool.assembler.winavr.lib.debug.1711454705">
-								<inputType id="de.innot.avreclipse.tool.assembler.input.667738189" superClass="de.innot.avreclipse.tool.assembler.input"/>
-							</tool>
-							<tool id="de.innot.avreclipse.tool.compiler.winavr.lib.debug.858728508" name="AVR Compiler" superClass="de.innot.avreclipse.tool.compiler.winavr.lib.debug.2049714122">
-								<inputType id="de.innot.avreclipse.compiler.winavr.input.1924364365" name="C Source Files" superClass="de.innot.avreclipse.compiler.winavr.input"/>
-							</tool>
-							<tool id="de.innot.avreclipse.tool.cppcompiler.lib.debug.1626455415" name="AVR C++ Compiler" superClass="de.innot.avreclipse.tool.cppcompiler.lib.debug.842333833">
-								<inputType id="de.innot.avreclipse.cppcompiler.input.1494093142" superClass="de.innot.avreclipse.cppcompiler.input"/>
-							</tool>
-							<tool id="de.innot.avreclipse.tool.linker.winavr.base.459785188" name="AVR C Linker" superClass="de.innot.avreclipse.tool.linker.winavr.base.706054607"/>
-							<tool id="de.innot.avreclipse.tool.cpplinker.base.662803438" name="AVR C++ Linker" superClass="de.innot.avreclipse.tool.cpplinker.base.105000321"/>
-							<tool id="de.innot.avreclipse.tool.archiver.winavr.lib.debug.1105379704" name="AVR Archiver" superClass="de.innot.avreclipse.tool.archiver.winavr.lib.debug.222533137"/>
-							<tool id="de.innot.avreclipse.tool.objdump.winavr.lib.debug.1072244450" name="AVR Create Extended Listing" superClass="de.innot.avreclipse.tool.objdump.winavr.lib.debug.991162135"/>
-							<tool id="de.innot.avreclipse.tool.size.winavr.lib.debug.362913015" name="Print Size" superClass="de.innot.avreclipse.tool.size.winavr.lib.debug.352232492"/>
 						</toolChain>
 					</folderInfo>
 					<folderInfo id="de.innot.avreclipse.configuration.lib.debug.824305138.2008090432.406527330.825636835.1841902429.182577227.source/drivers/uIP_Rfm12b/Jeelib" name="/" resourcePath="source/library/Jeelib">
