@@ -1204,6 +1204,7 @@ extern u8_t uip_acc32[4];
 
 
 #if UIP_UDP
+typedef int uip_udp_appstate_t;
 /**
  * Representation of a uIP UDP connection.
  */

@@ -79,6 +79,19 @@ u8_t slip_buf[UIP_BUFSIZE];
 static u16_t len, tmplen;
 static u8_t lastc;
 
+
+static void (* slipdev_char_put)(unsigned char);
+static unsigned char (* slipdev_char_poll)(char *);
+
+
+void attach_functs(unsigned char (* rx)(char *), void (* tx)(unsigned char))
+{
+  slipdev_char_put = tx;
+  slipdev_char_poll = rx;
+}
+
+
+
 /*-----------------------------------------------------------------------------------*/
 /**
  * Send the packet in the uip_buf and uip_appdata buffers using the

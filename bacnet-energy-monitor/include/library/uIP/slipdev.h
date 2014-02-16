@@ -57,7 +57,7 @@
  *
  * \param c The character to be put on the serial device.
  */
-void slipdev_char_put(u8_t c);
+//void slipdev_char_put(unsigned char c);
 
 /**
  * Poll the serial device for a character.
@@ -77,7 +77,9 @@ void slipdev_char_put(u8_t c);
  * \retval 0 If no character is available.
  * \retval Non-zero If a character is available.
  */
-u8_t slipdev_char_poll(u8_t *c);
+//unsigned char slipdev_char_poll((*)char *c);
+
+void attach_functs( unsigned char (*) (char *), void (*)(unsigned char));
 
 void slipdev_init(void);
 void slipdev_send(void);

@@ -307,6 +307,44 @@ chksum(u16_t sum, const u8_t *data, u16_t len)
   return sum;
 }
 /*---------------------------------------------------------------------------*/
+static uint8_t uip_ipaddr_test_addr(uip_ipaddr_t addr)
+{
+	//addr1 is the external address, addr2 is the address to match
+	uip_ipaddr_t masked, masked1;
+	//  printf("addr: %d.%d.%d.%d\r\n", ip[0], ip[1], ip[2], ip[3]);
+
+	//are the addresses equal?
+	if (uip_ipaddr_cmp(addr, uip_hostaddr)) return 1;
+
+	//broadcast to 255.255.255.255 ?
+	if (uip_ipaddr_cmp(addr, all_ones_addr)) return 1;
+
+	//broadcast to 0.0.0.0 ?
+	if (uip_ipaddr_cmp(addr, all_zeroes_addr)) return 1;
+
+	//Test if the address is a broadcast to a subnet
+	masked[0]=addr[0] & uip_netmask[0];
+	masked[1]=addr[1] & uip_netmask[1];
+
+	masked1[0]=uip_hostaddr[0] & uip_netmask[0];
+	masked1[1]=uip_hostaddr[1] & uip_netmask[1];
+
+	//Check whether the masked IP addresses are correct (same subnet)
+	if (!uip_ipaddr_cmp(masked, masked1)) return 0;
+
+	//same subnet, now test whether the remaining bits are all set to 1
+	masked[0]=addr[0] | uip_netmask[0];
+	masked[1]=addr[1] | uip_netmask[1];
+
+	//If masked is all_ones, then a message was sent to subnet.allones
+	//like 192.168.1.255
+	if (uip_ipaddr_cmp(masked, all_ones_addr)) return 1;
+
+	return 0;
+}
+
+
+/*---------------------------------------------------------------------------*/
 u16_t
 uip_chksum(u16_t *data, u16_t len)
 {
@@ -908,9 +946,9 @@ uip_process(u8_t flag)
        UDP packet, which may be destined to us. */
 #if UIP_BROADCAST
     DEBUG_PRINTF("UDP IP checksum 0x%04x\n", uip_ipchksum());
-    if(BUF->proto == UIP_PROTO_UDP &&
-       uip_ipaddr_cmp(BUF->destipaddr, all_ones_addr)
-       /*&&
+    //if(BUF->proto == UIP_PROTO_UDP && uip_ipaddr_cmp(BUF->destipaddr, all_ones_addr)
+    if(BUF->proto == UIP_PROTO_UDP && uip_ipaddr_test_addr(BUF->destipaddr)
+    /*&&
 	 uip_ipchksum() == 0xffff*/) {
       goto udp_input;
     }
@@ -1115,7 +1153,8 @@ uip_process(u8_t flag)
         UDPBUF->srcport == uip_udp_conn->rport) &&
        (uip_ipaddr_cmp(uip_udp_conn->ripaddr, all_zeroes_addr) ||
 	uip_ipaddr_cmp(uip_udp_conn->ripaddr, all_ones_addr) ||
-	uip_ipaddr_cmp(BUF->srcipaddr, uip_udp_conn->ripaddr))) {
+	uip_ipaddr_test_addr(BUF->destipaddr))) {
+//	uip_ipaddr_cmp(BUF->srcipaddr, uip_udp_conn->ripaddr))) {
       goto udp_found;
     }
   }
@@ -1150,11 +1189,22 @@ uip_process(u8_t flag)
   UDPBUF->udplen = HTONS(uip_slen + UIP_UDPH_LEN);
   UDPBUF->udpchksum = 0;
 
+  /* Modification so that when UDP listening on any port HTONS(0) and/or any ipaddt 0.0.0.0
+   *  we can reply to who ever sent an accepted message */
+  if (uip_udp_conn->rport == HTONS(0)){
+	  BUF->destport = BUF->srcport;
+  }else{
+	  BUF->destport = uip_udp_conn->rport;
+  }
   BUF->srcport  = uip_udp_conn->lport;
-  BUF->destport = uip_udp_conn->rport;
 
+  if (uip_ipaddr_cmp(uip_udp_conn->ripaddr, all_zeroes_addr)){
+	  uip_ipaddr_copy(BUF->destipaddr, BUF->srcipaddr);
+  }else{
+	  uip_ipaddr_copy(BUF->destipaddr, uip_udp_conn->ripaddr);
+  }
   uip_ipaddr_copy(BUF->srcipaddr, uip_hostaddr);
-  uip_ipaddr_copy(BUF->destipaddr, uip_udp_conn->ripaddr);
+
    
   uip_appdata = &uip_buf[UIP_LLH_LEN + UIP_IPTCPH_LEN];
 

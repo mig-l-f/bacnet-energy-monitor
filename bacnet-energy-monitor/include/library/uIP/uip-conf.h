@@ -78,7 +78,7 @@ typedef unsigned short uip_stats_t;
  * \hideinitializer
  */
 //#define UIP_CONF_MAX_CONNECTIONS 40
-#define UIP_CONF_MAX_CONNECTIONS 12
+#define UIP_CONF_MAX_CONNECTIONS 2
 
 /**
  * Maximum number of listening TCP ports.
@@ -94,7 +94,7 @@ typedef unsigned short uip_stats_t;
  * \hideinitializer
  */
 //#define UIP_CONF_BUFFER_SIZE     420
-#define UIP_CONF_BUFFER_SIZE     128
+#define UIP_CONF_BUFFER_SIZE     130
 
 /**
  * CPU byte order.
@@ -116,7 +116,12 @@ typedef unsigned short uip_stats_t;
  *
  * \hideinitializer
  */
-#define UIP_CONF_UDP             0
+#define UIP_CONF_UDP             1
+
+/**
+ * BROADCAST SUPPORT
+ */
+#define UIP_CONF_BROADCAST       1
 
 /**
  * UDP checksums on or off
@@ -139,7 +144,7 @@ typedef unsigned short uip_stats_t;
 #define IP_INPUT_BUFFER_LENGTH 16
 #define IP_OUTPUT_BUFFER_LENGTH 16
 
-#include "utility/psock.h"
+#include "psock.h"
 typedef struct serialip_state {
   struct psock p;
 //  char inputbuffer[IP_INPUT_BUFFER_LENGTH];
@@ -148,6 +153,9 @@ typedef struct serialip_state {
 
 void serialip_appcall(void);
 #define UIP_APPCALL serialip_appcall
+
+void uip_udp_received_data_callback(void);
+#define UIP_UDP_APPCALL uip_udp_received_data_callback
 
 #endif /* __UIP_CONF_H__ */
 
