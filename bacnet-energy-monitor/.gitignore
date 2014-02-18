@@ -16,3 +16,4 @@
 /avrBacnetStackRfm12b - NON VERBOSE
 /avrBacnetStackRfm12b - VERBOSE
 /x86TestBacnetStack
+/avrRasPiSerialToRfm12bStream
