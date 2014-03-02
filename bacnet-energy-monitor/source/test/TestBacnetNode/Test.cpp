@@ -15,7 +15,7 @@
 #include "TestAnalogValue.h"
 #include "TestAnalogObject.h"
 #include "TestBacnetNode2Thermos.h"
-
+#include "TestAveraging.h"
 
 void runSuiteDeviceObjectProperties(){
 	cute::suite s;
@@ -141,12 +141,25 @@ void runSuitBacnetNode2Thermos(){
 	cute::makeRunner(lis)(s, "Suite: Test Bacnet Node 2 Thermos");
 }
 
+void runSuitAveraging(){
+	cute::suite s;
+	s += CUTE_SMEMFUN(TestAveraging, nothing);
+	s += CUTE_SMEMFUN(TestAveraging, testCount);
+	s += CUTE_SMEMFUN(TestAveraging, testObject_Valid_Object_Instance_Number);
+	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyObjectName);
+	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyObjectID);
+	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyObjectType);
+	cute::ide_listener lis;
+	cute::makeRunner(lis)(s, "Suite: Test Averaging Object");
+}
+
 int main(){
     runSuiteDeviceObjectReadPropertyTest();
     runSuiteBacnetNodeProperties();
     runSuiteAnalogValueReadPropertyTest();
     runSuitAnalogObject();
     runSuitBacnetNode2Thermos();
+    runSuitAveraging();
     return 0;
 }
 

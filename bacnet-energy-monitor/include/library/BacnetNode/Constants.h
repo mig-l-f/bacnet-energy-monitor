@@ -9,6 +9,8 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
+#include <stdint.h>
+
 #if defined(__AVR_ATmega328P__)
 	#include <avr/pgmspace.h>
 
