@@ -16,6 +16,7 @@
 #include "TestAnalogObject.h"
 #include "TestBacnetNode2Thermos.h"
 #include "TestAveraging.h"
+#include "TestSlidingWindowBuffer.h"
 
 void runSuiteDeviceObjectProperties(){
 	cute::suite s;
@@ -153,6 +154,27 @@ void runSuitAveraging(){
 	cute::makeRunner(lis)(s, "Suite: Test Averaging Object");
 }
 
+void runSuitSlidingWindowBuffer(){
+	cute::suite s;
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, nothing);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, testNumberOfValidSamples);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, testWindowSizeValue);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, testAverageValueWithNoSamples);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, insert1ValidValueAndCalculateAverage);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, insert3ValidValuesAndCalculateAverage);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, insert4ValidValuesAndCalculateAverage);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, insert30ValidValuesAndCalculateAverage);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, insertInvalidValueAsFirstValue);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, insertValidAndInvalidValue);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, testMinimumValueIsInfBeforeAnySampleIsAdded);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, insert5ValuesAndVerifyMinimum);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, testMaximumIsInfBeforeAnySampleIsAdded);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, insert10ValuesAndVerifyMaximum);
+	cute::ide_listener lis;
+	cute::makeRunner(lis)(s, "Suite: Test Sliding Window Buffer");
+
+}
+
 int main(){
     runSuiteDeviceObjectReadPropertyTest();
     runSuiteBacnetNodeProperties();
@@ -160,6 +182,7 @@ int main(){
     runSuitAnalogObject();
     runSuitBacnetNode2Thermos();
     runSuitAveraging();
+    runSuitSlidingWindowBuffer();
     return 0;
 }
 
