@@ -27,7 +27,17 @@ public:
 	void testReadPropertyObjectName();
 	void testReadPropertyObjectID();
 	void testReadPropertyObjectType();
-
+	void testReadPropertyMinimumValue();
+	void testReadPropertyMaximumValue();
+	void testReadPropertyAttemptedSamples();
+	void testReadPropertyValidSamples();
+	//void testReadProperyObjectPropertyReference(); // FIXME: Bug 9. Ver bacnet-stack/bacdevobjpropref.c
+	void testReadPropertyAverageValue();
+	void testReadWindowInterval();
+	void testReadWindowSamples();
+	void testReadNonExistingProperty();
+	void testReadPropertyArrayIndexOfNonArrayObject();
+	void testReadPropertyAverageValueAfterInsertingNewValue();
 
 private:
 	Averaging* averaging;

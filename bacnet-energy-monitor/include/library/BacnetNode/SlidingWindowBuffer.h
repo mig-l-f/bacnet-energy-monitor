@@ -20,6 +20,7 @@ public:
 	~SlidingWindowBuffer();
 	unsigned int getNumberOfValidSamples();
 	unsigned int getWindowSize();
+	unsigned int getNumberOfAttemptedSamples();
 	void addSample(float & sampleValue);
 	float getAverage();
 	float getMinimumValue();

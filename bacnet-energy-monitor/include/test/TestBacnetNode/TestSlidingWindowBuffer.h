@@ -32,6 +32,8 @@ public:
 	void insert5ValuesAndVerifyMinimum();
 	void testMaximumIsInfBeforeAnySampleIsAdded();
 	void insert10ValuesAndVerifyMaximum();
+	void testNumberOfAttemptedSamples();
+	void testNumberOfAttemptedSamplesAfterInsertingValidAndInvalidSamples();
 
 private:
 	SlidingWindowBuffer* buffer;

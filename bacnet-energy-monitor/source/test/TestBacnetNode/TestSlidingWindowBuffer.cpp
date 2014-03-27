@@ -118,3 +118,17 @@ void TestSlidingWindowBuffer::insert10ValuesAndVerifyMaximum(){
 	ASSERT_EQUAL(23.0, buffer->getMaximumValue());
 	ASSERT_EQUAL(22.0, buffer->getAverage());
 }
+
+void TestSlidingWindowBuffer::testNumberOfAttemptedSamples(){
+	ASSERT_EQUAL(0, buffer->getNumberOfAttemptedSamples());
+}
+
+void TestSlidingWindowBuffer::testNumberOfAttemptedSamplesAfterInsertingValidAndInvalidSamples(){
+	float sample = -4.0;
+	for (int i = 0; i < 4; i++){
+		buffer->addSample(sample);
+		sample += 2.0;
+	}
+	ASSERT_EQUAL(3, buffer->getNumberOfAttemptedSamples());
+	ASSERT_EQUAL(2, buffer->getNumberOfValidSamples());
+}

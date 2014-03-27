@@ -17,6 +17,7 @@
 #include "TestBacnetNode2Thermos.h"
 #include "TestAveraging.h"
 #include "TestSlidingWindowBuffer.h"
+#include "TestAveragingNode.h"
 
 void runSuiteDeviceObjectProperties(){
 	cute::suite s;
@@ -68,7 +69,6 @@ void runSuiteDeviceObjectReadPropertyTest(){
 	s += CUTE_SMEMFUN(TestDeviceObject, testReadPropertyDeviceAddressBinding);
 	s += CUTE_SMEMFUN(TestDeviceObject, testReadPropertyDatabaseRevision);
 	s += CUTE_SMEMFUN(TestDeviceObject, testReadPropertyUnimplementedProperty);
-
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "Suite: Device Object Read Property Test");
 }
@@ -87,7 +87,6 @@ void runSuiteBacnetNodeProperties(){
 
 void runSuiteAnalogValueObjectProperties(){
 	cute::suite s;
-
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "Suite: Analog Value Object Properties");
 }
@@ -144,19 +143,27 @@ void runSuitBacnetNode2Thermos(){
 
 void runSuitAveraging(){
 	cute::suite s;
-	s += CUTE_SMEMFUN(TestAveraging, nothing);
 	s += CUTE_SMEMFUN(TestAveraging, testCount);
 	s += CUTE_SMEMFUN(TestAveraging, testObject_Valid_Object_Instance_Number);
 	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyObjectName);
 	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyObjectID);
 	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyObjectType);
+	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyMinimumValue);
+	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyMaximumValue);
+	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyAttemptedSamples);
+	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyValidSamples);
+	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyAverageValue);
+	s += CUTE_SMEMFUN(TestAveraging, testReadWindowInterval);
+	s += CUTE_SMEMFUN(TestAveraging, testReadWindowSamples);
+	s += CUTE_SMEMFUN(TestAveraging, testReadNonExistingProperty);
+	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyArrayIndexOfNonArrayObject);
+	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyAverageValueAfterInsertingNewValue);
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "Suite: Test Averaging Object");
 }
 
 void runSuitSlidingWindowBuffer(){
 	cute::suite s;
-	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, nothing);
 	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, testNumberOfValidSamples);
 	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, testWindowSizeValue);
 	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, testAverageValueWithNoSamples);
@@ -170,9 +177,24 @@ void runSuitSlidingWindowBuffer(){
 	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, insert5ValuesAndVerifyMinimum);
 	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, testMaximumIsInfBeforeAnySampleIsAdded);
 	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, insert10ValuesAndVerifyMaximum);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, testNumberOfAttemptedSamples);
+	s += CUTE_SMEMFUN(TestSlidingWindowBuffer, testNumberOfAttemptedSamplesAfterInsertingValidAndInvalidSamples);
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "Suite: Test Sliding Window Buffer");
+}
 
+void runSuiteAveragingNode(){
+	cute::suite s;
+	s += CUTE_SMEMFUN(TestAveragingNode, nothing);
+	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingNodeHandlerReadObjectName);
+	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingNodeHandlerReadAverageValue);
+	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingNodeHandlerReadAccessNonExistingObject);
+	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingNodeHandlerReadNonExistingProperty);
+	//s += CUTE_SMEMFUN(TestAveragingNode, testAveragingNodeHandlerSendingSegmentedMessage);
+	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingReadAverageAfterInserting1Value);
+	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingReadAverageMaximumMinimumAfterInserting50Values);
+	cute::ide_listener lis;
+	cute::makeRunner(lis)(s, "Suite: Test Averaging Node");
 }
 
 int main(){
@@ -183,6 +205,7 @@ int main(){
     runSuitBacnetNode2Thermos();
     runSuitAveraging();
     runSuitSlidingWindowBuffer();
+    runSuiteAveragingNode();
     return 0;
 }
 

@@ -35,8 +35,10 @@ unsigned int SlidingWindowBuffer::getWindowSize(){
 
 void SlidingWindowBuffer::addSample(float & sampleValue){
 
-	/* Increment number of attempted samples*/
-	numberOfAttemptedSamples++;
+	/* Attempted samples for current window is the number of invalid and valid samples in the current window,
+	 * cannot be higher than window samples*/
+	if (numberOfAttemptedSamples < length)
+		numberOfAttemptedSamples++;
 
 	/* Verify validity of sample */
 	bool isSampleValid = false;
@@ -103,4 +105,8 @@ float SlidingWindowBuffer::getMaximumValue(){
 		return -INFINITY;
 
 	return (*maximumValue);
+}
+
+unsigned int SlidingWindowBuffer::getNumberOfAttemptedSamples(){
+	return numberOfAttemptedSamples;
 }

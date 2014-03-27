@@ -10,6 +10,7 @@
 #define AVERAGING_H_
 
 #include "BacnetObject.h"
+#include "SlidingWindowBuffer.h"
 extern "C"{
 	#include "bacenum.h"
 	#include "bacdcode.h"
@@ -17,13 +18,18 @@ extern "C"{
 
 class Averaging : public BacnetObject {
 private:
+	SlidingWindowBuffer* buffer;
+	unsigned int Window_Samples; /* 12.5.15 number of samples to be taken during the period of time specified by the 'Window_Interval' property */
+	unsigned int Window_Interval; /* 12.5.14 period of time in seconds over which the minimum, maximum and average values are calculated */
 
 public:
-	Averaging(const uint32_t objectID, const char* objectName);
+	Averaging(const uint32_t objectID, const char* objectName, unsigned int Window_Interval, unsigned int Window_Samples,
+			  float validSampleMinimumThreshold, float validSampleMaximumThreshold);
 	~Averaging();
 	unsigned getCount() const;
 	bool getValid_Object_Instance_Number(uint32_t object_id);
 	int Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata);
+	void addNewSample(float& new_sample);
 };
 
 inline unsigned Averaging::getCount() const{

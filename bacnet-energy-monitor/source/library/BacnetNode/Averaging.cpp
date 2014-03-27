@@ -8,9 +8,16 @@
 
 #include "Averaging.h"
 
-Averaging::Averaging(const uint32_t objectID, const char* objectName):BacnetObject(objectID, OBJECT_AVERAGING, objectName){}
+Averaging::Averaging(const uint32_t objectID, const char* objectName, unsigned int windowInterval, unsigned int windowSamples,
+					float validSampleMinimumThreshold, float validSampleMaximumThreshold):BacnetObject(objectID, OBJECT_AVERAGING, objectName){
+	Window_Samples = windowSamples;
+	Window_Interval = windowInterval;
+	buffer = new SlidingWindowBuffer(Window_Samples, validSampleMinimumThreshold, validSampleMaximumThreshold);
+}
 
-Averaging::~Averaging(){}
+Averaging::~Averaging(){
+	delete buffer;
+}
 
 int Averaging::Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata){
 	int apdu_len = 0;   /* return value */
@@ -35,9 +42,36 @@ int Averaging::Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata){
 		case PROP_OBJECT_TYPE:
 			apdu_len = encode_application_enumerated(&apdu[0], Object_Identifier.type);
 			break;
+		case PROP_MINIMUM_VALUE:
+			apdu_len = encode_application_real(&apdu[0], buffer->getMinimumValue());
+			break;
+		case PROP_MAXIMUM_VALUE:
+			apdu_len = encode_application_real(&apdu[0], buffer->getMaximumValue());
+			break;
+		case PROP_AVERAGE_VALUE:
+			apdu_len = encode_application_real(&apdu[0], buffer->getAverage());
+			break;
+		case PROP_ATTEMPTED_SAMPLES:
+			apdu_len = encode_application_unsigned(&apdu[0], buffer->getNumberOfAttemptedSamples());
+			break;
+		case PROP_VALID_SAMPLES:
+			apdu_len = encode_application_unsigned(&apdu[0], buffer->getNumberOfValidSamples());
+			break;
+		case PROP_WINDOW_INTERVAL:
+			apdu_len = encode_application_unsigned(&apdu[0], Window_Interval);
+			break;
+		case PROP_WINDOW_SAMPLES:
+			apdu_len = encode_application_unsigned(&apdu[0], Window_Samples);
+			break;
 		default:
-			apdu_len = 0;
+    		rpdata->error_class = ERROR_CLASS_PROPERTY;
+    		rpdata->error_code = ERROR_CODE_UNKNOWN_PROPERTY;
+    		apdu_len = BACNET_STATUS_ERROR;
 			break;
 	}
 	return apdu_len;
+}
+
+void Averaging::addNewSample(float& new_sample){
+	buffer->addSample(new_sample);
 }
