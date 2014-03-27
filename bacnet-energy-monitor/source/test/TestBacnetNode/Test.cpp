@@ -108,6 +108,11 @@ void runSuiteAnalogValueReadPropertyTest(){
 	s += CUTE_SMEMFUN(TestAnalogValue, testReadUnits);
 	s += CUTE_SMEMFUN(TestAnalogValue, testReadChangedPresentValue);
 	s += CUTE_SMEMFUN(TestAnalogValue, testWritePropertyFails);
+	s += CUTE_SMEMFUN(TestAnalogValue, testReadHighLimit);
+	s += CUTE_SMEMFUN(TestAnalogValue, testReadLowLimit);
+	s += CUTE_SMEMFUN(TestAnalogValue, testSetPresentValueAboveLimitAndReadReliabilityAndStatus);
+	s += CUTE_SMEMFUN(TestAnalogValue, testSetPresentValueBelowLimitAndReadReliabilityAndStatus);
+	s += CUTE_SMEMFUN(TestAnalogValue, testSetPresentValueOutsideLimitReadStatusResetPresentValueAndReadStatus);
 	cute::makeRunner(lis)(s, "Suite: Analog Value Read Properties");
 }
 

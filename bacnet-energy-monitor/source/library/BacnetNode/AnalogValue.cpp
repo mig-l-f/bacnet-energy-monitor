@@ -8,14 +8,28 @@
 
 #include "AnalogValue.h"
 
-AnalogValue::AnalogValue(const uint32_t objectID, const char* objectName, const char* description, BACNET_ENGINEERING_UNITS units):
-	AnalogObject(objectID, OBJECT_ANALOG_VALUE, objectName, description, units){};
+AnalogValue::AnalogValue(const uint32_t objectID, const char* objectName, const char* description, BACNET_ENGINEERING_UNITS units, float high_limit, float low_limit):
+	AnalogObject(objectID, OBJECT_ANALOG_VALUE, objectName, description, units, high_limit, low_limit){};
 
 AnalogValue::~AnalogValue(){}
 
 
 void AnalogValue::setPresentValue(float value){
 	Present_Value = value;
+
+	if (Present_Value > high_limit_) {
+		Reliability = RELIABILITY_OVER_RANGE;
+		bitstring_set_bit(&Status_Flags, STATUS_FLAG_FAULT, true);
+	}
+	else if (Present_Value < low_limit_) {
+		Reliability = RELIABILITY_UNDER_RANGE;
+		bitstring_set_bit(&Status_Flags, STATUS_FLAG_FAULT, true);
+	}
+	else {
+		Reliability = RELIABILITY_NO_FAULT_DETECTED;
+		bitstring_set_bit(&Status_Flags, STATUS_FLAG_FAULT, false);
+	}
+
 }
 
 int AnalogValue::Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata){
@@ -64,6 +78,12 @@ int AnalogValue::Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata){
 			break;
 		case PROP_UNITS:
 			apdu_len = encode_application_enumerated(&apdu[0], Units);
+			break;
+		case PROP_HIGH_LIMIT:
+			apdu_len = encode_application_real(&apdu[0], high_limit_);
+			break;
+		case PROP_LOW_LIMIT:
+			apdu_len = encode_application_real(&apdu[0], low_limit_);
 			break;
 		default:
 			rpdata->error_class = ERROR_CLASS_PROPERTY;

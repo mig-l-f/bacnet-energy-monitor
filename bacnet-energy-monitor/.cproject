@@ -2092,9 +2092,12 @@
 		<configuration configurationName="avrBacnetStack - NON VERBOSE">
 			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
 		</configuration>
+		<configuration configurationName="avrBacnetStackRfm12b - VERBOSE"/>
 		<configuration configurationName="avrArduinoBacnetEnergyMonitorRfm12b">
 			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
 		</configuration>
+		<configuration configurationName="avrRasPiSerialToRfm12bStream"/>
+		<configuration configurationName="avrBacnetStackRfm12b - NON VERBOSE"/>
 		<configuration configurationName="x86TestBacnetNodeLibrary">
 			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
 		</configuration>

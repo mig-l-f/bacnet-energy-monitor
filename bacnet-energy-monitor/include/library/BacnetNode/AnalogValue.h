@@ -23,7 +23,7 @@ private:
 
 
 public:
-	AnalogValue(const uint32_t objectID, const char* objectName, const char* description = "NOTDEF", BACNET_ENGINEERING_UNITS units = UNITS_PERCENT);
+	AnalogValue(const uint32_t objectID, const char* objectName, const char* description = "NOTDEF", BACNET_ENGINEERING_UNITS units = UNITS_PERCENT, float high_limit = 100.0, float low_limit = 0.0);
 	~AnalogValue();
 
 
