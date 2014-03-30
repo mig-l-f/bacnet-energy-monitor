@@ -9,10 +9,13 @@
 #include "TestAveraging.h"
 
 TestAveraging::TestAveraging(){
-	averaging = new Averaging(100, "MyAveragingObject", 900, 45, 10, 20);
+	analog_value = new AnalogValue(105, "Analog1", "", UNITS_DEGREES_CELSIUS, 60.0, -10.0);
+	averaging = new Averaging(100, "MyAveragingObject", 900, 45, analog_value, PROP_PRESENT_VALUE);
+	//averaging = new Averaging(100, "MyAveragingObject", 900, 45, -10, 60, analog_value, PROP_PRESENT_VALUE);
 }
 
 TestAveraging::~TestAveraging(){
+	delete(analog_value);
 	delete(averaging);
 }
 
@@ -211,4 +214,52 @@ void TestAveraging::testReadPropertyAverageValueAfterInsertingNewValue(){
 	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
 	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
 	ASSERT_EQUAL(value, appDataValueOUT.type.Real);
+}
+
+void TestAveraging::testReadProperyObjectPropertyReference(){
+
+	BACNET_READ_PROPERTY_DATA rpdata;
+	BACNET_APPLICATION_DATA_VALUE appDataValueIN;
+	createAPDU(rpdata, appDataValueIN, PROP_OBJECT_PROPERTY_REFERENCE);
+
+	int apdu_len = averaging->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	//BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
+	//bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	BACNET_DEVICE_OBJECT_PROPERTY_REFERENCE outData;
+	bacapp_decode_device_obj_property_ref(rpdata.application_data, &outData);
+	ASSERT_EQUAL(105, outData.objectIdentifier.instance);
+	ASSERT_EQUAL(OBJECT_ANALOG_VALUE, outData.objectIdentifier.type);
+	ASSERT_EQUAL(PROP_PRESENT_VALUE, outData.propertyIdentifier);
+}
+
+void TestAveraging::testReadPropertyAverageValueAfterInsertingOutOfBoundsData(){
+	float value = 70.0; // Out Of Bounds
+	averaging->addNewSample(value);
+
+	BACNET_READ_PROPERTY_DATA rpdata;
+	BACNET_APPLICATION_DATA_VALUE appDataValueIN;
+	createAPDU(rpdata, appDataValueIN, PROP_AVERAGE_VALUE);
+
+	int apdu_len = averaging->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(true, isnanf(appDataValueOUT.type.Real) != 0);
+
+	value = 30.0;
+	averaging->addNewSample(value);
+	value = 70.0; // Out Of Bounds
+	averaging->addNewSample(value);
+
+	createAPDU(rpdata, appDataValueIN, PROP_AVERAGE_VALUE);
+
+	apdu_len = averaging->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(30.0, appDataValueOUT.type.Real);
+
 }

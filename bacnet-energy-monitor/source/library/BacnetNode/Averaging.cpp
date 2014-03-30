@@ -9,10 +9,47 @@
 #include "Averaging.h"
 
 Averaging::Averaging(const uint32_t objectID, const char* objectName, unsigned int windowInterval, unsigned int windowSamples,
-					float validSampleMinimumThreshold, float validSampleMaximumThreshold):BacnetObject(objectID, OBJECT_AVERAGING, objectName){
+					BacnetObject* referenced_object, BACNET_PROPERTY_ID referenced_property):BacnetObject(objectID, OBJECT_AVERAGING, objectName){
+	Window_Samples = windowSamples;
+	Window_Interval = windowInterval;
+	object_property_reference.objectIdentifier.instance = referenced_object->getObjectIdentifier()->instance;
+	object_property_reference.objectIdentifier.type = referenced_object->getObjectIdentifier()->type;
+	object_property_reference.propertyIdentifier = referenced_property;
+
+	float validSampleMinimumThreshold = 100.0;
+	float validSampleMaximumThreshold = 0.0;
+	BACNET_READ_PROPERTY_DATA read_property_data;
+	read_property_data.object_property = PROP_LOW_LIMIT;
+	read_property_data.array_index = BACNET_ARRAY_ALL;
+	uint8_t apdu[15] = { 0 };
+	read_property_data.application_data = &apdu[0];
+	int apdu_len = referenced_object->Object_Read_Property(&read_property_data);
+	if (apdu_len != BACNET_STATUS_ERROR){
+		BACNET_APPLICATION_DATA_VALUE application_data_value;
+		bacapp_decode_application_data(read_property_data.application_data, MAX_APDU, &application_data_value);
+		validSampleMinimumThreshold = application_data_value.type.Real;
+	}
+
+	read_property_data.object_property = PROP_HIGH_LIMIT;
+	read_property_data.array_index = BACNET_ARRAY_ALL;
+	read_property_data.application_data = &apdu[0];
+	apdu_len = referenced_object->Object_Read_Property(&read_property_data);
+	if (apdu_len != BACNET_STATUS_ERROR){
+		BACNET_APPLICATION_DATA_VALUE application_data_value;
+		bacapp_decode_application_data(read_property_data.application_data, MAX_APDU, &application_data_value);
+		validSampleMaximumThreshold = application_data_value.type.Real;
+	}
+	buffer = new SlidingWindowBuffer(Window_Samples, validSampleMinimumThreshold, validSampleMaximumThreshold);
+}
+Averaging::Averaging(const uint32_t objectID, const char* objectName, unsigned int windowInterval, unsigned int windowSamples,
+					float validSampleMinimumThreshold, float validSampleMaximumThreshold, BacnetObject* referenced_object,
+					BACNET_PROPERTY_ID referenced_property):BacnetObject(objectID, OBJECT_AVERAGING, objectName){
 	Window_Samples = windowSamples;
 	Window_Interval = windowInterval;
 	buffer = new SlidingWindowBuffer(Window_Samples, validSampleMinimumThreshold, validSampleMaximumThreshold);
+	object_property_reference.objectIdentifier.instance = referenced_object->getObjectIdentifier()->instance;
+	object_property_reference.objectIdentifier.type = referenced_object->getObjectIdentifier()->type;
+	object_property_reference.propertyIdentifier = referenced_property;
 }
 
 Averaging::~Averaging(){
@@ -62,6 +99,9 @@ int Averaging::Object_Read_Property(BACNET_READ_PROPERTY_DATA * rpdata){
 			break;
 		case PROP_WINDOW_SAMPLES:
 			apdu_len = encode_application_unsigned(&apdu[0], Window_Samples);
+			break;
+		case PROP_OBJECT_PROPERTY_REFERENCE:
+			apdu_len = bacapp_encode_device_obj_property_ref(&apdu[0], &object_property_reference);
 			break;
 		default:
     		rpdata->error_class = ERROR_CLASS_PROPERTY;

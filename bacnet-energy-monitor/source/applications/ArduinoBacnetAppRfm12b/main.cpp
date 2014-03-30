@@ -12,7 +12,6 @@
 #include "arduino_cpp.h"
 #include "JeeLib.h"
 #include "BacnetNode2Thermos.h"
-#include "AveragingNode.h"
 #include "OneWire.h"
 #include "DallasTemperature.h"
 
@@ -41,7 +40,6 @@ static struct uip_udp_conn *udp_connection = NULL;
 // bacnet library
 static uint8_t PDUBuffer[MAX_MPDU];
 static BacnetNode2Thermos* node = new BacnetNode2Thermos();
-//AveragingNode* node = new AveragingNode();
 //#define ONE_WIRE_BUS 2
 //OneWire sensors(ONE_WIRE_BUS);
 //byte sensorsAddr[8];

@@ -11,6 +11,7 @@
 
 #include "BacnetNode.h"
 #include "Averaging.h"
+#include "AnalogValue.h"
 
 class AveragingNode : public BacnetNode{
 public:
@@ -20,7 +21,9 @@ public:
 			BACNET_ADDRESS * src,BACNET_CONFIRMED_SERVICE_DATA * service_data);
 	void makeNewMeasurement(float& measurement);
 private:
+	static AnalogValue* analog_value;
 	static Averaging* average;
+
 };
 
 #endif

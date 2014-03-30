@@ -8,7 +8,8 @@
 
 #include "AveragingNode.h"
 
-Averaging* AveragingNode::average = new Averaging(56, "AVG-1", 900, 45, -10, 50); //Minimum and Maximum for Temperature
+AnalogValue* AveragingNode::analog_value = new AnalogValue(57, "ANALOG-1", "", UNITS_DEGREES_CELSIUS, 50.0, -10.0);
+Averaging* AveragingNode::average = new Averaging(56, "AVG-1", 900, 45, -10, 50, analog_value, PROP_PRESENT_VALUE);
 
 AveragingNode::AveragingNode(){
 	apdu_set_confirmed_handler(SERVICE_CONFIRMED_READ_PROPERTY, handler_read_property);

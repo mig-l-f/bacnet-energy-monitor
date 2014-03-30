@@ -28,6 +28,7 @@ public:
 	void testAveragingNodeHandlerSendingSegmentedMessage();
 	void testAveragingReadAverageAfterInserting1Value();
 	void testAveragingReadAverageMaximumMinimumAfterInserting50Values();
+	void testAveragingReadAverageAfterCollectingSampleFromAnalogValue();
 
 private:
 	AveragingNode* bacnetNode;

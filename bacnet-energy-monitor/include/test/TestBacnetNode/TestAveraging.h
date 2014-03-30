@@ -11,9 +11,11 @@
 
 #include "cute.h"
 #include "Averaging.h"
+#include "AnalogValue.h"
 extern "C"{
 	#include "bacenum.h"
 	#include "bacapp.h"
+	#include "bacdevobjpropref.h"
 }
 
 class TestAveraging {
@@ -31,15 +33,17 @@ public:
 	void testReadPropertyMaximumValue();
 	void testReadPropertyAttemptedSamples();
 	void testReadPropertyValidSamples();
-	//void testReadProperyObjectPropertyReference(); // FIXME: Bug 9. Ver bacnet-stack/bacdevobjpropref.c
 	void testReadPropertyAverageValue();
 	void testReadWindowInterval();
 	void testReadWindowSamples();
 	void testReadNonExistingProperty();
 	void testReadPropertyArrayIndexOfNonArrayObject();
 	void testReadPropertyAverageValueAfterInsertingNewValue();
+	void testReadProperyObjectPropertyReference();
+	void testReadPropertyAverageValueAfterInsertingOutOfBoundsData();
 
 private:
+	AnalogValue* analog_value;
 	Averaging* averaging;
 	void createAPDU(BACNET_READ_PROPERTY_DATA& rpdata, BACNET_APPLICATION_DATA_VALUE& appDataValueIN,
 						BACNET_PROPERTY_ID property);

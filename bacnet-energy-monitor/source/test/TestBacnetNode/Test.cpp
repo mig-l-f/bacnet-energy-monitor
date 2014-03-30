@@ -163,6 +163,8 @@ void runSuitAveraging(){
 	s += CUTE_SMEMFUN(TestAveraging, testReadNonExistingProperty);
 	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyArrayIndexOfNonArrayObject);
 	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyAverageValueAfterInsertingNewValue);
+	s += CUTE_SMEMFUN(TestAveraging, testReadProperyObjectPropertyReference);
+	s += CUTE_SMEMFUN(TestAveraging, testReadPropertyAverageValueAfterInsertingOutOfBoundsData);
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "Suite: Test Averaging Object");
 }
@@ -198,6 +200,7 @@ void runSuiteAveragingNode(){
 	//s += CUTE_SMEMFUN(TestAveragingNode, testAveragingNodeHandlerSendingSegmentedMessage);
 	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingReadAverageAfterInserting1Value);
 	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingReadAverageMaximumMinimumAfterInserting50Values);
+	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingReadAverageAfterCollectingSampleFromAnalogValue);
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "Suite: Test Averaging Node");
 }
