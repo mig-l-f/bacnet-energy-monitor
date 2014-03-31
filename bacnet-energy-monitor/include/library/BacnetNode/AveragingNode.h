@@ -20,6 +20,7 @@ public:
 	static void handler_read_property(uint8_t * service_request, uint16_t service_len,
 			BACNET_ADDRESS * src,BACNET_CONFIRMED_SERVICE_DATA * service_data);
 	void makeNewMeasurement(float& measurement);
+	void setPresentValue(float& value);
 private:
 	static AnalogValue* analog_value;
 	static Averaging* average;

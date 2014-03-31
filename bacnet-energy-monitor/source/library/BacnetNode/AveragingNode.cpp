@@ -63,6 +63,9 @@ void AveragingNode::handler_read_property(uint8_t * service_request, uint16_t se
 		case OBJECT_AVERAGING:
 			len = average->Object_Read_Property(&rpdata);
 			break;
+		case OBJECT_ANALOG_VALUE:
+			len = analog_value->Object_Read_Property(&rpdata);
+			break;
 		default:
 			rpdata.error_class = ERROR_CLASS_OBJECT;
 			rpdata.error_code = ERROR_CODE_UNKNOWN_OBJECT;
@@ -93,4 +96,8 @@ void AveragingNode::handler_read_property(uint8_t * service_request, uint16_t se
 
 void AveragingNode::makeNewMeasurement(float& measurement){
 	average->addNewSample(measurement);
+}
+
+void AveragingNode::setPresentValue(float& value){
+	analog_value->setPresentValue(value);
 }

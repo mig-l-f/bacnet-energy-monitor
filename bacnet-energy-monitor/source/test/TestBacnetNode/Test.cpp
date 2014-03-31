@@ -200,7 +200,8 @@ void runSuiteAveragingNode(){
 	//s += CUTE_SMEMFUN(TestAveragingNode, testAveragingNodeHandlerSendingSegmentedMessage);
 	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingReadAverageAfterInserting1Value);
 	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingReadAverageMaximumMinimumAfterInserting50Values);
-	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingReadAverageAfterCollectingSampleFromAnalogValue);
+	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingReadAnalogValueObjectName);
+	s += CUTE_SMEMFUN(TestAveragingNode, testAveragingReadPresentValueFromAnalogObject);
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "Suite: Test Averaging Node");
 }

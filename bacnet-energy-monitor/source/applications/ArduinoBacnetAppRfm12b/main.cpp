@@ -11,7 +11,8 @@
 #include "Arduino.h"
 #include "arduino_cpp.h"
 #include "JeeLib.h"
-#include "BacnetNode2Thermos.h"
+//#include "BacnetNode2Thermos.h"
+#include "AveragingNode.h"
 #include "OneWire.h"
 #include "DallasTemperature.h"
 
@@ -39,13 +40,14 @@ static struct uip_udp_conn *udp_connection = NULL;
 
 // bacnet library
 static uint8_t PDUBuffer[MAX_MPDU];
-static BacnetNode2Thermos* node = new BacnetNode2Thermos();
+//static BacnetNode2Thermos* node = new BacnetNode2Thermos();
+AveragingNode* node = new AveragingNode();
 //#define ONE_WIRE_BUS 2
 //OneWire sensors(ONE_WIRE_BUS);
 //byte sensorsAddr[8];
 //byte present;
 //byte data[12];
-//float temperature;
+float temperature;
 
 void uart_init(){
 	UCSR0B = (1 << RXEN0) | (1 << TXEN0); // Turn on transmission and reception
@@ -159,7 +161,9 @@ void loop(void){
 //	}
 //	//convert to degrees
 //	//temperature = ( (data[1] << 8) + data[0])*0.0625;
-//	temperature = 25.0;
+	temperature = 25.0;
+	node::analog_value->setPresentValue(temperature);
+	node->makeNewMeasurement(temperature);
 //	node->getAnalogObjectFromList(0)->setPresentValue(temperature);
 //	node->getAnalogObjectFromList(1)->setPresentValue(temperature+1.0);
 }
