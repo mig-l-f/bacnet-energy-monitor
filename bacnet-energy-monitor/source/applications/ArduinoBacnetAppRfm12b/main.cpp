@@ -162,7 +162,7 @@ void loop(void){
 //	//convert to degrees
 //	//temperature = ( (data[1] << 8) + data[0])*0.0625;
 	temperature = 25.0;
-	node::analog_value->setPresentValue(temperature);
+	node->setPresentValue(temperature);
 	node->makeNewMeasurement(temperature);
 //	node->getAnalogObjectFromList(0)->setPresentValue(temperature);
 //	node->getAnalogObjectFromList(1)->setPresentValue(temperature+1.0);
