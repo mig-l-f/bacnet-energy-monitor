@@ -37,6 +37,11 @@ public:
 	void testReadUnits();
 	void testReadChangedPresentValue();
 	void testWritePropertyFails();
+	void testReadHighLimit();
+	void testReadLowLimit();
+	void testSetPresentValueAboveLimitAndReadReliabilityAndStatus();
+	void testSetPresentValueBelowLimitAndReadReliabilityAndStatus();
+	void testSetPresentValueOutsideLimitReadStatusResetPresentValueAndReadStatus();
 
 private:
 	AnalogObject* analogValue;

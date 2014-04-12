@@ -11,7 +11,8 @@
 #include "Arduino.h"
 #include "arduino_cpp.h"
 #include "JeeLib.h"
-#include "BacnetNode2Thermos.h"
+//#include "BacnetNode2Thermos.h"
+#include "AveragingNode.h"
 #include "OneWire.h"
 #include "DallasTemperature.h"
 
@@ -39,26 +40,45 @@ static struct uip_udp_conn *udp_connection = NULL;
 
 // bacnet library
 static uint8_t PDUBuffer[MAX_MPDU];
-static BacnetNode2Thermos* node = new BacnetNode2Thermos();
+//static BacnetNode2Thermos* node = new BacnetNode2Thermos();
+AveragingNode* node = new AveragingNode();
 //#define ONE_WIRE_BUS 2
 //OneWire sensors(ONE_WIRE_BUS);
 //byte sensorsAddr[8];
 //byte present;
 //byte data[12];
-//float temperature;
+float temperature;
 
 void uart_init(){
+#ifdef __AVR_ATmega328P__
 	UCSR0B = (1 << RXEN0) | (1 << TXEN0); // Turn on transmission and reception
 	UCSR0C = (1 << UCSZ00) | (1 << UCSZ01); //Use 8-bit character sizes
 
 	//Set Baud
 	UBRR0H = (BAUD_PRESCALE >> 8); // Load upper 8 - bits of the baud rate value into the high byte of the UBRR register
 	UBRR0L = BAUD_PRESCALE; // Load lower 8 - bits of the baud rate value into the low byte of the UBRR register
+#else
+	// set baud rate
+	UBRR1H = 0;
+	UBRR1L = 103;
+
+	// enable uart RX and TX
+	UCSR1B = (1<<RXEN1)|(1<<TXEN1);
+	// set 8N1 frame format
+	UCSR1C = (1<<UCSZ11)|(1<<UCSZ10);
+#endif
 }
 
 int uart_putchar(char c, FILE *stream){
+#ifdef __AVR_ATmega328P__
 	loop_until_bit_is_set(UCSR0A, UDRE0);
 	UDR0 = c;
+#else
+	// wait for empty receive buffer
+	while ((UCSR1A & (1<<UDRE1))==0);
+	// send
+	UDR1 = c;
+#endif
 }
 
 void init_rfm12b(void){
@@ -159,7 +179,9 @@ void loop(void){
 //	}
 //	//convert to degrees
 //	//temperature = ( (data[1] << 8) + data[0])*0.0625;
-//	temperature = 25.0;
+	temperature = 25.0;
+	node->setPresentValue(temperature);
+	node->makeNewMeasurement(temperature);
 //	node->getAnalogObjectFromList(0)->setPresentValue(temperature);
 //	node->getAnalogObjectFromList(1)->setPresentValue(temperature+1.0);
 }
@@ -169,6 +191,10 @@ int main(
 {
 
     init();
+
+#if defined(USBCON)
+    USBDevice.attach();
+#endif
 
     setup();
 

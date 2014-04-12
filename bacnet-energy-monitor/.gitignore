@@ -17,3 +17,7 @@
 /avrBacnetStackRfm12b - VERBOSE
 /x86TestBacnetStack
 /avrRasPiSerialToRfm12bStream
+/avrLeonardoBacnetEnergyMonitorRfm12b
+/avrLeonardoBacnetStackRfm12b - VERBOSE
+/avrLeonardoBacnetNodeLibrary
+/avrLeonardoBacnetStackRfm12b - NON VERBOSE

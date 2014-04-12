@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013 by Miguel Fernandes
+ * Copyright (c) 2014 by Miguel Fernandes
  *
  * This file is free software; you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License version 2.1, both as

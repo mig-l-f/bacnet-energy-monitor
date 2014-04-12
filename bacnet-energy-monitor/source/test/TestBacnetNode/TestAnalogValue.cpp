@@ -12,7 +12,7 @@ TestAnalogValue::TestAnalogValue() {
 	objectNumber = 100;
 	objectName = "MyAnalogValue";
 	units = UNITS_DEGREES_CELSIUS;
-	analogValue = new AnalogValue(objectNumber, objectName, "ThisIsDescription", units);
+	analogValue = new AnalogValue(objectNumber, objectName, "ThisIsDescription", units, 50.0, -10.0);
 }
 
 TestAnalogValue::~TestAnalogValue() {
@@ -241,4 +241,166 @@ void TestAnalogValue::testWritePropertyFails(){
 //	ASSERT_EQUAL(true, len != -1);
 	ASSERT_EQUAL(ERROR_CLASS_PROPERTY, wpdata.error_class);
 	ASSERT_EQUAL(ERROR_CODE_WRITE_ACCESS_DENIED, wpdata.error_code);
+}
+
+void TestAnalogValue::testReadHighLimit(){
+	BACNET_READ_PROPERTY_DATA rpdata;
+	BACNET_APPLICATION_DATA_VALUE appDataValueIN;
+	createAPDU(rpdata, appDataValueIN, PROP_HIGH_LIMIT);
+
+	int apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(50.0, appDataValueOUT.type.Real);
+}
+
+void TestAnalogValue::testReadLowLimit(){
+	BACNET_READ_PROPERTY_DATA rpdata;
+	BACNET_APPLICATION_DATA_VALUE appDataValueIN;
+	createAPDU(rpdata, appDataValueIN, PROP_LOW_LIMIT);
+
+	int apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(-10.0, appDataValueOUT.type.Real);
+}
+
+void TestAnalogValue::testSetPresentValueAboveLimitAndReadReliabilityAndStatus(){
+	analogValue->setPresentValue(200.0);
+
+	BACNET_READ_PROPERTY_DATA rpdata;
+	BACNET_APPLICATION_DATA_VALUE appDataValueIN;
+
+	createAPDU(rpdata, appDataValueIN, PROP_PRESENT_VALUE);
+	int apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(200.0, appDataValueOUT.type.Real);
+
+	createAPDU(rpdata, appDataValueIN, PROP_RELIABILITY);
+	apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(RELIABILITY_OVER_RANGE, appDataValueOUT.type.Enumerated);
+
+	createAPDU(rpdata, appDataValueIN, PROP_STATUS_FLAGS);
+	apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+
+	BACNET_BIT_STRING referenceValues;
+	bitstring_init(&referenceValues);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_IN_ALARM, false);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_FAULT, true);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_OUT_OF_SERVICE, false);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_OVERRIDDEN, false);
+	ASSERT_EQUAL(true, bitstring_same(&referenceValues, &appDataValueOUT.type.Bit_String));
+}
+
+void TestAnalogValue::testSetPresentValueBelowLimitAndReadReliabilityAndStatus(){
+	analogValue->setPresentValue(-200.0);
+
+	BACNET_READ_PROPERTY_DATA rpdata;
+	BACNET_APPLICATION_DATA_VALUE appDataValueIN;
+
+	createAPDU(rpdata, appDataValueIN, PROP_PRESENT_VALUE);
+	int apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(-200.0, appDataValueOUT.type.Real);
+
+	createAPDU(rpdata, appDataValueIN, PROP_RELIABILITY);
+	apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(RELIABILITY_UNDER_RANGE, appDataValueOUT.type.Enumerated);
+
+	createAPDU(rpdata, appDataValueIN, PROP_STATUS_FLAGS);
+	apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+
+	BACNET_BIT_STRING referenceValues;
+	bitstring_init(&referenceValues);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_IN_ALARM, false);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_FAULT, true);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_OUT_OF_SERVICE, false);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_OVERRIDDEN, false);
+	ASSERT_EQUAL(true, bitstring_same(&referenceValues, &appDataValueOUT.type.Bit_String));
+}
+void TestAnalogValue::testSetPresentValueOutsideLimitReadStatusResetPresentValueAndReadStatus(){
+	analogValue->setPresentValue(-200.0);
+
+	BACNET_READ_PROPERTY_DATA rpdata;
+	BACNET_APPLICATION_DATA_VALUE appDataValueIN;
+
+	createAPDU(rpdata, appDataValueIN, PROP_PRESENT_VALUE);
+	int apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	BACNET_APPLICATION_DATA_VALUE appDataValueOUT;
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(-200.0, appDataValueOUT.type.Real);
+
+	createAPDU(rpdata, appDataValueIN, PROP_RELIABILITY);
+	apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(RELIABILITY_UNDER_RANGE, appDataValueOUT.type.Enumerated);
+
+	createAPDU(rpdata, appDataValueIN, PROP_STATUS_FLAGS);
+	apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+
+	BACNET_BIT_STRING referenceValues;
+	bitstring_init(&referenceValues);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_IN_ALARM, false);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_FAULT, true);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_OUT_OF_SERVICE, false);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_OVERRIDDEN, false);
+	ASSERT_EQUAL(true, bitstring_same(&referenceValues, &appDataValueOUT.type.Bit_String));
+
+	analogValue->setPresentValue(25.0);
+
+	createAPDU(rpdata, appDataValueIN, PROP_PRESENT_VALUE);
+	apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(25.0, appDataValueOUT.type.Real);
+
+	createAPDU(rpdata, appDataValueIN, PROP_RELIABILITY);
+	apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+	ASSERT_EQUAL(RELIABILITY_NO_FAULT_DETECTED, appDataValueOUT.type.Enumerated);
+
+	createAPDU(rpdata, appDataValueIN, PROP_STATUS_FLAGS);
+	apdu_len = analogValue->Object_Read_Property(&rpdata);
+	if (apdu_len == BACNET_STATUS_ERROR)
+				ASSERT_EQUAL(true, false);
+	bacapp_decode_application_data(rpdata.application_data, MAX_APDU, &appDataValueOUT);
+
+	bitstring_init(&referenceValues);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_IN_ALARM, false);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_FAULT, false);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_OUT_OF_SERVICE, false);
+	bitstring_set_bit(&referenceValues, STATUS_FLAG_OVERRIDDEN, false);
+	ASSERT_EQUAL(true, bitstring_same(&referenceValues, &appDataValueOUT.type.Bit_String));
 }

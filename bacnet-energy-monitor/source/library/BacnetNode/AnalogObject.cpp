@@ -9,7 +9,7 @@
 #include "AnalogObject.h"
 
 AnalogObject::AnalogObject(const uint32_t objectID, BACNET_OBJECT_TYPE objectType, const char* objectName,
-							const char* description, BACNET_ENGINEERING_UNITS units):BacnetObject(objectID, objectType, objectName){
+							const char* description, BACNET_ENGINEERING_UNITS units, float high_limit, float low_limit):BacnetObject(objectID, objectType, objectName){
 	Present_Value = (float)-1.0;
 	characterstring_init_ansi(&Description, description);
 	bitstring_init(&Status_Flags);
@@ -21,6 +21,8 @@ AnalogObject::AnalogObject(const uint32_t objectID, BACNET_OBJECT_TYPE objectTyp
 	Reliability = RELIABILITY_NO_FAULT_DETECTED;
 	Out_Of_Service = false;
 	Units = units;
+	high_limit_ = high_limit;
+	low_limit_ = low_limit;
 }
 
 AnalogObject::~AnalogObject(){}

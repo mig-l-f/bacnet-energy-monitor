@@ -12,7 +12,7 @@ TestAnalogObject::TestAnalogObject(){
 	objectNumber = 101;
 	objectName = "TestAnalogObject";
 	units = UNITS_DEGREES_CELSIUS;
-	analog1 = new AnalogValue(objectNumber, objectName, "Test Analog Object", units);
+	analog1 = new AnalogValue(objectNumber, objectName, "Test Analog Object", units, 50.0, -10.0);
 }
 
 TestAnalogObject::~TestAnalogObject(){}

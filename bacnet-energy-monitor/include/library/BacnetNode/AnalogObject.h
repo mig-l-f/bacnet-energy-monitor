@@ -25,10 +25,12 @@ protected:
 	BACNET_RELIABILITY Reliability;
 	bool Out_Of_Service;
 	BACNET_ENGINEERING_UNITS Units;
+	float high_limit_;
+	float low_limit_;
 
 public:
 	AnalogObject(const uint32_t objectID, BACNET_OBJECT_TYPE objectType, const char* objectName,
-					const char* description = "NOTDEF", BACNET_ENGINEERING_UNITS units = UNITS_PERCENT);
+					const char* description = "NOTDEF", BACNET_ENGINEERING_UNITS units = UNITS_PERCENT, float high_limit = 100.0, float low_limit = 0.0);
 	~AnalogObject();
 
 	virtual void setPresentValue(float value) = 0;
