@@ -3123,18 +3123,23 @@
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
-		<configuration configurationName="x86BacnetStack - VERBOSE">
+		<configuration configurationName="x86EmulatorBacnetEnergyMonitor">
 			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
 		</configuration>
 		<configuration configurationName="x86BacnetNodeLibrary">
 			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
 		</configuration>
-		<configuration configurationName="x86EmulatorBacnetEnergyMonitor">
-			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
-		</configuration>
 		<configuration configurationName="avrBacnetNodeLibrary">
 			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
 		</configuration>
+		<configuration configurationName="avrBacnetStackRfm12b - VERBOSE"/>
+		<configuration configurationName="avrBacnetStackRfm12b - NON VERBOSE"/>
+		<configuration configurationName="avrLeonardoBacnetNodeLibrary"/>
+		<configuration configurationName="x86BacnetStack - VERBOSE">
+			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
+		</configuration>
+		<configuration configurationName="avrLeonardoBacnetStackRfm12b - VERBOSE"/>
+		<configuration configurationName="avrLeonardoBacnetEnergyMonitorRfm12b"/>
 		<configuration configurationName="avrBacnetStack - VERBOSE">
 			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
 		</configuration>
@@ -3144,18 +3149,17 @@
 		<configuration configurationName="avrBacnetStack - NON VERBOSE">
 			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
 		</configuration>
-		<configuration configurationName="avrBacnetStackRfm12b - VERBOSE"/>
 		<configuration configurationName="avrArduinoBacnetEnergyMonitorRfm12b">
 			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
 		</configuration>
 		<configuration configurationName="avrRasPiSerialToRfm12bStream"/>
-		<configuration configurationName="avrBacnetStackRfm12b - NON VERBOSE"/>
 		<configuration configurationName="x86TestBacnetNodeLibrary">
 			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
 		</configuration>
 		<configuration configurationName="x86BacnetStack - NON VERBOSE">
 			<resource resourceType="PROJECT" workspacePath="/bacnet-energy-monitor"/>
 		</configuration>
+		<configuration configurationName="avrLeonardoBacnetStackRfm12b - NON VERBOSE"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
