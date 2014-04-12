@@ -67,7 +67,7 @@
 
 #define datalink_init bip_init
 
-#ifndef __AVR_ATmega328P__
+/*#if !defined(__AVR_ATmega328P__) || !defined(__AVR_ATmega32U4__)
 	#if defined(BBMD_ENABLED) && BBMD_ENABLED
 		#define datalink_send_pdu bvlc_send_pdu
 		#define datalink_receive bvlc_receive
@@ -75,10 +75,10 @@
 		#define datalink_send_pdu bip_send_pdu
 		#define datalink_receive bip_receive
 	#endif
-#else
+#else*/
 	#define datalink_send_pdu bip_send_pdu
 	#define datalink_receive bip_receive
-#endif
+//#endif
 
 
 #define datalink_cleanup bip_cleanup
