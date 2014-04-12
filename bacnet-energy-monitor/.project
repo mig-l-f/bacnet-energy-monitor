@@ -3,7 +3,6 @@
 	<name>bacnet-energy-monitor</name>
 	<comment></comment>
 	<projects>
-		<project>BacnetNodeCpp</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
