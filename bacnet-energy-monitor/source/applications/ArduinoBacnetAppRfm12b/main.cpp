@@ -12,7 +12,8 @@
 #include "arduino_cpp.h"
 #include "JeeLib.h"
 //#include "BacnetNode2Thermos.h"
-#include "AveragingNode.h"
+//#include "AveragingNode.h"
+#include "AnalogValueNode.h"
 #include "OneWire.h"
 #include "DallasTemperature.h"
 
@@ -41,7 +42,8 @@ static struct uip_udp_conn *udp_connection = NULL;
 // bacnet library
 static uint8_t PDUBuffer[MAX_MPDU];
 //static BacnetNode2Thermos* node = new BacnetNode2Thermos();
-AveragingNode* node = new AveragingNode();
+//AveragingNode* node = new AveragingNode();
+AnalogValueNode* node = new AnalogValueNode();
 //#define ONE_WIRE_BUS 2
 //OneWire sensors(ONE_WIRE_BUS);
 //byte sensorsAddr[8];
@@ -117,6 +119,9 @@ void uip_udp_received_data_callback(void){
 }
 
 void setup(void){
+	Serial.begin(9600);
+	while(!Serial)
+		;
 	//Set Serial Output
 	uart_init();
 	fdev_setup_stream (&uart_output, uart_putchar, NULL, _FDEV_SETUP_WRITE);
@@ -178,10 +183,9 @@ void loop(void){
 //		data[i] = sensors.read();
 //	}
 //	//convert to degrees
-//	//temperature = ( (data[1] << 8) + data[0])*0.0625;
-	temperature = 25.0;
+//	temperature = ( (data[1] << 8) + data[0])*0.0625;
+	temperature = 23.0;
 	node->setPresentValue(temperature);
-	node->makeNewMeasurement(temperature);
 //	node->getAnalogObjectFromList(0)->setPresentValue(temperature);
 //	node->getAnalogObjectFromList(1)->setPresentValue(temperature+1.0);
 }
