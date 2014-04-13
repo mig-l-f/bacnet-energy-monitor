@@ -18,6 +18,7 @@
 #include "TestAveraging.h"
 #include "TestSlidingWindowBuffer.h"
 #include "TestAveragingNode.h"
+#include "TestAnalogValueNode.h"
 
 void runSuiteDeviceObjectProperties(){
 	cute::suite s;
@@ -206,6 +207,19 @@ void runSuiteAveragingNode(){
 	cute::makeRunner(lis)(s, "Suite: Test Averaging Node");
 }
 
+void runSuiteAnalogValueNode(){
+	cute::suite s;
+	s += CUTE_SMEMFUN(TestAnalogValueNode, nothing);
+	s += CUTE_SMEMFUN(TestAnalogValueNode, testNodeHandlerReadPropertyObjectName);
+	s += CUTE_SMEMFUN(TestAnalogValueNode, testNodeHandlerReadProperyPresentValue);
+	s += CUTE_SMEMFUN(TestAnalogValueNode, testNodeHandlerReadAccessNonExistingObject);
+	s += CUTE_SMEMFUN(TestAnalogValueNode, testNodeHandlerReadNonExistingProperty);
+	s += CUTE_SMEMFUN(TestAnalogValueNode, testNodeReadPresentValueAfterInserting1Value);
+
+	cute::ide_listener lis;
+	cute::makeRunner(lis)(s, "Suite: Test Analog Value Node");
+}
+
 int main(){
     runSuiteDeviceObjectReadPropertyTest();
     runSuiteBacnetNodeProperties();
@@ -215,6 +229,7 @@ int main(){
     runSuitAveraging();
     runSuitSlidingWindowBuffer();
     runSuiteAveragingNode();
+    runSuiteAnalogValueNode();
     return 0;
 }
 
